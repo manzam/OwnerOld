@@ -1,0 +1,9 @@
+Message =>    The process cannot access the file 'C:\Proyectos manuel\SlnOwners\WebOwner\upload\09_03_2017_07_09_05RENDIMIENTOS INT FARA APTO MEDELLIN AÑO 20161.txt.txt' because it is being used by another process.
+InnerException =>    
+Source =>    mscorlib
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.IO.IOException: The process cannot access the file 'C:\Proyectos manuel\SlnOwners\WebOwner\upload\09_03_2017_07_09_05RENDIMIENTOS INT FARA APTO MEDELLIN AÑO 20161.txt.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.Delete(String path)
+   at BO.CargaMasivaBo.Cargar_InformacionCertificado() in C:\Proyectos manuel\SlnOwners\BO\CargaMasivaBo.cs:line 577
+   at WebOwner.ui.WebUserControls.WebUserCargaMasiva.btnCargar_Click(Object sender, EventArgs e) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserCargaMasiva.ascx.cs:line 197

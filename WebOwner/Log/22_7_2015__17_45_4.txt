@@ -1,0 +1,20 @@
+Message =>    Must declare the scalar variable "@PORCENTAJE_FARA".
+InnerException =>    
+Source =>    .Net SqlClient Data Provider
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.Data.SqlClient.SqlException: Must declare the scalar variable "@PORCENTAJE_FARA".
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   en System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   en System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en BO.LiquidacionBo.ObtenerValorConceptoHotel(Int32 idHotel, Int32 idConcepto, String nombreConcepto, DateTime fecha, String regla, Int32 numDecimal) en F:\Proyectos\Owners\SlnOwners\BO\LiquidacionBo.cs:línea 1030
+   en BO.LiquidacionBo.LiquidarConceptoHotel() en F:\Proyectos\Owners\SlnOwners\BO\LiquidacionBo.cs:línea 913
+   en WebOwner.ui.WebUserControls.WebUserLiquidacion.btnPreLiquidacionHotel_Click(Object sender, EventArgs e) en F:\Proyectos\Owners\SlnOwners\WebOwner\ui\WebUserControls\WebUserLiquidacion.ascx.cs:línea 500

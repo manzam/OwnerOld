@@ -1,0 +1,7 @@
+Message =>    Object reference not set to an instance of an object.
+InnerException =>    
+Source =>    BO
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.NullReferenceException: Object reference not set to an instance of an object.
+   at BO.CargaMasivaBo.Cargar_InformacionCertificado() in C:\Proyectos manuel\SlnOwners\BO\CargaMasivaBo.cs:line 545
+   at WebOwner.ui.WebUserControls.WebUserCargaMasiva.btnCargar_Click(Object sender, EventArgs e) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserCargaMasiva.ascx.cs:line 197

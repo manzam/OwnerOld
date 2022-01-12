@@ -1,0 +1,10 @@
+Message =>    Specified argument was out of the range of valid values.
+Parameter name: index
+InnerException =>    
+Source =>    System.Web
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.ArgumentOutOfRangeException: Specified argument was out of the range of valid values.
+Parameter name: index
+   at System.Web.UI.ControlCollection.get_Item(Int32 index)
+   at System.Web.UI.WebControls.TableCellCollection.get_Item(Int32 index)
+   at WebOwner.ui.WebUserControls.WebUserLiquidacion.MostrarPreLiquidarPropietario(Int32 numColumnas, List`1 listaResultadosConceptosFinal, List`1 listaConcepto) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserLiquidacion.ascx.cs:line 301

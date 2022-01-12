@@ -1,0 +1,10 @@
+Message =>    Thread was being aborted.
+InnerException =>    
+Source =>    mscorlib
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.End()
+   at WebOwner.ui.WebUserControls.WebUserInterfaz.CrearArchivo(DateTime fechaPeriodo, StringBuilder texto) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserInterfaz.ascx.cs:line 91
+   at WebOwner.ui.WebUserControls.WebUserInterfaz.btnAceptar_Click(Object sender, EventArgs e) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserInterfaz.ascx.cs:line 158

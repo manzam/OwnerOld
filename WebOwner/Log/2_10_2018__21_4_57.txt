@@ -1,0 +1,14 @@
+Message =>    The object could not be added or attached because its EntityReference has an EntityKey property value that does not match the EntityKey for this object.
+InnerException =>    
+Source =>    System.Data.Entity
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.InvalidOperationException: The object could not be added or attached because its EntityReference has an EntityKey property value that does not match the EntityKey for this object.
+   at System.Data.Objects.DataClasses.RelatedEnd.AddEntityToObjectStateManager(IEntityWithRelationships entity, Boolean doAttach)
+   at System.Data.Objects.DataClasses.RelatedEnd.AddGraphToObjectStateManager(IEntityWithRelationships entity, Boolean relationshipAlreadyExists, Boolean addRelationshipAsUnchanged, Boolean doAttach, HashSet`1 promotedEntityKeyRefs)
+   at System.Data.Objects.DataClasses.RelatedEnd.IncludeEntity[U](U entity, Boolean addRelationshipAsUnchanged, Boolean doAttach, HashSet`1 promotedEntityKeyRefs)
+   at System.Data.Objects.DataClasses.EntityReference`1.Include(Boolean addRelationshipAsUnchanged, Boolean doAttach, HashSet`1 promotedEntityKeyRefs)
+   at System.Data.Objects.DataClasses.RelationshipManager.AddRelatedEntitiesToObjectStateManager(Boolean doAttach)
+   at System.Data.Objects.ObjectContext.AddObject(String entitySetName, Object entity)
+   at DM.ContextoOwner.AddToSuit_Propietario(Suit_Propietario suit_Propietario) in C:\Proyectos manuel\SlnOwners\DM\Model.Designer.cs:line 1052
+   at BO.SuitPropietarioBo.Guardar(List`1 listaSuitPropietario) in C:\Proyectos manuel\SlnOwners\BO\SuitPropietarioBo.cs:line 45
+   at WebOwner.ui.WebUserControls.WebUserPropietario.btnGuardar_Click(Object sender, EventArgs e) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserPropietario.ascx.cs:line 963

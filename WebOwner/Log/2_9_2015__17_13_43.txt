@@ -1,0 +1,9 @@
+Message =>    Referencia a objeto no establecida como instancia de un objeto.
+InnerException =>    
+Source =>    Servicios
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Servicios.Utilities.PadRight(String cadena, Int16 numCaracteres, Char caracterRelleno) en F:\Proyectos\Owners\SlnOwners\Servicios\Utilities.cs:línea 315
+   en BO.InterfazBo.MovimientoContable(ObjetoGenerico interfazTmp, Int32 consecutivo, String diaFinalMes) en F:\Proyectos\Owners\SlnOwners\BO\InterfazBo.cs:línea 469
+   en BO.InterfazBo.GenerarInterfas(Int32 consecutivo, DateTime fechaPeriodo) en F:\Proyectos\Owners\SlnOwners\BO\InterfazBo.cs:línea 370
+   en WebOwner.ui.WebUserControls.WebUserInterfaz.btnAceptar_Click(Object sender, EventArgs e) en F:\Proyectos\Owners\SlnOwners\WebOwner\ui\WebUserControls\WebUserInterfaz.ascx.cs:línea 141

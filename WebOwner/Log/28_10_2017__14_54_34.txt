@@ -1,0 +1,5 @@
+Message =>    Exception of type 'System.Exception' was thrown.
+InnerException =>    
+Source =>    El siguiente usuario es posible que no tenga lleno los valores de sus variables : idPropietario 6259 idSuite : 8012
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.Exception: Exception of type 'System.Exception' was thrown.

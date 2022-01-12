@@ -1,0 +1,14 @@
+Message =>    A connection was successfully established with the server, but then an error occurred during the login process. (provider: TCP Provider, error: 0 - An existing connection was forcibly closed by the remote host.)
+InnerException =>    
+Source =>    .Net SqlClient Data Provider
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.Data.SqlClient.SqlException: A connection was successfully established with the server, but then an error occurred during the login process. (provider: TCP Provider, error: 0 - An existing connection was forcibly closed by the remote host.)
+   at System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   at System.Data.ProviderBase.DbConnectionPool.PoolCreateRequest(Object state)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   at System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Servicios.Utilities.Select(String sql, String nombreDataTable) in C:\Proyectos manuel\SlnOwners\Servicios\Utilities.cs:line 59
+   at BO.LiquidacionBo.ObtenerReglas() in C:\Proyectos manuel\SlnOwners\BO\LiquidacionBo.cs:line 536
+   at BO.LiquidacionBo.LiquidarConceptoHotel() in C:\Proyectos manuel\SlnOwners\BO\LiquidacionBo.cs:line 783
+   at WebOwner.ui.WebUserControls.WebUserLiquidacion.btnPreLiquidacionHotel_Click(Object sender, EventArgs e) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserLiquidacion.ascx.cs:line 521

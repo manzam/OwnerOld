@@ -1,0 +1,9 @@
+Message =>    La cadena de entrada no tiene el formato correcto.
+InnerException =>    
+Source =>    mscorlib
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.FormatException: La cadena de entrada no tiene el formato correcto.
+   en System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   en System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   en System.Int32.Parse(String s)
+   en WebOwner.ui.WebUserControls.WebUserValorVariable.btnGuardar_Click(Object sender, EventArgs e) en F:\Proyectos\Owners\SlnOwners\WebOwner\ui\WebUserControls\WebUserValorVariable.ascx.cs:línea 95

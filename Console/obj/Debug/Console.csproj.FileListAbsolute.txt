@@ -1,0 +1,99 @@
+D:\Proyectos\Owners\SlnOwners\Console\bin\Debug\Console.exe.config
+D:\Proyectos\Owners\SlnOwners\Console\bin\Debug\Console.exe
+D:\Proyectos\Owners\SlnOwners\Console\bin\Debug\Console.pdb
+D:\Proyectos\Owners\SlnOwners\Console\bin\Debug\BO.dll
+D:\Proyectos\Owners\SlnOwners\Console\bin\Debug\DM.dll
+D:\Proyectos\Owners\SlnOwners\Console\bin\Debug\Servicios.dll
+D:\Proyectos\Owners\SlnOwners\Console\bin\Debug\BO.pdb
+D:\Proyectos\Owners\SlnOwners\Console\bin\Debug\Servicios.pdb
+D:\Proyectos\Owners\SlnOwners\Console\bin\Debug\DM.pdb
+D:\Proyectos\Owners\SlnOwners\Console\obj\Debug\ResolveAssemblyReference.cache
+D:\Proyectos\Owners\SlnOwners\Console\obj\Debug\Console.exe
+D:\Proyectos\Owners\SlnOwners\Console\obj\Debug\Console.pdb
+F:\Proyectos\Owners\SlnOwners\Console\bin\Debug\Console.exe.config
+F:\Proyectos\Owners\SlnOwners\Console\bin\Debug\Console.exe
+F:\Proyectos\Owners\SlnOwners\Console\bin\Debug\Console.pdb
+F:\Proyectos\Owners\SlnOwners\Console\bin\Debug\BO.dll
+F:\Proyectos\Owners\SlnOwners\Console\bin\Debug\DM.dll
+F:\Proyectos\Owners\SlnOwners\Console\bin\Debug\Servicios.dll
+F:\Proyectos\Owners\SlnOwners\Console\bin\Debug\BO.pdb
+F:\Proyectos\Owners\SlnOwners\Console\bin\Debug\Servicios.pdb
+F:\Proyectos\Owners\SlnOwners\Console\bin\Debug\DM.pdb
+F:\Proyectos\Owners\SlnOwners\Console\obj\Debug\ResolveAssemblyReference.cache
+F:\Proyectos\Owners\SlnOwners\Console\obj\Debug\Console.exe
+F:\Proyectos\Owners\SlnOwners\Console\obj\Debug\Console.pdb
+C:\Users\Desarrollador\Desktop\Owners\SlnOwners\Console\bin\Debug\Console.exe.config
+C:\Users\Desarrollador\Desktop\Owners\SlnOwners\Console\bin\Debug\Console.exe
+C:\Users\Desarrollador\Desktop\Owners\SlnOwners\Console\bin\Debug\Console.pdb
+C:\Users\Desarrollador\Desktop\Owners\SlnOwners\Console\bin\Debug\BO.dll
+C:\Users\Desarrollador\Desktop\Owners\SlnOwners\Console\bin\Debug\DM.dll
+C:\Users\Desarrollador\Desktop\Owners\SlnOwners\Console\bin\Debug\Servicios.dll
+C:\Users\Desarrollador\Desktop\Owners\SlnOwners\Console\bin\Debug\BO.pdb
+C:\Users\Desarrollador\Desktop\Owners\SlnOwners\Console\bin\Debug\Servicios.pdb
+C:\Users\Desarrollador\Desktop\Owners\SlnOwners\Console\bin\Debug\DM.pdb
+C:\Users\Desarrollador\Desktop\Owners\SlnOwners\Console\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Desarrollador\Desktop\Owners\SlnOwners\Console\obj\Debug\Console.exe
+C:\Users\Desarrollador\Desktop\Owners\SlnOwners\Console\obj\Debug\Console.pdb
+C:\Users\manuel\Desktop\Owners\SlnOwners\Console\bin\Debug\Console.exe.config
+C:\Users\manuel\Desktop\Owners\SlnOwners\Console\bin\Debug\Console.exe
+C:\Users\manuel\Desktop\Owners\SlnOwners\Console\bin\Debug\Console.pdb
+C:\Users\manuel\Desktop\Owners\SlnOwners\Console\bin\Debug\BO.dll
+C:\Users\manuel\Desktop\Owners\SlnOwners\Console\bin\Debug\DM.dll
+C:\Users\manuel\Desktop\Owners\SlnOwners\Console\bin\Debug\Servicios.dll
+C:\Users\manuel\Desktop\Owners\SlnOwners\Console\bin\Debug\BO.pdb
+C:\Users\manuel\Desktop\Owners\SlnOwners\Console\bin\Debug\Servicios.pdb
+C:\Users\manuel\Desktop\Owners\SlnOwners\Console\bin\Debug\DM.pdb
+C:\Users\manuel\Desktop\Owners\SlnOwners\Console\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\manuel\Desktop\Owners\SlnOwners\Console\obj\Debug\Console.exe
+C:\Users\manuel\Desktop\Owners\SlnOwners\Console\obj\Debug\Console.pdb
+C:\Users\Desarrollo STTS\Desktop\SlnOwners\Console\bin\Debug\Console.exe.config
+C:\Users\Desarrollo STTS\Desktop\SlnOwners\Console\bin\Debug\Console.exe
+C:\Users\Desarrollo STTS\Desktop\SlnOwners\Console\bin\Debug\Console.pdb
+C:\Users\Desarrollo STTS\Desktop\SlnOwners\Console\bin\Debug\BO.dll
+C:\Users\Desarrollo STTS\Desktop\SlnOwners\Console\bin\Debug\DM.dll
+C:\Users\Desarrollo STTS\Desktop\SlnOwners\Console\bin\Debug\Servicios.dll
+C:\Users\Desarrollo STTS\Desktop\SlnOwners\Console\bin\Debug\BO.pdb
+C:\Users\Desarrollo STTS\Desktop\SlnOwners\Console\bin\Debug\Servicios.pdb
+C:\Users\Desarrollo STTS\Desktop\SlnOwners\Console\bin\Debug\DM.pdb
+C:\Users\Desarrollo STTS\Desktop\SlnOwners\Console\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Desarrollo STTS\Desktop\SlnOwners\Console\obj\Debug\Console.exe
+C:\Users\Desarrollo STTS\Desktop\SlnOwners\Console\obj\Debug\Console.pdb
+C:\Proyectos manuel\SlnOwners2015\Console\bin\Debug\Console.exe.config
+C:\Proyectos manuel\SlnOwners2015\Console\bin\Debug\Console.exe
+C:\Proyectos manuel\SlnOwners2015\Console\bin\Debug\Console.pdb
+C:\Proyectos manuel\SlnOwners2015\Console\bin\Debug\BO.dll
+C:\Proyectos manuel\SlnOwners2015\Console\bin\Debug\DM.dll
+C:\Proyectos manuel\SlnOwners2015\Console\bin\Debug\Servicios.dll
+C:\Proyectos manuel\SlnOwners2015\Console\bin\Debug\BO.pdb
+C:\Proyectos manuel\SlnOwners2015\Console\bin\Debug\Servicios.pdb
+C:\Proyectos manuel\SlnOwners2015\Console\bin\Debug\DM.pdb
+C:\Proyectos manuel\SlnOwners2015\Console\obj\Debug\ResolveAssemblyReference.cache
+C:\Proyectos manuel\SlnOwners2015\Console\obj\Debug\Console.exe
+C:\Proyectos manuel\SlnOwners2015\Console\obj\Debug\Console.pdb
+C:\Proyectos manuel\SlnOwners\Console\bin\Debug\Console.exe.config
+C:\Proyectos manuel\SlnOwners\Console\bin\Debug\Console.exe
+C:\Proyectos manuel\SlnOwners\Console\bin\Debug\Console.pdb
+C:\Proyectos manuel\SlnOwners\Console\bin\Debug\BO.dll
+C:\Proyectos manuel\SlnOwners\Console\bin\Debug\DM.dll
+C:\Proyectos manuel\SlnOwners\Console\bin\Debug\Servicios.dll
+C:\Proyectos manuel\SlnOwners\Console\bin\Debug\BO.pdb
+C:\Proyectos manuel\SlnOwners\Console\bin\Debug\Servicios.pdb
+C:\Proyectos manuel\SlnOwners\Console\bin\Debug\DM.pdb
+C:\Proyectos manuel\SlnOwners\Console\obj\Debug\ResolveAssemblyReference.cache
+C:\Proyectos manuel\SlnOwners\Console\obj\Debug\Console.exe
+C:\Proyectos manuel\SlnOwners\Console\obj\Debug\Console.pdb
+D:\Proyects\SlnOwners\Console\bin\Debug\Console.exe.config
+D:\Proyects\SlnOwners\Console\bin\Debug\Console.exe
+D:\Proyects\SlnOwners\Console\bin\Debug\Console.pdb
+D:\Proyects\SlnOwners\Console\bin\Debug\BO.dll
+D:\Proyects\SlnOwners\Console\bin\Debug\DM.dll
+D:\Proyects\SlnOwners\Console\bin\Debug\Servicios.dll
+D:\Proyects\SlnOwners\Console\bin\Debug\BO.pdb
+D:\Proyects\SlnOwners\Console\bin\Debug\DM.pdb
+D:\Proyects\SlnOwners\Console\bin\Debug\DM.dll.config
+D:\Proyects\SlnOwners\Console\bin\Debug\Servicios.pdb
+D:\Proyects\SlnOwners\Console\obj\Debug\Console.csproj.AssemblyReference.cache
+D:\Proyects\SlnOwners\Console\obj\Debug\Console.csproj.CoreCompileInputs.cache
+D:\Proyects\SlnOwners\Console\obj\Debug\Console.csproj.CopyComplete
+D:\Proyects\SlnOwners\Console\obj\Debug\Console.exe
+D:\Proyects\SlnOwners\Console\obj\Debug\Console.pdb

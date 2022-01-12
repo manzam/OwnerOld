@@ -1,0 +1,10 @@
+Message =>    El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+InnerException =>    
+Source =>    System.Web
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.ArgumentOutOfRangeException: El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+   en System.Web.UI.ControlCollection.get_Item(Int32 index)
+   en System.Web.UI.WebControls.TableCellCollection.get_Item(Int32 index)
+   en WebOwner.ui.WebUserControls.WebUserLiquidacion.MostrarPreLiquidarPropietario(Int32 numColumnas, List`1 listaResultadosConceptosFinal, List`1 listaConcepto) en F:\Proyectos\Owners\SlnOwners\WebOwner\ui\WebUserControls\WebUserLiquidacion.ascx.cs:línea 296

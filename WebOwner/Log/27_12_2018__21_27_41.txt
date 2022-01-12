@@ -1,0 +1,9 @@
+Message =>    Object reference not set to an instance of an object.
+InnerException =>    
+Source =>    Servicios
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.NullReferenceException: Object reference not set to an instance of an object.
+   at Servicios.Utilities.PadRight(String cadena, Int16 numCaracteres, Char caracterRelleno) in C:\Proyectos manuel\SlnOwners\Servicios\Utilities.cs:line 355
+   at BO.InterfazBo.MovimientoCuentasPorPagar(ObjetoGenerico interfazTmp, Int32 consecutivo, Int32 diaFinalMes) in C:\Proyectos manuel\SlnOwners\BO\InterfazBo.cs:line 549
+   at BO.InterfazBo.GenerarInterfas(Int32 consecutivo, DateTime fechaPeriodo) in C:\Proyectos manuel\SlnOwners\BO\InterfazBo.cs:line 381
+   at WebOwner.ui.WebUserControls.WebUserInterfaz.btnAceptar_Click(Object sender, EventArgs e) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserInterfaz.ascx.cs:line 142

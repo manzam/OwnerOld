@@ -1,0 +1,20 @@
+Message =>    Must declare the scalar variable "@NUMERO_DE_DERECHOS_FIDUCIARIOS_VENDIDOS".
+InnerException =>    
+Source =>    .Net SqlClient Data Provider
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.Data.SqlClient.SqlException: Must declare the scalar variable "@NUMERO_DE_DERECHOS_FIDUCIARIOS_VENDIDOS".
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at BO.LiquidacionBo.ObtenerValorConceptoHotel(Int32 idHotel, Int32 idConcepto, String nombreConcepto, DateTime fecha, String regla, Int32 numDecimal) in C:\Proyectos manuel\SlnOwners\BO\LiquidacionBo.cs:line 889
+   at BO.LiquidacionBo.LiquidarConceptoHotel() in C:\Proyectos manuel\SlnOwners\BO\LiquidacionBo.cs:line 789
+   at WebOwner.ui.WebUserControls.WebUserLiquidacion.btnPreLiquidacionHotel_Click(Object sender, EventArgs e) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserLiquidacion.ascx.cs:line 521

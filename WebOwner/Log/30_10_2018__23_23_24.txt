@@ -1,0 +1,15 @@
+Message =>    There is already an open DataReader associated with this Command which must be closed first.
+InnerException =>    
+Source =>    System.Data
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.InvalidOperationException: There is already an open DataReader associated with this Command which must be closed first.
+   at System.Data.SqlClient.SqlInternalConnectionTds.ValidateConnectionForExecute(SqlCommand command)
+   at System.Data.SqlClient.SqlConnection.ValidateConnectionForExecute(String method, SqlCommand command)
+   at System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at BO.LiquidacionBo.ObtenerValorConceptoHotel(Int32 idHotel, Int32 idConcepto, String nombreConcepto, DateTime fecha, String regla, Int32 numDecimal) in C:\Proyectos manuel\SlnOwners\BO\LiquidacionBo.cs:line 892
+   at BO.LiquidacionBo.LiquidarConceptoHotel() in C:\Proyectos manuel\SlnOwners\BO\LiquidacionBo.cs:line 792
+   at WebOwner.ui.WebUserControls.WebUserLiquidacion.btnPreLiquidacionHotel_Click(Object sender, EventArgs e) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserLiquidacion.ascx.cs:line 521

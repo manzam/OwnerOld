@@ -1,0 +1,192 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WebOwner.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="IdSuperUsuario" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="IdPropietario" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="IdAdministrador" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="CorreoRemitente" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">propietarios.estelar@hotelesestelar.com</Value>
+    </Setting>
+    <Setting Name="NombreRemitente" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Hoteles ESTELAR Propietarios</Value>
+    </Setting>
+    <Setting Name="ClaveRemitente" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Este2015</Value>
+    </Setting>
+    <Setting Name="PuertoSMTP" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">587</Value>
+    </Setting>
+    <Setting Name="HostSMTP" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">smtp.office365.com</Value>
+    </Setting>
+    <Setting Name="EnableSsl" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="RutaExtracto" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">../../extractos/</Value>
+    </Setting>
+    <Setting Name="F_TIPO_REG_Inicio" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0000</Value>
+    </Setting>
+    <Setting Name="F_SUBTIPO_REG_Inicio" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">00</Value>
+    </Setting>
+    <Setting Name="F_VERSION_REG_Inicio" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">01</Value>
+    </Setting>
+    <Setting Name="F_CIA_Inicio" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">001</Value>
+    </Setting>
+    <Setting Name="F_TIPO_REG_Final" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">9999</Value>
+    </Setting>
+    <Setting Name="F_SUBTIPO_REG_Final" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">00</Value>
+    </Setting>
+    <Setting Name="F_VERSION_REG_Final" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">01</Value>
+    </Setting>
+    <Setting Name="F_CIA_Final" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">001</Value>
+    </Setting>
+    <Setting Name="F_TIPO_REG" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">351</Value>
+    </Setting>
+    <Setting Name="F_SUBTIPO_REG" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">00</Value>
+    </Setting>
+    <Setting Name="F_VERSION_REG" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">01</Value>
+    </Setting>
+    <Setting Name="F_CIA" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">001</Value>
+    </Setting>
+    <Setting Name="CodigoHotelBlue" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">900343679</Value>
+    </Setting>
+    <Setting Name="F351_ID_UN" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Fijo para Registro cuenta Por Pagar Administracion descontada al propietario.</Value>
+    </Setting>
+    <Setting Name="F353_ID_SUCURSAL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">001</Value>
+    </Setting>
+    <Setting Name="F353_NRO_CUOTA_CRUCE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">000</Value>
+    </Setting>
+    <Setting Name="F353_ID_FE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">120301</Value>
+    </Setting>
+    <Setting Name="IdPorcentajePropiedad" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">248</Value>
+    </Setting>
+    <Setting Name="F_SUBTIPO_REG_MXP" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">02</Value>
+    </Setting>
+    <Setting Name="F_CONSEC_AUTO_REG" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="F_TIPO_REG_ENCABEZADO" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0350</Value>
+    </Setting>
+    <Setting Name="F350_ID_TIPO_DOCTO" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LCP</Value>
+    </Setting>
+    <Setting Name="NitHotelEstelar" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">890304099</Value>
+    </Setting>
+    <Setting Name="F350_ID_CLASE_DOCTO" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="F350_IND_ESTADO" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="F350_IND_IMPRESION" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="IdCiudadDefault" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1123</Value>
+    </Setting>
+    <Setting Name="NumEstadias" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="IdBancoDefault" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">739</Value>
+    </Setting>
+    <Setting Name="NombreBancoDefault" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">BANCOLOMBIA</Value>
+    </Setting>
+    <Setting Name="LDAP" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LDAP://</Value>
+    </Setting>
+    <Setting Name="mesajeCorreoOlvidoClave" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Sera asignada una nueva contraseña, click en el link para confirmar. &lt;br/&gt;&lt;a href='%url%' target='_blank'&gt;Click aqui&lt;/a&gt;</Value>
+    </Setting>
+    <Setting Name="Passphrase" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">hotelesestelar</Value>
+    </Setting>
+    <Setting Name="AsuntoOlvidoClave" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Olvide mi Clave</Value>
+    </Setting>
+    <Setting Name="PieCorreo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">* POR FAVOR NO RESPONDA A ESTE CORREO ELECTRÓNICO. Este correo electrónico fue generado automáticamente. Si tiene alguna pregunta, por favor llamar directamente al hotel donde tiene su inversión.</Value>
+    </Setting>
+    <Setting Name="UrlOlvidoCalve" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://10.1.99.128/Owner_Release/OlvideClave.aspx</Value>
+    </Setting>
+    <Setting Name="UrlOlvidoClaveUsuario" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://10.1.99.128/Owner_Release/OlvideClaveUsuario.aspx</Value>
+    </Setting>
+    <Setting Name="IsPruebas" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Bogota" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;152&lt;/string&gt;
+  &lt;string&gt;160&lt;/string&gt;
+  &lt;string&gt;170&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="Costa" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;100&lt;/string&gt;
+  &lt;string&gt;200&lt;/string&gt;
+  &lt;string&gt;300&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="Medellin" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;900&lt;/string&gt;
+  &lt;string&gt;800&lt;/string&gt;
+  &lt;string&gt;700&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="CorreoRemitenteBogota" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">owner.bogota@hotelesestelar.com</Value>
+    </Setting>
+    <Setting Name="CorreoRemitenteCosta" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">owner.costa@hotelesestelar.com</Value>
+    </Setting>
+    <Setting Name="CorreoRemitenteMedellin" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">owner.medellin@hotelesestelar.com</Value>
+    </Setting>
+    <Setting Name="ClaveRemitenteBogota" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Owner001</Value>
+    </Setting>
+    <Setting Name="ClaveRemitenteCosta" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Owner002</Value>
+    </Setting>
+    <Setting Name="ClaveRemitenteMedellin" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Owner003</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

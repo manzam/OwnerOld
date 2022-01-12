@@ -1,0 +1,10 @@
+Message =>    Subproceso anulado.
+InnerException =>    
+Source =>    mscorlib
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.Threading.ThreadAbortException: Subproceso anulado.
+   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.End()
+   en WebOwner.ui.WebUserControls.WebUserInterfaz.CrearArchivo(DateTime fechaPeriodo, StringBuilder texto) en F:\Proyectos\Owners\SlnOwners\WebOwner\ui\WebUserControls\WebUserInterfaz.ascx.cs:línea 84
+   en WebOwner.ui.WebUserControls.WebUserInterfaz.btnAceptar_Click(Object sender, EventArgs e) en F:\Proyectos\Owners\SlnOwners\WebOwner\ui\WebUserControls\WebUserInterfaz.ascx.cs:línea 153

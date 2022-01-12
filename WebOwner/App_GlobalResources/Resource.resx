@@ -1,0 +1,822 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnActualizar" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="btnCancelar" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="btnGuardar" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="btnModificar" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="btnNuevo" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="btnProbarRegla" xml:space="preserve">
+    <value>Probar Regla</value>
+  </data>
+  <data name="btnVerTodos" xml:space="preserve">
+    <value>Ver Todos</value>
+  </data>
+  <data name="DatosConcepto" xml:space="preserve">
+    <value>Datos Concepto</value>
+  </data>
+  <data name="DatosHotel" xml:space="preserve">
+    <value>Datos Hoteles</value>
+  </data>
+  <data name="DatosPerfilpermiso" xml:space="preserve">
+    <value>Datos Perfil - Permisos</value>
+  </data>
+  <data name="DatosPropietario" xml:space="preserve">
+    <value>Datos Propietarios</value>
+  </data>
+  <data name="DatosPropietarioCliente" xml:space="preserve">
+    <value>Datos Propietarios</value>
+  </data>
+  <data name="lblCiudad" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="lblCorreo" xml:space="preserve">
+    <value>Correo</value>
+  </data>
+  <data name="lblDepto" xml:space="preserve">
+    <value>Departamento</value>
+  </data>
+  <data name="lblDireccion" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="lblNit" xml:space="preserve">
+    <value>Nit</value>
+  </data>
+  <data name="lblNombre" xml:space="preserve">
+    <value>Primer Nombre</value>
+  </data>
+  <data name="TituloPrincipalHotel" xml:space="preserve">
+    <value>Hoteles</value>
+  </data>
+  <data name="TituloPrincipalPerfilPermiso" xml:space="preserve">
+    <value>Perfil - Permisos</value>
+  </data>
+  <data name="TituloprincipalPropietario" xml:space="preserve">
+    <value>Propietarios</value>
+  </data>
+  <data name="TituloprincipalPropietarioCliente" xml:space="preserve">
+    <value>Propietario</value>
+  </data>
+  <data name="TituloprincipalReglaLiquidacion" xml:space="preserve">
+    <value>Reglas de Liquidación</value>
+  </data>
+  <data name="TituloprincipalVariables" xml:space="preserve">
+    <value>Variables</value>
+  </data>
+  <data name="CerrarSesion" xml:space="preserve">
+    <value>Cerrar Sesion</value>
+  </data>
+  <data name="Modulos" xml:space="preserve">
+    <value>Modulos</value>
+  </data>
+  <data name="lblUsuario" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="btnAgregarSuit" xml:space="preserve">
+    <value>Agregar Suite</value>
+  </data>
+  <data name="DatosSuit" xml:space="preserve">
+    <value>Datos Suite</value>
+  </data>
+  <data name="lblAccion" xml:space="preserve">
+    <value>Acción</value>
+  </data>
+  <data name="lblActivo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="lblApellido" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="lblDescripcion" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="lblEliminar" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="lblMensajeActualizar" xml:space="preserve">
+    <value>La actualización fue exitosa.</value>
+  </data>
+  <data name="lblMensajeEliminar" xml:space="preserve">
+    <value>Registro Eliminado.</value>
+  </data>
+  <data name="lblMensajeError_1" xml:space="preserve">
+    <value>Este registro depende de otra tabla.</value>
+  </data>
+  <data name="lblNombrePerfil" xml:space="preserve">
+    <value>Nombre Perfil</value>
+  </data>
+  <data name="lblNumSuit" xml:space="preserve">
+    <value>N° Suite</value>
+  </data>
+  <data name="lblTienePermiso" xml:space="preserve">
+    <value>Tiene Permiso</value>
+  </data>
+  <data name="TituloGrillaHotel" xml:space="preserve">
+    <value>Lista Hoteles</value>
+  </data>
+  <data name="TituloGrillaModulos" xml:space="preserve">
+    <value>Lista Modulos</value>
+  </data>
+  <data name="TituloGrillaPerfil" xml:space="preserve">
+    <value>Lista Perfil</value>
+  </data>
+  <data name="TituloGrillaSinDatos" xml:space="preserve">
+    <value>No se encontraros datos.</value>
+  </data>
+  <data name="TituloGrillaSuit" xml:space="preserve">
+    <value>Lista Suite</value>
+  </data>
+  <data name="DatosVariables" xml:space="preserve">
+    <value>Datos Variables</value>
+  </data>
+  <data name="lblBanco" xml:space="preserve">
+    <value>Banco</value>
+  </data>
+  <data name="lblClave" xml:space="preserve">
+    <value>Clave</value>
+  </data>
+  <data name="lblClaveConfirmar" xml:space="preserve">
+    <value>Confirmar Clave</value>
+  </data>
+  <data name="lblCuenta" xml:space="preserve">
+    <value>N° Cuenta</value>
+  </data>
+  <data name="lblHotel" xml:space="preserve">
+    <value>Hotel</value>
+  </data>
+  <data name="lblLogin" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="lblMensajeError_2" xml:space="preserve">
+    <value>Clave y Confirmar clave deben ser iguales.</value>
+  </data>
+  <data name="lblMensajeError_3" xml:space="preserve">
+    <value>La regla, tiene errores de jerarquia</value>
+  </data>
+  <data name="lblMensajeError_4" xml:space="preserve">
+    <value>Esta variable ya existe.</value>
+  </data>
+  <data name="lblMensajeExito_1" xml:space="preserve">
+    <value>La regla, esta bien creada.</value>
+  </data>
+  <data name="lblMensajeGuardar" xml:space="preserve">
+    <value>Registro guardado con exito.</value>
+  </data>
+  <data name="lblNombreConcepto" xml:space="preserve">
+    <value>Nombre Concepto</value>
+  </data>
+  <data name="lblNumCuenta" xml:space="preserve">
+    <value>N° Cuenta</value>
+  </data>
+  <data name="lblNumIdentificacion" xml:space="preserve">
+    <value>N° Identificación</value>
+  </data>
+  <data name="lblPerfil" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="lblRegla" xml:space="preserve">
+    <value>Regla</value>
+  </data>
+  <data name="lblReglaValidacion" xml:space="preserve">
+    <value>Regla de Liquidación</value>
+  </data>
+  <data name="lblSuit" xml:space="preserve">
+    <value>Suite</value>
+  </data>
+  <data name="lblValor" xml:space="preserve">
+    <value>Valor</value>
+  </data>
+  <data name="lblVariables" xml:space="preserve">
+    <value>Variables</value>
+  </data>
+  <data name="TituloGrillaPropietarios" xml:space="preserve">
+    <value>Propietarios</value>
+  </data>
+  <data name="TituloGrillaReglas" xml:space="preserve">
+    <value>Lista Regla</value>
+  </data>
+  <data name="lblPerfilPermisos" xml:space="preserve">
+    <value>Perfil - Permisos</value>
+  </data>
+  <data name="lblMensajeError_5" xml:space="preserve">
+    <value>Este usuario no esta activo ó algunos de los campos es incorrecto.</value>
+  </data>
+  <data name="lblEstadia" xml:space="preserve">
+    <value>Estadias</value>
+  </data>
+  <data name="lblEstadias" xml:space="preserve">
+    <value>Número de Estadias</value>
+  </data>
+  <data name="DatosNoticia" xml:space="preserve">
+    <value>Datos Noticia</value>
+  </data>
+  <data name="lblNoticia" xml:space="preserve">
+    <value>Noticia</value>
+  </data>
+  <data name="lblTitulo" xml:space="preserve">
+    <value>Titulo</value>
+  </data>
+  <data name="TituloPrincipalNoticia" xml:space="preserve">
+    <value>Noticia</value>
+  </data>
+  <data name="lblFecha" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="TituloGrillaNoticia" xml:space="preserve">
+    <value>Lista Noticias</value>
+  </data>
+  <data name="lblMensajeError_6" xml:space="preserve">
+    <value>Hubo un problema, comuniquese con el administrador.</value>
+  </data>
+  <data name="lblMensajeError_7" xml:space="preserve">
+    <value>Login ya existe.</value>
+  </data>
+  <data name="btnEditar" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="lblMensajeEliminarPregunta" xml:space="preserve">
+    <value>¿Esta seguro de eliminar este registro?</value>
+  </data>
+  <data name="btnSeleccionar" xml:space="preserve">
+    <value>Seleccionar</value>
+  </data>
+  <data name="lblCuentaAhorro" xml:space="preserve">
+    <value>Cuenta de Ahorro</value>
+  </data>
+  <data name="lblCuentaCorriente" xml:space="preserve">
+    <value>Cuenta Corriente</value>
+  </data>
+  <data name="lblDetalle" xml:space="preserve">
+    <value>Detalle</value>
+  </data>
+  <data name="lblPorcentajeParticipacion" xml:space="preserve">
+    <value>Porcentaje Participación</value>
+  </data>
+  <data name="lblTelefono1" xml:space="preserve">
+    <value>Telefono 1</value>
+  </data>
+  <data name="lblTelefono2" xml:space="preserve">
+    <value>Telefono 2</value>
+  </data>
+  <data name="lblTelefono3" xml:space="preserve">
+    <value>Telefono 3</value>
+  </data>
+  <data name="lblTipoCuenta" xml:space="preserve">
+    <value>Tipo cuenta</value>
+  </data>
+  <data name="lblTitular" xml:space="preserve">
+    <value>Titular Cuenta</value>
+  </data>
+  <data name="lblArea" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="lblMensajeError_8" xml:space="preserve">
+    <value>La cadena no tiene el formato correcto.</value>
+  </data>
+  <data name="DatosReserva" xml:space="preserve">
+    <value>Datos Recerva</value>
+  </data>
+  <data name="lblAdulto" xml:space="preserve">
+    <value>Adultos</value>
+  </data>
+  <data name="lblEntrada" xml:space="preserve">
+    <value>Entrada</value>
+  </data>
+  <data name="lblFechaReserva" xml:space="preserve">
+    <value>Fecha Reserva</value>
+  </data>
+  <data name="lblNinos" xml:space="preserve">
+    <value>Niños</value>
+  </data>
+  <data name="lblObservacion" xml:space="preserve">
+    <value>Observación</value>
+  </data>
+  <data name="lblSalida" xml:space="preserve">
+    <value>Salida</value>
+  </data>
+  <data name="TituloGrillaReservas" xml:space="preserve">
+    <value>Lista Reservas</value>
+  </data>
+  <data name="TituloPrincipalReservaciones" xml:space="preserve">
+    <value>Reservación</value>
+  </data>
+  <data name="lblLlave" xml:space="preserve">
+    <value>Llave</value>
+  </data>
+  <data name="btnAdministrarHotel" xml:space="preserve">
+    <value>Hoteles Administrar</value>
+  </data>
+  <data name="lblAdmin" xml:space="preserve">
+    <value>Administra</value>
+  </data>
+  <data name="lblSeleccione" xml:space="preserve">
+    <value>Seleccione...</value>
+  </data>
+  <data name="TituloPrincipalVariablesSuit" xml:space="preserve">
+    <value>Variables Suite</value>
+  </data>
+  <data name="lblMensajeError_9" xml:space="preserve">
+    <value>Este registro no se puede eliminar, depende de otro registro.</value>
+  </data>
+  <data name="lblOperadores" xml:space="preserve">
+    <value>Operadores</value>
+  </data>
+  <data name="lblConcepto" xml:space="preserve">
+    <value>Concepto</value>
+  </data>
+  <data name="lblTipoConcepto" xml:space="preserve">
+    <value>Tipo Concepto</value>
+  </data>
+  <data name="lblMensajeError_10" xml:space="preserve">
+    <value>Identificación ya existe.</value>
+  </data>
+  <data name="lblClaveActual" xml:space="preserve">
+    <value>Clave Actual</value>
+  </data>
+  <data name="lblClaveNueva" xml:space="preserve">
+    <value>Clave Nueva</value>
+  </data>
+  <data name="btnAceptar" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="lblMensajeError_11" xml:space="preserve">
+    <value>Clave actual invalida</value>
+  </data>
+  <data name="lblLiquidacion" xml:space="preserve">
+    <value>Liquidación</value>
+  </data>
+  <data name="lblLiquidar" xml:space="preserve">
+    <value>Liquidar</value>
+  </data>
+  <data name="TituloGrillaLiquidacion" xml:space="preserve">
+    <value>Lista Liquidación</value>
+  </data>
+  <data name="lblTipoVariable" xml:space="preserve">
+    <value>Tipo Variable</value>
+  </data>
+  <data name="lblVariablesGenerales" xml:space="preserve">
+    <value>Variable Generales</value>
+  </data>
+  <data name="lblVariablesHotel" xml:space="preserve">
+    <value>Variable Hotel</value>
+  </data>
+  <data name="lblPropietarios" xml:space="preserve">
+    <value>Lista Propietarios</value>
+  </data>
+  <data name="lblTodos" xml:space="preserve">
+    <value>Todos</value>
+  </data>
+  <data name="lblusuarios" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="lblFiltro" xml:space="preserve">
+    <value>Filtro</value>
+  </data>
+  <data name="TituloGrillaConcepto" xml:space="preserve">
+    <value>Lista Conceptos</value>
+  </data>
+  <data name="lblLiquidacionHotel" xml:space="preserve">
+    <value>Liquidación Hotel</value>
+  </data>
+  <data name="lblLiquidacionPropietario" xml:space="preserve">
+    <value>Liquidación Propietario</value>
+  </data>
+  <data name="lblVariablesPropietarios" xml:space="preserve">
+    <value>Variable Propietario</value>
+  </data>
+  <data name="lblCargando" xml:space="preserve">
+    <value>Cargando...</value>
+  </data>
+  <data name="lblSeleccion" xml:space="preserve">
+    <value>Selección</value>
+  </data>
+  <data name="lblLiquidarSeleccionados" xml:space="preserve">
+    <value>Liquidar Seleccionados</value>
+  </data>
+  <data name="lblLiquidarTodos" xml:space="preserve">
+    <value>Liquidar Todos</value>
+  </data>
+  <data name="lblMensajeError_12" xml:space="preserve">
+    <value>El número suite ya existe.</value>
+  </data>
+  <data name="lblEscritura" xml:space="preserve">
+    <value>Escritura</value>
+  </data>
+  <data name="lblValorVariable" xml:space="preserve">
+    <value>Valor Variable Hotel</value>
+  </data>
+  <data name="lblAgregarSuite" xml:space="preserve">
+    <value>Agregar Suite</value>
+  </data>
+  <data name="lblFechaElaboracion" xml:space="preserve">
+    <value>Fecha Creación</value>
+  </data>
+  <data name="lblDetalleConceptoHotel" xml:space="preserve">
+    <value>Detalle Concepto Hotel</value>
+  </data>
+  <data name="lblResponsable" xml:space="preserve">
+    <value>Responsable</value>
+  </data>
+  <data name="lblLogo" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="lblEstracto" xml:space="preserve">
+    <value>Extracto</value>
+  </data>
+  <data name="lblMensajeError_13" xml:space="preserve">
+    <value>Nit ya existe.</value>
+  </data>
+  <data name="lblHotelSuite" xml:space="preserve">
+    <value>Hotel - Suite</value>
+  </data>
+  <data name="lblMensajeError_14" xml:space="preserve">
+    <value>Las siguientes variables, aún no tienen valores asignados.</value>
+  </data>
+  <data name="TituloGrillaUsuario" xml:space="preserve">
+    <value>Lista Usuarios</value>
+  </data>
+  <data name="DatosPropietarioUsuario" xml:space="preserve">
+    <value>Datos Usuario</value>
+  </data>
+  <data name="lblCorreoContacto" xml:space="preserve">
+    <value>Correo Contacto</value>
+  </data>
+  <data name="lblNombreContacto" xml:space="preserve">
+    <value>Nombre Contacto</value>
+  </data>
+  <data name="lblTelefonoContacto" xml:space="preserve">
+    <value>Telefono Contacto</value>
+  </data>
+  <data name="lblCuentaContable" xml:space="preserve">
+    <value>Cuenta Contable</value>
+  </data>
+  <data name="btnEnviarExtractos" xml:space="preserve">
+    <value>Enviar Extractos</value>
+  </data>
+  <data name="btnVerExtracto" xml:space="preserve">
+    <value>Ver Extracto</value>
+  </data>
+  <data name="TituloPrincipalCargaMasiva" xml:space="preserve">
+    <value>Carga de Archivos</value>
+  </data>
+  <data name="btnCargarArchivo" xml:space="preserve">
+    <value>Cargar Archivo</value>
+  </data>
+  <data name="lblArchivo" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="lblEstructura" xml:space="preserve">
+    <value>Estructura</value>
+  </data>
+  <data name="lblCodigo" xml:space="preserve">
+    <value>Codigo</value>
+  </data>
+  <data name="lblMensajeError_15" xml:space="preserve">
+    <value>El propietario debe tener asociado por lo menos una suite.</value>
+  </data>
+  <data name="lblHistorialLiquidacion" xml:space="preserve">
+    <value>Historial Liquidación</value>
+  </data>
+  <data name="DatosCeCo" xml:space="preserve">
+    <value>Datos Centro Costo</value>
+  </data>
+  <data name="lblCentroCosto" xml:space="preserve">
+    <value>Centro Costo</value>
+  </data>
+  <data name="TituloCeCo" xml:space="preserve">
+    <value>Lista Centro Costo</value>
+  </data>
+  <data name="lblMensajeError_16" xml:space="preserve">
+    <value>El código ya existe.</value>
+  </data>
+  <data name="lblCentroCostoVariable" xml:space="preserve">
+    <value>Centro Costo Variable</value>
+  </data>
+  <data name="lblDocCruce" xml:space="preserve">
+    <value>Documento Cruce</value>
+  </data>
+  <data name="lblEncabezadoDocCruce" xml:space="preserve">
+    <value>Encabezado Documento Cruce</value>
+  </data>
+  <data name="lblNaturalezaCuenta" xml:space="preserve">
+    <value>Naturaleza Cuenta</value>
+  </data>
+  <data name="TituloGrillaCuentaContable" xml:space="preserve">
+    <value>Lista Cuenta Contable</value>
+  </data>
+  <data name="TituloPrincipalRelacionContableHotel" xml:space="preserve">
+    <value>Cuenta Contable - Hotel</value>
+  </data>
+  <data name="lblInterfaz" xml:space="preserve">
+    <value>Interfaz BOF</value>
+  </data>
+  <data name="lblSeparador" xml:space="preserve">
+    <value>Separador</value>
+  </data>
+  <data name="btnDescargar" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="lblMensajeCargue" xml:space="preserve">
+    <value>Carga Exitosa.</value>
+  </data>
+  <data name="lblTerceroVariable" xml:space="preserve">
+    <value>Tercero Variable</value>
+  </data>
+  <data name="lblCodigoTercero" xml:space="preserve">
+    <value>Codigo Tercero</value>
+  </data>
+  <data name="lblRegistroNotaria" xml:space="preserve">
+    <value>Registro Notaria</value>
+  </data>
+  <data name="lblUnidadNegocio" xml:space="preserve">
+    <value>Unidad de Negocio</value>
+  </data>
+  <data name="lblFechaCaducidad" xml:space="preserve">
+    <value>Fecha Caducidad</value>
+  </data>
+  <data name="lblFechaCreacion" xml:space="preserve">
+    <value>Fecha Creación</value>
+  </data>
+  <data name="lblMensajeAdvertencia_1" xml:space="preserve">
+    <value>Los campos de naranja, es información que no se encuentra guardada en la base de datos.</value>
+  </data>
+  <data name="lblNombreExtracto" xml:space="preserve">
+    <value>Nombre extracto</value>
+  </data>
+  <data name="btnBuscar" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="lblDescargarArchivo" xml:space="preserve">
+    <value>Descargar Archivo</value>
+  </data>
+  <data name="lblMensajeArchivoGenerado" xml:space="preserve">
+    <value>Archivo generado con exito.</value>
+  </data>
+  <data name="lblbuscarProp" xml:space="preserve">
+    <value>Buscar Propietarios</value>
+  </data>
+  <data name="lblBuscarPor" xml:space="preserve">
+    <value>Buscar por</value>
+  </data>
+  <data name="lblRegistroEstadias" xml:space="preserve">
+    <value>Registro Estadías</value>
+  </data>
+  <data name="lblFechaFin" xml:space="preserve">
+    <value>Fecha salida</value>
+  </data>
+  <data name="lblFechaInicio" xml:space="preserve">
+    <value>Fecha llegada</value>
+  </data>
+  <data name="lblNumDias" xml:space="preserve">
+    <value>N° Dias</value>
+  </data>
+  <data name="lblMensajeError_17" xml:space="preserve">
+    <value>La fecha de salida, debe ser mayor que la de llegada.</value>
+  </data>
+  <data name="lblMensajeError_18" xml:space="preserve">
+    <value>Has excedido el número de estadias permitido.</value>
+  </data>
+  <data name="TituloprincipalUsuario" xml:space="preserve">
+    <value>Lista Usuarios</value>
+  </data>
+  <data name="lblMostrarEnExtracto" xml:space="preserve">
+    <value>Mostrar concepto en extracto</value>
+  </data>
+  <data name="lblFechaFiltro" xml:space="preserve">
+    <value>Fecha filtro</value>
+  </data>
+  <data name="lblHistorial" xml:space="preserve">
+    <value>Historial</value>
+  </data>
+  <data name="lblInfomacionEstadistica" xml:space="preserve">
+    <value>Información Estadistica</value>
+  </data>
+  <data name="btnExportarRegla" xml:space="preserve">
+    <value>Exportar Regla</value>
+  </data>
+  <data name="DatosCuentaContable" xml:space="preserve">
+    <value>Datos Cuenta Contable</value>
+  </data>
+  <data name="lblNumDecimales" xml:space="preserve">
+    <value>Numero de Decimales</value>
+  </data>
+  <data name="btnExportarCopropietario" xml:space="preserve">
+    <value>Exportar Propietarios</value>
+  </data>
+  <data name="lblMensajeCuentasContables" xml:space="preserve">
+    <value>Todas cuentas contables, ya han sido asignadas.</value>
+  </data>
+  <data name="lblAno" xml:space="preserve">
+    <value>Año</value>
+  </data>
+  <data name="lblConfigExtracto" xml:space="preserve">
+    <value>Configuración Extracto</value>
+  </data>
+  <data name="btnExportarVariables" xml:space="preserve">
+    <value>Exportar Variable</value>
+  </data>
+  <data name="lblCierreLiquidacion" xml:space="preserve">
+    <value>Cierre Liquidación</value>
+  </data>
+  <data name="btnVerHistorial" xml:space="preserve">
+    <value>View History</value>
+  </data>
+  <data name="lblEstado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="lblPeriodo" xml:space="preserve">
+    <value>Periodo</value>
+  </data>
+  <data name="lblMensajeError_19" xml:space="preserve">
+    <value>Esta liquidación ya ha sido cerrada.</value>
+  </data>
+  <data name="lblMensajeAbrirLiquidacion" xml:space="preserve">
+    <value>¿Esta seguro de abrir esta liquidación?</value>
+  </data>
+  <data name="lblAbrirLiquidacion" xml:space="preserve">
+    <value>Abrir Liquidacion</value>
+  </data>
+  <data name="lblMensajeError_20" xml:space="preserve">
+    <value>Los conceptos de hotel, deben ser liquidados primero.</value>
+  </data>
+  <data name="lblAyudaPorcentaje" xml:space="preserve">
+    <value>Los valores de porcentajes, debe ir expresdas en decimales.</value>
+  </data>
+  <data name="lblApellidoDos" xml:space="preserve">
+    <value>Segundo Apellido</value>
+  </data>
+  <data name="lblNombreDos" xml:space="preserve">
+    <value>Segundo Nombre</value>
+  </data>
+  <data name="lblApellidoSolo" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="lblNombreSolo" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="lblSesion" xml:space="preserve">
+    <value>Iniciar Sesión</value>
+  </data>
+  <data name="lblTipoPersona" xml:space="preserve">
+    <value>Tipo Persona</value>
+  </data>
+  <data name="lblTipoDocumento" xml:space="preserve">
+    <value>Tipo Documento</value>
+  </data>
+  <data name="lblCambioClave" xml:space="preserve">
+    <value>Cambiar Clave</value>
+  </data>
+  <data name="lblReporte" xml:space="preserve">
+    <value>Reporte</value>
+  </data>
+  <data name="lblMensajeError_21" xml:space="preserve">
+    <value>Login ya existe.</value>
+  </data>
+  <data name="lblAuditoria" xml:space="preserve">
+    <value>Auditoria</value>
+  </data>
+  <data name="lblMensajeError_22" xml:space="preserve">
+    <value>Esta liquidación no se puede eliminar, por que esta en estado cerrada.</value>
+  </data>
+  <data name="lblConfigReporte" xml:space="preserve">
+    <value>Configuración Reportes</value>
+  </data>
+  <data name="lblAsuntoCorreo" xml:space="preserve">
+    <value>Asunto Correo</value>
+  </data>
+  <data name="lblMensajeError_23" xml:space="preserve">
+    <value>No se puede eliminar esta relación, porque hace parte de una liquidación.</value>
+  </data>
+  <data name="lblConfigCertificado" xml:space="preserve">
+    <value>Configuracion Certificado</value>
+  </data>
+  <data name="lblCertificado" xml:space="preserve">
+    <value>Certificado</value>
+  </data>
+</root>

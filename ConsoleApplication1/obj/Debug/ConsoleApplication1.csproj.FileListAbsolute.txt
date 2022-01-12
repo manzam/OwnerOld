@@ -1,0 +1,16 @@
+E:\Owners\SlnOwners\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+E:\Owners\SlnOwners\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+E:\Owners\SlnOwners\ConsoleApplication1\bin\Debug\Servicios.dll
+E:\Owners\SlnOwners\ConsoleApplication1\bin\Debug\Servicios.pdb
+E:\Owners\SlnOwners\ConsoleApplication1\obj\Debug\ResolveAssemblyReference.cache
+E:\Owners\SlnOwners\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+E:\Owners\SlnOwners\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+D:\Proyectos\Owners\SlnOwners\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+D:\Proyectos\Owners\SlnOwners\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+D:\Proyectos\Owners\SlnOwners\ConsoleApplication1\bin\Debug\Servicios.dll
+D:\Proyectos\Owners\SlnOwners\ConsoleApplication1\bin\Debug\Servicios.pdb
+D:\Proyectos\Owners\SlnOwners\ConsoleApplication1\obj\Debug\ResolveAssemblyReference.cache
+D:\Proyectos\Owners\SlnOwners\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+D:\Proyectos\Owners\SlnOwners\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+D:\Proyectos\Owners\SlnOwners\ConsoleApplication1\bin\Debug\DM.dll
+D:\Proyectos\Owners\SlnOwners\ConsoleApplication1\bin\Debug\DM.pdb

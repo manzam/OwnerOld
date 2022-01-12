@@ -1,0 +1,9 @@
+Message =>    The connection was not closed. The connection's current state is open.
+InnerException =>    
+Source =>    System.Data
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.InvalidOperationException: The connection was not closed. The connection's current state is open.
+   at System.Data.ProviderBase.DbConnectionInternal.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at BO.LiquidacionBo.LiquidarConceptoPropietario(String listaIdSuite) in C:\Proyectos manuel\SlnOwners\BO\LiquidacionBo.cs:line 409
+   at WebOwner.ui.WebUserControls.WebUserLiquidacion.btnLiquidarSeleccionados_Click(Object sender, EventArgs e) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserLiquidacion.ascx.cs:line 696

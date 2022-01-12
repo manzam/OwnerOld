@@ -1,0 +1,13 @@
+Message =>    An entity object cannot be referenced by multiple instances of IEntityChangeTracker.
+InnerException =>    
+Source =>    System.Data.Entity
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.InvalidOperationException: An entity object cannot be referenced by multiple instances of IEntityChangeTracker.
+   at System.Data.Objects.DataClasses.EntityObject.System.Data.Objects.DataClasses.IEntityWithChangeTracker.SetChangeTracker(IEntityChangeTracker changeTracker)
+   at System.Data.EntityUtil.SetChangeTrackerOntoEntity(Object entity, IEntityChangeTracker tracker)
+   at System.Data.Objects.ObjectStateManager.AddEntry(Object dataObject, EntityKey passedKey, EntitySet entitySet, String argumentName, Boolean isAdded)
+   at System.Data.Objects.ObjectContext.AddSingleObject(EntitySet entitySet, Object entity, String argumentName)
+   at System.Data.Objects.ObjectContext.AddObject(String entitySetName, Object entity)
+   at DM.ContextoOwner.AddToSuit_Propietario(Suit_Propietario suit_Propietario) in C:\Proyectos manuel\SlnOwners\DM\Model.Designer.cs:line 1052
+   at BO.SuitPropietarioBo.Guardar(List`1 listaSuitPropietario) in C:\Proyectos manuel\SlnOwners\BO\SuitPropietarioBo.cs:line 45
+   at WebOwner.ui.WebUserControls.WebUserPropietario.btnGuardar_Click(Object sender, EventArgs e) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserPropietario.ascx.cs:line 958

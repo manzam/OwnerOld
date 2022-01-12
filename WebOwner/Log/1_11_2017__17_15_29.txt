@@ -1,0 +1,7 @@
+Message =>    Object reference not set to an instance of an object.
+InnerException =>    
+Source =>    WebOwner
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.NullReferenceException: Object reference not set to an instance of an object.
+   at WebOwner.ui.WebUserControls.WebUserRelacionCuentaHotel.get_IdCuentaContable() in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserRelacionCuentaHotel.ascx.cs:line 35
+   at WebOwner.ui.WebUserControls.WebUserRelacionCuentaHotel.btnGuardar_Click(Object sender, EventArgs e) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserRelacionCuentaHotel.ascx.cs:line 143

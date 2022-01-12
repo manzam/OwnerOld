@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{171A272B-F528-4C7A-B670-28DA86FAE953}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BO</RootNamespace>
+    <AssemblyName>BO</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Entity">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AsuntoAdjuntoBo.cs" />
+    <Compile Include="AuditoriaBo.cs" />
+    <Compile Include="BancoBo.cs" />
+    <Compile Include="CargaMasivaBo.cs" />
+    <Compile Include="CentroCostoBo.cs" />
+    <Compile Include="CentroCostoHotelBo.cs" />
+    <Compile Include="CierreBo.cs" />
+    <Compile Include="CiudadBo.cs" />
+    <Compile Include="ConceptoBo.cs" />
+    <Compile Include="ConfiguracionCertificadoBo.cs" />
+    <Compile Include="ConfiguracionReporteBo.cs" />
+    <Compile Include="ConfigurarExtractoBo.cs" />
+    <Compile Include="CuentaContableBo.cs" />
+    <Compile Include="DefinicionMovimientoContable.cs" />
+    <Compile Include="DeptoBo.cs" />
+    <Compile Include="EnvioMasivoBo.cs" />
+    <Compile Include="HistorialEstadiasBo.cs" />
+    <Compile Include="HotelBo.cs" />
+    <Compile Include="HotelUsuarioBo.cs" />
+    <Compile Include="InformacionEstadisticaBo.cs" />
+    <Compile Include="InterfazBo.cs" />
+    <Compile Include="LdapAuthentication.cs" />
+    <Compile Include="LiquidacionBo.cs" />
+    <Compile Include="LiquidadorBo.cs" />
+    <Compile Include="LiquidadorObjetoGenerico.cs" />
+    <Compile Include="ModuloBo.cs" />
+    <Compile Include="ModuloPerfilBo.cs" />
+    <Compile Include="NoticiaBo.cs" />
+    <Compile Include="Numalet.cs" />
+    <Compile Include="ObjetoGenerico.cs" />
+    <Compile Include="ParametroBo.cs" />
+    <Compile Include="PerfilBo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropietarioBo.cs" />
+    <Compile Include="ReservasBo.cs" />
+    <Compile Include="SuitBo.cs" />
+    <Compile Include="SuitPropietarioBo.cs" />
+    <Compile Include="TipoCuentaContableBo.cs" />
+    <Compile Include="ValorVariableBo.cs" />
+    <Compile Include="UsuarioBo.cs" />
+    <Compile Include="VariableBo.cs" />
+    <Compile Include="VariablesConceptoBo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DM\DM.csproj">
+      <Project>{5E2E30BE-A795-4A0A-A2E5-51885AAC039C}</Project>
+      <Name>DM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Servicios\Servicios.csproj">
+      <Project>{C75AA3CA-E7B5-437C-867C-F98E29468B9B}</Project>
+      <Name>Servicios</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

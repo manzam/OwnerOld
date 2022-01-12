@@ -1,0 +1,10 @@
+Message =>    Object cannot be cast from DBNull to other types.
+InnerException =>    
+Source =>    mscorlib
+Data =>    System.Collections.ListDictionaryInternal
+Full Error =>    System.InvalidCastException: Object cannot be cast from DBNull to other types.
+   at System.DBNull.System.IConvertible.ToDouble(IFormatProvider provider)
+   at System.Convert.ToDouble(Object value)
+   at BO.LiquidacionBo.ObtenerValorConceptoHotel(Int32 idHotel, Int32 idConcepto, String nombreConcepto, DateTime fecha, String regla, Int32 numDecimal) in C:\Proyectos manuel\SlnOwners\BO\LiquidacionBo.cs:line 965
+   at BO.LiquidacionBo.LiquidarConceptoHotel() in C:\Proyectos manuel\SlnOwners\BO\LiquidacionBo.cs:line 862
+   at WebOwner.ui.WebUserControls.WebUserLiquidacion.btnPreLiquidacionHotel_Click(Object sender, EventArgs e) in C:\Proyectos manuel\SlnOwners\WebOwner\ui\WebUserControls\WebUserLiquidacion.ascx.cs:line 521
