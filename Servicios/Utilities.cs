@@ -110,15 +110,25 @@ namespace Servicios
                 email = System.Configuration.ConfigurationManager.AppSettings.GetValues("CorreoRemitenteBogota")[0];
                 pass = System.Configuration.ConfigurationManager.AppSettings.GetValues("ClaveRemitenteBogota")[0];
             }
-            else if (System.Configuration.ConfigurationManager.AppSettings.GetValues("Costa")[0].Contains(idHotel.ToString()))
+            else if (System.Configuration.ConfigurationManager.AppSettings.GetValues("Manzanillo")[0].Contains(idHotel.ToString()))
             {
-                email = System.Configuration.ConfigurationManager.AppSettings.GetValues("CorreoRemitenteCosta")[0];
-                pass = System.Configuration.ConfigurationManager.AppSettings.GetValues("ClaveRemitenteCosta")[0];
+                email = System.Configuration.ConfigurationManager.AppSettings.GetValues("CorreoRemitenteManzanillo")[0];
+                pass = System.Configuration.ConfigurationManager.AppSettings.GetValues("ClaveRemitenteManzanillo")[0];
             }
             else if (System.Configuration.ConfigurationManager.AppSettings.GetValues("Medellin")[0].Contains(idHotel.ToString()))
             {
                 email = System.Configuration.ConfigurationManager.AppSettings.GetValues("CorreoRemitenteMedellin")[0];
                 pass = System.Configuration.ConfigurationManager.AppSettings.GetValues("ClaveRemitenteMedellin")[0];
+            }
+            else if (System.Configuration.ConfigurationManager.AppSettings.GetValues("Altamira")[0].Contains(idHotel.ToString()))
+            {
+                email = System.Configuration.ConfigurationManager.AppSettings.GetValues("CorreoRemitenteAltamira")[0];
+                pass = System.Configuration.ConfigurationManager.AppSettings.GetValues("ClaveRemitenteAltamira")[0];
+            }
+            else if (System.Configuration.ConfigurationManager.AppSettings.GetValues("Barranquilla")[0].Contains(idHotel.ToString()))
+            {
+                email = System.Configuration.ConfigurationManager.AppSettings.GetValues("CorreoRemitenteBarranquilla")[0];
+                pass = System.Configuration.ConfigurationManager.AppSettings.GetValues("ClaveRemitenteBarranquilla")[0];
             }
             else
             {
@@ -147,6 +157,7 @@ namespace Servicios
             miMensaje.From = new MailAddress(correoRemitente.Trim(), nombreRemitente, Encoding.UTF8);
 
             bool _esConDestinatarios = false;
+            listaCorreoDestino = listaCorreoDestino.Distinct().ToList();
             foreach (string itemCorreo in listaCorreoDestino)
             {
                 if (!string.IsNullOrEmpty(itemCorreo))
@@ -166,11 +177,13 @@ namespace Servicios
                 return;
             }
 
+            /*
             if (!string.IsNullOrEmpty(correoOculto))
             {
                 MailAddress bcc = new MailAddress(correoOculto);
                 miMensaje.Bcc.Add(bcc);
             }
+            */
 
             miMensaje.Subject = asunto;
             miMensaje.Body = textoCuerpo;
@@ -212,6 +225,16 @@ namespace Servicios
             {
                 //Aquí es donde se hace lo especial
                 SmtpClient client = new SmtpClient();
+
+                // Notificacin de envio
+                bool isNotification = bool.Parse(System.Configuration.ConfigurationManager.AppSettings.GetValues("isNotification")[0]);
+                if (isNotification)
+                {
+                    miMensaje.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    miMensaje.Headers.Add("Disposition-Notification-To", correoRemitente);
+                }
+                
 
                 //client.Credentials = new System.Net.NetworkCredential("zambrano.manuelc@gmail.com", "Patricia115z");
                 client.Credentials = new System.Net.NetworkCredential(correoRemitente, claveRemitente);
