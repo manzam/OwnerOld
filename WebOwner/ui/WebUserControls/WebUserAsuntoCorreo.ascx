@@ -93,6 +93,30 @@
                         onselectedindexchanged="ddlHotel_SelectedIndexChanged">
                     </asp:DropDownList>
                 </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="textoTabla">Fecha</td>
+                <td>
+                    <asp:DropDownList ID="ddlMes" Width="110px" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlMes_OnSelectedIndexChanged">
+                        <asp:ListItem Value="1" Text="Enero" Selected="True"></asp:ListItem>
+                        <asp:ListItem Value="2" Text="Febrero"></asp:ListItem>
+                        <asp:ListItem Value="3" Text="Marzo"></asp:ListItem>
+                        <asp:ListItem Value="4" Text="Abril"></asp:ListItem>
+                        <asp:ListItem Value="5" Text="Mayo"></asp:ListItem>
+                        <asp:ListItem Value="6" Text="Junio"></asp:ListItem>
+                        <asp:ListItem Value="7" Text="Julio"></asp:ListItem>
+                        <asp:ListItem Value="8" Text="Agosto"></asp:ListItem>
+                        <asp:ListItem Value="9" Text="Septiembre"></asp:ListItem>
+                        <asp:ListItem Value="10" Text="Octubre"></asp:ListItem>
+                        <asp:ListItem Value="11" Text="Noviembre"></asp:ListItem>
+                        <asp:ListItem Value="12" Text="Diciembre"></asp:ListItem>
+                    </asp:DropDownList>
+                    -
+                    <asp:TextBox ID="txtFecha" Enabled="false" runat="server" Width="40px"></asp:TextBox> 
+                </td>
+                <td>                    
+                </td>
             </tr>
             <tr>
                 <td colspan="2"></td>
@@ -117,42 +141,16 @@
                         </tr>
                         <tr>
                             <td>
-                                <table width="100%">
-                                    <tr>                                    
-                                        <td>
-                                            <asp:DropDownList ID="ddlMes" Width="110px" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlMes_OnSelectedIndexChanged">
-                                                <asp:ListItem Value="1" Text="Enero" Selected="True"></asp:ListItem>
-                                                <asp:ListItem Value="2" Text="Febrero"></asp:ListItem>
-                                                <asp:ListItem Value="3" Text="Marzo"></asp:ListItem>
-                                                <asp:ListItem Value="4" Text="Abril"></asp:ListItem>
-                                                <asp:ListItem Value="5" Text="Mayo"></asp:ListItem>
-                                                <asp:ListItem Value="6" Text="Junio"></asp:ListItem>
-                                                <asp:ListItem Value="7" Text="Julio"></asp:ListItem>
-                                                <asp:ListItem Value="8" Text="Agosto"></asp:ListItem>
-                                                <asp:ListItem Value="9" Text="Septiembre"></asp:ListItem>
-                                                <asp:ListItem Value="10" Text="Octubre"></asp:ListItem>
-                                                <asp:ListItem Value="11" Text="Noviembre"></asp:ListItem>
-                                                <asp:ListItem Value="12" Text="Diciembre"></asp:ListItem>
-                                            </asp:DropDownList>
-                                            -
-                                            <asp:TextBox ID="txtFecha" Enabled="false" runat="server" Width="40px"></asp:TextBox>
-                                        </td>
-                                        <td>
-                                            <asp:AsyncFileUpload 
-                                                ID="AsyncFileUpload1"                                 
-                                                runat="server" 
-                                                PersistFile="true"
-                                                OnClientUploadError="uploadError"
-                                                OnClientUploadComplete="uploadComplete"
-                                                onuploadedcomplete="AsyncFileUpload1_UploadedComplete" />                               
+                                <asp:AsyncFileUpload 
+                                    ID="AsyncFileUpload1"                                 
+                                    runat="server" 
+                                    PersistFile="true"
+                                    OnClientUploadError="uploadError"
+                                    OnClientUploadComplete="uploadComplete"
+                                    onuploadedcomplete="AsyncFileUpload1_UploadedComplete" />                               
                                             
-                                           <asp:Label ID="lblMesg" runat="server" Text=""></asp:Label>
-                                        </td>
-                                        <td valign="top" >
-                                            <asp:Image ID="imgLogo" runat="server" Width="150px" Height="80px" Visible="false" />
-                                        </td>
-                                    </tr>
-                                </table>
+                                <asp:Label ID="lblMesg" runat="server" Text=""></asp:Label>
+                                <asp:Image ID="imgLogo" runat="server" Width="150px" Height="80px" Visible="false" />
                             </td>
                             <td>
                                 <table width="100%">

@@ -4,68 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="dbownersheModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
-        <EntityContainer Name="dbownersheModelStoreContainer">
-          <EntitySet Name="Asunto_Adjunto" EntityType="dbownersheModel.Store.Asunto_Adjunto" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Asunto_Correo" EntityType="dbownersheModel.Store.Asunto_Correo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Auditoria" EntityType="dbownersheModel.Store.Auditoria" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Banco" EntityType="dbownersheModel.Store.Banco" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Centro_Costo" EntityType="dbownersheModel.Store.Centro_Costo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CentroCosto_Hotel" EntityType="dbownersheModel.Store.CentroCosto_Hotel" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Certificado" EntityType="dbownersheModel.Store.Certificado" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Certificado_Detalle" EntityType="dbownersheModel.Store.Certificado_Detalle" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Cierre" EntityType="dbownersheModel.Store.Cierre" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Cierre_Historial" EntityType="dbownersheModel.Store.Cierre_Historial" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Ciudad" EntityType="dbownersheModel.Store.Ciudad" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Concepto" EntityType="dbownersheModel.Store.Concepto" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Cuenta_Contable" EntityType="dbownersheModel.Store.Cuenta_Contable" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Departamento" EntityType="dbownersheModel.Store.Departamento" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Detalle_Extracto" EntityType="dbownersheModel.Store.Detalle_Extracto" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Extracto" EntityType="dbownersheModel.Store.Extracto" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Historial_Estadias" EntityType="dbownersheModel.Store.Historial_Estadias" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Historial_Informacion_Estadistica" EntityType="dbownersheModel.Store.Historial_Informacion_Estadistica" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Historial_Liquidacion" EntityType="dbownersheModel.Store.Historial_Liquidacion" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Historial_Suit_Propietario" EntityType="dbownersheModel.Store.Historial_Suit_Propietario" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="HistorialEnvioMasivo" EntityType="dbownersheModel.Store.HistorialEnvioMasivo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Hotel" EntityType="dbownersheModel.Store.Hotel" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Hotel_Usuario" EntityType="dbownersheModel.Store.Hotel_Usuario" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Informacion_Certificado" EntityType="dbownersheModel.Store.Informacion_Certificado" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Informacion_Estadistica" EntityType="dbownersheModel.Store.Informacion_Estadistica" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Liquidacion" EntityType="dbownersheModel.Store.Liquidacion" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Modulo" EntityType="dbownersheModel.Store.Modulo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Modulo_Perfil" EntityType="dbownersheModel.Store.Modulo_Perfil" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Noticia" EntityType="dbownersheModel.Store.Noticia" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Pais" EntityType="dbownersheModel.Store.Pais" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Parametros" EntityType="dbownersheModel.Store.Parametros" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Perfil" EntityType="dbownersheModel.Store.Perfil" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Propietario" EntityType="dbownersheModel.Store.Propietario" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Reporte" EntityType="dbownersheModel.Store.Reporte" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Reporte_Detalle" EntityType="dbownersheModel.Store.Reporte_Detalle" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Reporte_Grupo" EntityType="dbownersheModel.Store.Reporte_Grupo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Reporte_Grupo_Detalle" EntityType="dbownersheModel.Store.Reporte_Grupo_Detalle" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Suit" EntityType="dbownersheModel.Store.Suit" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Suit_Propietario" EntityType="dbownersheModel.Store.Suit_Propietario" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="dbownersheModel.Store.sysdiagrams" store:Type="Tables" store:Schema="dbo" store:Name="sysdiagrams">
-            <DefiningQuery>SELECT 
-      [sysdiagrams].[name] AS [name], 
-      [sysdiagrams].[principal_id] AS [principal_id], 
-      [sysdiagrams].[diagram_id] AS [diagram_id], 
-      [sysdiagrams].[version] AS [version], 
-      [sysdiagrams].[definition] AS [definition]
-      FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Tipo_Cuenta_Contable" EntityType="dbownersheModel.Store.Tipo_Cuenta_Contable" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Usuario" EntityType="dbownersheModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Valor_Variable" EntityType="dbownersheModel.Store.Valor_Variable" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Valor_Variable_Suit" EntityType="dbownersheModel.Store.Valor_Variable_Suit" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Variable" EntityType="dbownersheModel.Store.Variable" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Variables_Concepto" EntityType="dbownersheModel.Store.Variables_Concepto" store:Type="Tables" Schema="dbo" />
-        </EntityContainer>
+    <Schema Namespace="dbownersheModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityType Name="Asunto_Adjunto">
           <Key>
             <PropertyRef Name="IdAsuntoAdjunto" />
           </Key>
-          <Property Name="IdAsuntoAdjunto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdAsuntoAdjunto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="smalldatetime" Nullable="false" />
           <Property Name="AdjuntoRuta" Type="varchar" MaxLength="100" />
           <Property Name="IdAsuntoCorreo" Type="int" />
@@ -74,15 +18,16 @@
           <Key>
             <PropertyRef Name="IdAsuntoCorreo" />
           </Key>
-          <Property Name="IdAsuntoCorreo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdAsuntoCorreo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Asunto" Type="nvarchar(max)" />
           <Property Name="IdHotel" Type="int" />
+          <Property Name="Fecha" Type="datetime" />
         </EntityType>
         <EntityType Name="Auditoria">
           <Key>
             <PropertyRef Name="IdAuditoria" />
           </Key>
-          <Property Name="IdAuditoria" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdAuditoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ValorNuevo" Type="varchar(max)" />
           <Property Name="ValorAnterior" Type="varchar(max)" />
           <Property Name="NombreTabla" Type="varchar" MaxLength="100" />
@@ -95,14 +40,14 @@
           <Key>
             <PropertyRef Name="IdBanco" />
           </Key>
-          <Property Name="IdBanco" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdBanco" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Centro_Costo">
           <Key>
             <PropertyRef Name="IdCentroCosto" />
           </Key>
-          <Property Name="IdCentroCosto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdCentroCosto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="200" />
           <Property Name="Codigo" Type="varchar" MaxLength="10" />
         </EntityType>
@@ -110,7 +55,7 @@
           <Key>
             <PropertyRef Name="IdCentroCosto_Hotel" />
           </Key>
-          <Property Name="IdCentroCosto_Hotel" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdCentroCosto_Hotel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdHotel" Type="int" />
           <Property Name="IdCuentaContable" Type="int" />
           <Property Name="IdCentroCosto" Type="int" />
@@ -123,7 +68,7 @@
           <Key>
             <PropertyRef Name="IdCertificado" />
           </Key>
-          <Property Name="IdCertificado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdCertificado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="200" />
           <Property Name="IdHotel" Type="int" />
         </EntityType>
@@ -131,7 +76,7 @@
           <Key>
             <PropertyRef Name="IdCertificadoDetalle" />
           </Key>
-          <Property Name="IdCertificadoDetalle" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdCertificadoDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdCertificado" Type="int" />
           <Property Name="IdConcepto" Type="int" />
         </EntityType>
@@ -139,7 +84,7 @@
           <Key>
             <PropertyRef Name="IdCierre" />
           </Key>
-          <Property Name="IdCierre" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdCierre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FechaInicio" Type="smalldatetime" Nullable="false" />
           <Property Name="FechaFin" Type="smalldatetime" Nullable="false" />
           <Property Name="Observacion" Type="varchar(max)" />
@@ -151,7 +96,7 @@
           <Key>
             <PropertyRef Name="IdCierreHistorial" />
           </Key>
-          <Property Name="IdCierreHistorial" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdCierreHistorial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdCierre" Type="int" />
           <Property Name="Observacion" Type="varchar(max)" />
           <Property Name="Estado" Type="bit" Nullable="false" />
@@ -162,7 +107,7 @@
           <Key>
             <PropertyRef Name="IdCiudad" />
           </Key>
-          <Property Name="IdCiudad" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdCiudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdDepartamento" Type="int" />
           <Property Name="Nombre" Type="varchar" MaxLength="80" />
         </EntityType>
@@ -170,11 +115,11 @@
           <Key>
             <PropertyRef Name="IdConcepto" />
           </Key>
-          <Property Name="IdConcepto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdConcepto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdHotel" Type="int" />
           <Property Name="IdCuentaContable" Type="int" />
           <Property Name="IdInformacionEstadistica" Type="int" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="NivelConcepto" Type="int" Nullable="false" />
           <Property Name="NombreExtracto" Type="varchar(max)" />
           <Property Name="EsMuestraExtracto" Type="bit" Nullable="false" />
@@ -195,9 +140,9 @@
           <Key>
             <PropertyRef Name="IdCuentaContable" />
           </Key>
-          <Property Name="IdCuentaContable" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Codigo" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="IdCuentaContable" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="300" Nullable="false" />
           <Property Name="IdTipoCuentaContable" Type="int" />
           <Property Name="EsCentroCostoVariable" Type="bit" Nullable="false" />
           <Property Name="TieneDocumentoCruce" Type="bit" />
@@ -211,15 +156,15 @@
           <Key>
             <PropertyRef Name="IdDepartamento" />
           </Key>
-          <Property Name="IdDepartamento" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdDepartamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdPais" Type="int" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
         </EntityType>
         <EntityType Name="Detalle_Extracto">
           <Key>
             <PropertyRef Name="IdDetalleExtracto" />
           </Key>
-          <Property Name="IdDetalleExtracto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdDetalleExtracto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdExtracto" Type="int" />
           <Property Name="IdVariable" Type="int" />
           <Property Name="NombreTabla" Type="varchar" MaxLength="50" />
@@ -229,7 +174,7 @@
           <Key>
             <PropertyRef Name="IdExtracto" />
           </Key>
-          <Property Name="IdExtracto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdExtracto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdHotel" Type="int" />
           <Property Name="DescripcionExtracto" Type="varchar(max)" />
           <Property Name="PieExtracto" Type="varchar" MaxLength="200" />
@@ -240,7 +185,7 @@
           <Key>
             <PropertyRef Name="IdHistorialEstadias" />
           </Key>
-          <Property Name="IdHistorialEstadias" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdHistorialEstadias" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdSuit" Type="int" />
           <Property Name="IdPropietario" Type="int" />
           <Property Name="IdUsuario" Type="int" />
@@ -252,7 +197,7 @@
           <Key>
             <PropertyRef Name="IdHistorialInformacionEstadistica" />
           </Key>
-          <Property Name="IdHistorialInformacionEstadistica" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdHistorialInformacionEstadistica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdInformacionEstadistica" Type="int" />
           <Property Name="IdPropietario" Type="int" />
           <Property Name="Valor" Type="float" Nullable="false" />
@@ -262,16 +207,16 @@
           <Key>
             <PropertyRef Name="IdHistorial_Variable" />
           </Key>
-          <Property Name="IdHistorial_Variable" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdHistorial_Variable" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdLiquidacion" Type="int" />
-          <Property Name="NombreVariable" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="NombreVariable" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Valor" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Historial_Suit_Propietario">
           <Key>
             <PropertyRef Name="IdHistorialSuit" />
           </Key>
-          <Property Name="IdHistorialSuit" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdHistorialSuit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdSuit" Type="int" Nullable="false" />
           <Property Name="IdPropietario" Type="int" Nullable="false" />
           <Property Name="IdUsuario" Type="int" />
@@ -282,7 +227,7 @@
           <Key>
             <PropertyRef Name="IdEnvioMasivo" />
           </Key>
-          <Property Name="IdEnvioMasivo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdEnvioMasivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdHotel" Type="int" />
           <Property Name="FechaPeriodoLiquidacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IdUsuario" Type="int" />
@@ -291,9 +236,9 @@
           <Key>
             <PropertyRef Name="IdHotel" />
           </Key>
-          <Property Name="IdHotel" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdHotel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdCiudad" Type="int" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="Nit" Type="varchar" MaxLength="15" />
           <Property Name="Direccion" Type="varchar" MaxLength="100" />
           <Property Name="Correo" Type="varchar" MaxLength="80" />
@@ -307,7 +252,7 @@
           <Key>
             <PropertyRef Name="IdHotelUsuario" />
           </Key>
-          <Property Name="IdHotelUsuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdHotelUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdUsuario" Type="int" />
           <Property Name="IdHotel" Type="int" />
         </EntityType>
@@ -315,7 +260,7 @@
           <Key>
             <PropertyRef Name="IdInformacionCertificado" />
           </Key>
-          <Property Name="IdInformacionCertificado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdInformacionCertificado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Valor" Type="float" Nullable="false" />
           <Property Name="NombreConcepto" Type="varchar" MaxLength="100" />
           <Property Name="Anio" Type="smallint" Nullable="false" />
@@ -326,19 +271,19 @@
           <Key>
             <PropertyRef Name="IdInformacionEstadistica" />
           </Key>
-          <Property Name="IdInformacionEstadistica" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdInformacionEstadistica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdHotel" Type="int" />
           <Property Name="Nombre" Type="varchar(max)" Nullable="false" />
           <Property Name="EsAcumulada" Type="bit" Nullable="false" />
           <Property Name="Orden" Type="smallint" Nullable="false" />
-          <Property Name="Sufijo" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="Sufijo" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="ValorAcumulado" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="Liquidacion">
           <Key>
             <PropertyRef Name="IdLiquidacion" />
           </Key>
-          <Property Name="IdLiquidacion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdLiquidacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdConcepto" Type="int" />
           <Property Name="IdUsuario" Type="int" />
           <Property Name="IdHotel" Type="int" />
@@ -355,9 +300,9 @@
           <Key>
             <PropertyRef Name="IdModulo" />
           </Key>
-          <Property Name="IdModulo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="Ruta" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="IdModulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Ruta" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="NombreRecuros" Type="varchar" MaxLength="50" />
           <Property Name="Orden" Type="int" />
           <Property Name="Grupo" Type="varchar" MaxLength="50" />
@@ -367,7 +312,7 @@
           <Key>
             <PropertyRef Name="IdModuloPerfil" />
           </Key>
-          <Property Name="IdModuloPerfil" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdModuloPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdPerfil" Type="int" />
           <Property Name="IdModulo" Type="int" />
         </EntityType>
@@ -375,10 +320,10 @@
           <Key>
             <PropertyRef Name="IdNoticia" />
           </Key>
-          <Property Name="IdNoticia" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdNoticia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdUsuario" Type="int" />
-          <Property Name="Titulo" Type="varchar" Nullable="false" MaxLength="80" />
-          <Property Name="Imagen" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="Titulo" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Imagen" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
           <Property Name="Fecha" Type="smalldatetime" Nullable="false" />
           <Property Name="FechaCaducidad" Type="smalldatetime" Nullable="false" />
@@ -387,32 +332,32 @@
           <Key>
             <PropertyRef Name="IdPais" />
           </Key>
-          <Property Name="IdPais" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="IdPais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Codigo" Type="varchar" MaxLength="3" />
         </EntityType>
         <EntityType Name="Parametros">
           <Key>
             <PropertyRef Name="IdParametro" />
           </Key>
-          <Property Name="IdParametro" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Llave" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Valor" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="IdParametro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Llave" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Valor" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Descripcion" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Perfil">
           <Key>
             <PropertyRef Name="IdPerfil" />
           </Key>
-          <Property Name="IdPerfil" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="IdPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Descripcion" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Propietario">
           <Key>
             <PropertyRef Name="IdPropietario" />
           </Key>
-          <Property Name="IdPropietario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdPropietario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdCiudad" Type="int" />
           <Property Name="IdPerfil" Type="int" />
           <Property Name="NombrePrimero" Type="varchar(max)" />
@@ -421,7 +366,7 @@
           <Property Name="ApellidoSegundo" Type="varchar(max)" />
           <Property Name="TipoPersona" Type="varchar" MaxLength="50" />
           <Property Name="TipoDocumento" Type="varchar" MaxLength="5" />
-          <Property Name="NumIdentificacion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="NumIdentificacion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Login" Type="varchar(max)" Nullable="false" />
           <Property Name="Pass" Type="varchar(max)" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
@@ -443,14 +388,14 @@
           <Key>
             <PropertyRef Name="IdReporte" />
           </Key>
-          <Property Name="IdReporte" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdReporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreReporte" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Reporte_Detalle">
           <Key>
             <PropertyRef Name="IdReporteDetalle" />
           </Key>
-          <Property Name="IdReporteDetalle" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdReporteDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdHotel" Type="int" />
           <Property Name="IdVariable" Type="int" />
           <Property Name="IdConcepto" Type="int" />
@@ -462,7 +407,7 @@
           <Key>
             <PropertyRef Name="IdGrupo" />
           </Key>
-          <Property Name="IdGrupo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
           <Property Name="Orden" Type="int" Nullable="false" />
         </EntityType>
@@ -470,7 +415,7 @@
           <Key>
             <PropertyRef Name="IdReporteGrupoDetalle" />
           </Key>
-          <Property Name="IdReporteGrupoDetalle" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdReporteGrupoDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="char" MaxLength="1" />
           <Property Name="IdVariable" Type="int" />
           <Property Name="IdConcepto" Type="int" />
@@ -481,11 +426,11 @@
           <Key>
             <PropertyRef Name="IdSuit" />
           </Key>
-          <Property Name="IdSuit" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdSuit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdHotel" Type="int" />
           <Property Name="Descripcion" Type="varchar(max)" />
           <Property Name="Activo" Type="bit" Nullable="false" />
-          <Property Name="NumSuit" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="NumSuit" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="NumEscritura" Type="varchar" MaxLength="50" />
           <Property Name="RegistroNotaria" Type="varchar" MaxLength="10" />
         </EntityType>
@@ -493,26 +438,25 @@
           <Key>
             <PropertyRef Name="IdSuitPropietario" />
           </Key>
-          <Property Name="IdSuitPropietario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdSuitPropietario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdSuit" Type="int" />
           <Property Name="IdPropietario" Type="int" />
           <Property Name="IdBanco" Type="int" />
           <Property Name="NumCuenta" Type="varchar(max)" Nullable="false" />
           <Property Name="NumEstadias" Type="int" Nullable="false" />
-          <Property Name="TipoCuenta" Type="nvarchar" Nullable="false" MaxLength="2" />
-          <Property Name="Titular" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="TipoCuenta" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="Titular" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'OwnersHE.dbo.sysdiagrams' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
+warning 6002: The table/view 'OwnersHE.dbo.sysdiagrams' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="name" />
             <PropertyRef Name="principal_id" />
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="principal_id" Type="int" Nullable="false" />
           <Property Name="diagram_id" Type="int" Nullable="false" />
           <Property Name="version" Type="int" />
@@ -522,7 +466,7 @@
           <Key>
             <PropertyRef Name="IdTipoCuentaContable" />
           </Key>
-          <Property Name="IdTipoCuentaContable" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdTipoCuentaContable" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" />
           <Property Name="Llave" Type="varchar" MaxLength="100" />
         </EntityType>
@@ -530,12 +474,12 @@
           <Key>
             <PropertyRef Name="IdUsuario" />
           </Key>
-          <Property Name="IdUsuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="Apellido" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="Identificacion" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Login" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="Pass" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Identificacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pass" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Correo" Type="varchar" MaxLength="100" />
           <Property Name="Telefono_1" Type="varchar" MaxLength="30" />
           <Property Name="Telefono_2" Type="varchar" MaxLength="30" />
@@ -547,7 +491,7 @@
           <Key>
             <PropertyRef Name="IdValorVariable" />
           </Key>
-          <Property Name="IdValorVariable" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdValorVariable" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdVariable" Type="int" Nullable="false" />
           <Property Name="Valor" Type="float" Nullable="false" />
           <Property Name="Fecha" Type="smalldatetime" Nullable="false" />
@@ -556,7 +500,7 @@
           <Key>
             <PropertyRef Name="IdValorVariableSuit" />
           </Key>
-          <Property Name="IdValorVariableSuit" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdValorVariableSuit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdSuitPropietario" Type="int" />
           <Property Name="IdVariable" Type="int" />
           <Property Name="Valor" Type="float" Nullable="false" />
@@ -565,7 +509,7 @@
           <Key>
             <PropertyRef Name="IdVariable" />
           </Key>
-          <Property Name="IdVariable" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdVariable" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdHotel" Type="int" />
           <Property Name="Nombre" Type="varchar(max)" Nullable="false" />
           <Property Name="Descripcion" Type="varchar(max)" />
@@ -579,14 +523,70 @@
           <Key>
             <PropertyRef Name="IdVariablesConcepto" />
           </Key>
-          <Property Name="IdVariablesConcepto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdVariablesConcepto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdConceptoPadre" Type="int" Nullable="false" />
           <Property Name="IdVariable" Type="int" />
           <Property Name="IdConcepto" Type="int" />
-          <Property Name="NomClass" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="NomClass" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Orden" Type="int" Nullable="false" />
           <Property Name="Operador" Type="varchar" MaxLength="10" />
         </EntityType>
+        <EntityContainer Name="dbownersheModelStoreContainer">
+          <EntitySet Name="Asunto_Adjunto" EntityType="Self.Asunto_Adjunto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asunto_Correo" EntityType="Self.Asunto_Correo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auditoria" EntityType="Self.Auditoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Banco" EntityType="Self.Banco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Centro_Costo" EntityType="Self.Centro_Costo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CentroCosto_Hotel" EntityType="Self.CentroCosto_Hotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Certificado" EntityType="Self.Certificado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Certificado_Detalle" EntityType="Self.Certificado_Detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cierre" EntityType="Self.Cierre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cierre_Historial" EntityType="Self.Cierre_Historial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Concepto" EntityType="Self.Concepto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cuenta_Contable" EntityType="Self.Cuenta_Contable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_Extracto" EntityType="Self.Detalle_Extracto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Extracto" EntityType="Self.Extracto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historial_Estadias" EntityType="Self.Historial_Estadias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historial_Informacion_Estadistica" EntityType="Self.Historial_Informacion_Estadistica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historial_Liquidacion" EntityType="Self.Historial_Liquidacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historial_Suit_Propietario" EntityType="Self.Historial_Suit_Propietario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistorialEnvioMasivo" EntityType="Self.HistorialEnvioMasivo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotel_Usuario" EntityType="Self.Hotel_Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Informacion_Certificado" EntityType="Self.Informacion_Certificado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Informacion_Estadistica" EntityType="Self.Informacion_Estadistica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Liquidacion" EntityType="Self.Liquidacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modulo" EntityType="Self.Modulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modulo_Perfil" EntityType="Self.Modulo_Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Noticia" EntityType="Self.Noticia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Propietario" EntityType="Self.Propietario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte_Detalle" EntityType="Self.Reporte_Detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte_Grupo" EntityType="Self.Reporte_Grupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte_Grupo_Detalle" EntityType="Self.Reporte_Grupo_Detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suit" EntityType="Self.Suit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suit_Propietario" EntityType="Self.Suit_Propietario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_Cuenta_Contable" EntityType="Self.Tipo_Cuenta_Contable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Valor_Variable" EntityType="Self.Valor_Variable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Valor_Variable_Suit" EntityType="Self.Valor_Variable_Suit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Variable" EntityType="Self.Variable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Variables_Concepto" EntityType="Self.Variables_Concepto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[sysdiagrams].[name] AS [name], 
+[sysdiagrams].[principal_id] AS [principal_id], 
+[sysdiagrams].[diagram_id] AS [diagram_id], 
+[sysdiagrams].[version] AS [version], 
+[sysdiagrams].[definition] AS [definition]
+FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -918,7 +918,7 @@
             <PropertyRef Name="IdAsuntoAdjunto" />
           </Key>
           <Property Name="IdAsuntoAdjunto" Type="Int32" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="AdjuntoRuta" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Asunto_Correo" Relationship="dbownersheModel.FK_Asunto_Adjunto_Asunto_Correo" FromRole="Asunto_Adjunto" ToRole="Asunto_Correo" />
         </EntityType>
@@ -930,6 +930,7 @@
           <Property Name="Asunto" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Asunto_Adjunto" Relationship="dbownersheModel.FK_Asunto_Adjunto_Asunto_Correo" FromRole="Asunto_Correo" ToRole="Asunto_Adjunto" />
           <NavigationProperty Name="Hotel" Relationship="dbownersheModel.FK_Asunto_Correo_Hotel" FromRole="Asunto_Correo" ToRole="Hotel" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Auditoria">
           <Key>
@@ -941,7 +942,7 @@
           <Property Name="NombreTabla" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="Accion" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="Campo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Fechahora" Type="DateTime" />
+          <Property Name="Fechahora" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Usuario" Relationship="dbownersheModel.FK_Auditoria_Usuario" FromRole="Auditoria" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Banco">
@@ -979,8 +980,8 @@
             <PropertyRef Name="IdCierre" />
           </Key>
           <Property Name="IdCierre" Type="Int32" Nullable="false" />
-          <Property Name="FechaInicio" Type="DateTime" Nullable="false" />
-          <Property Name="FechaFin" Type="DateTime" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Observacion" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Cierre_Historial" Relationship="dbownersheModel.FK_Cierre_Historial_Cierre" FromRole="Cierre" ToRole="Cierre_Historial" />
@@ -994,7 +995,7 @@
           <Property Name="IdCierreHistorial" Type="Int32" Nullable="false" />
           <Property Name="Observacion" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Cierre" Relationship="dbownersheModel.FK_Cierre_Historial_Cierre" FromRole="Cierre_Historial" ToRole="Cierre" />
           <NavigationProperty Name="Usuario" Relationship="dbownersheModel.FK_Cierre_Historial_Usuario" FromRole="Cierre_Historial" ToRole="Usuario" />
         </EntityType>
@@ -1030,15 +1031,15 @@
           <NavigationProperty Name="Variables_Concepto" Relationship="dbownersheModel.FK_Variables_Concepto_Concepto" FromRole="Concepto" ToRole="Variables_Concepto" />
           <NavigationProperty Name="Variables_Concepto1" Relationship="dbownersheModel.FK_Variables_Concepto_Concepto1" FromRole="Concepto" ToRole="Variables_Concepto" />
           <Property Name="EsConSegundaCuentaContable" Type="Boolean" Nullable="false" />
-          <Property Name="Condicion" Type="String" Nullable="true" />
+          <Property Name="Condicion" Type="String" Nullable="true" MaxLength="5" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Cuenta_Contable1" Relationship="dbownersheModel.FK_Concepto_Cuenta_Contable1" FromRole="Concepto" ToRole="Cuenta_Contable" />
           <Property Name="ValorCondicion" Type="Double" Nullable="false" />
           <Property Name="IdVariableCondicion" Type="Int32" Nullable="true" />
-          <Property Name="TipoVariableCondicion" Type="String" Nullable="true" />
+          <Property Name="TipoVariableCondicion" Type="String" Nullable="true" MaxLength="2" Unicode="true" FixedLength="false" />
           <Property Name="EsMuestraReporteLiquidacion" Type="Boolean" Nullable="false" />
           <Property Name="EsRetencionAplicar" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Certificado_Detalle" Relationship="dbownersheModel.FK_Certificado_Detalle_Concepto" FromRole="Concepto" ToRole="Certificado_Detalle" />
-          <Property Name="EsActiva" Type="Boolean" Nullable="false" /></EntityType>
+          <Property Name="EsActiva" Type="Boolean" /></EntityType>
         <EntityType Name="Cuenta_Contable">
           <Key>
             <PropertyRef Name="IdCuentaContable" />
@@ -1093,8 +1094,8 @@
             <PropertyRef Name="IdHistorialEstadias" />
           </Key>
           <Property Name="IdHistorialEstadias" Type="Int32" Nullable="false" />
-          <Property Name="FechaLlegada" Type="DateTime" Nullable="false" />
-          <Property Name="FechaSalida" Type="DateTime" Nullable="false" />
+          <Property Name="FechaLlegada" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaSalida" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Observacion" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Suit" Relationship="dbownersheModel.FK_Historial_Estadias_Suit" FromRole="Historial_Estadias" ToRole="Suit" />
           <NavigationProperty Name="Propietario" Relationship="dbownersheModel.FK_Historial_Estadias_Usuario_Propietario" FromRole="Historial_Estadias" ToRole="Propietario" />
@@ -1106,7 +1107,7 @@
           </Key>
           <Property Name="IdHistorialInformacionEstadistica" Type="Int32" Nullable="false" />
           <Property Name="Valor" Type="Double" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Informacion_Estadistica" Relationship="dbownersheModel.FK_Historial_Informacion_Estadistica_Informacion_Estadistica" FromRole="Historial_Informacion_Estadistica" ToRole="Informacion_Estadistica" />
           <NavigationProperty Name="Propietario" Relationship="dbownersheModel.FK_Historial_Informacion_Estadistica_Propietario" FromRole="Historial_Informacion_Estadistica" ToRole="Propietario" />
         </EntityType>
@@ -1124,8 +1125,8 @@
             <PropertyRef Name="IdHistorialSuit" />
           </Key>
           <Property Name="IdHistorialSuit" Type="Int32" Nullable="false" />
-          <Property Name="FechaAdquisicion" Type="DateTime" />
-          <Property Name="FechaAbandono" Type="DateTime" />
+          <Property Name="FechaAdquisicion" Type="DateTime" Precision="0" />
+          <Property Name="FechaAbandono" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Propietario" Relationship="dbownersheModel.FK_Historial_Suit_Propietario_Propietario" FromRole="Historial_Suit_Propietario" ToRole="Propietario" />
           <NavigationProperty Name="Suit" Relationship="dbownersheModel.FK_Historial_Suit_Propietario_Suit" FromRole="Historial_Suit_Propietario" ToRole="Suit" />
           <NavigationProperty Name="Usuario" Relationship="dbownersheModel.FK_Historial_Suit_Propietario_Usuario_Propietario" FromRole="Historial_Suit_Propietario" ToRole="Usuario" />
@@ -1179,7 +1180,7 @@
           <NavigationProperty Name="Historial_Informacion_Estadistica" Relationship="dbownersheModel.FK_Historial_Informacion_Estadistica_Informacion_Estadistica" FromRole="Informacion_Estadistica" ToRole="Historial_Informacion_Estadistica" />
           <NavigationProperty Name="Hotel" Relationship="dbownersheModel.FK_Informacion_Estadistica_Hotel" FromRole="Informacion_Estadistica" ToRole="Hotel" />
           <Property Name="Orden" Type="Int16" Nullable="false" />
-          <Property Name="Sufijo" Type="String" Nullable="false" />
+          <Property Name="Sufijo" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
           <Property Name="ValorAcumulado" Type="Int16" Nullable="false" /></EntityType>
         <EntityType Name="Liquidacion">
           <Key>
@@ -1187,9 +1188,9 @@
           </Key>
           <Property Name="IdLiquidacion" Type="Int32" Nullable="false" />
           <Property Name="Valor" Type="Double" Nullable="false" />
-          <Property Name="FechaPeriodoLiquidado" Type="DateTime" Nullable="false" />
-          <Property Name="FechaElabaoracion" Type="DateTime" Nullable="false" />
-          <Property Name="Regla" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="FechaPeriodoLiquidado" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaElabaoracion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Regla" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="EsLiquidacionHotel" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Concepto" Relationship="dbownersheModel.FK_ValorConcepto_Concepto" FromRole="Liquidacion" ToRole="Concepto" />
           <NavigationProperty Name="Historial_Liquidacion" Relationship="dbownersheModel.FK_Historial_Liquidacion_Liquidacion" FromRole="Liquidacion" ToRole="Historial_Liquidacion" />
@@ -1197,7 +1198,7 @@
           <NavigationProperty Name="Propietario" Relationship="dbownersheModel.FK_Liquidacion_Propietario" FromRole="Liquidacion" ToRole="Propietario" />
           <NavigationProperty Name="Suit" Relationship="dbownersheModel.FK_Liquidacion_Suit" FromRole="Liquidacion" ToRole="Suit" />
           <NavigationProperty Name="Usuario" Relationship="dbownersheModel.FK_Liquidacion_Usuario" FromRole="Liquidacion" ToRole="Usuario" />
-          <Property Name="UrlExtracto" Type="String" Nullable="true" /></EntityType>
+          <Property Name="UrlExtracto" Type="String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" /></EntityType>
         <EntityType Name="Modulo">
           <Key>
             <PropertyRef Name="IdModulo" />
@@ -1227,8 +1228,8 @@
           <Property Name="Titulo" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
           <Property Name="Imagen" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
-          <Property Name="FechaCaducidad" Type="DateTime" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaCaducidad" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Usuario" Relationship="dbownersheModel.FK_Noticia_Usuario" FromRole="Noticia" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Pais">
@@ -1276,7 +1277,7 @@
           <Property Name="Pass" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="Correo" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="FechaIngreso" Type="DateTime" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="0" />
           <Property Name="Direccion" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="Telefono_1" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="Telefono_2" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
@@ -1292,8 +1293,8 @@
           <NavigationProperty Name="Liquidacion" Relationship="dbownersheModel.FK_Liquidacion_Propietario" FromRole="Propietario" ToRole="Liquidacion" />
           <NavigationProperty Name="Perfil" Relationship="dbownersheModel.FK_Usuario_Propietario_Perfil" FromRole="Propietario" ToRole="Perfil" />
           <NavigationProperty Name="Suit_Propietario" Relationship="dbownersheModel.FK_Suit_Propietario_Usuario_Propietario" FromRole="Propietario" ToRole="Suit_Propietario" />
-          <Property Name="Correo2" Type="String" Nullable="true" />
-          <Property Name="Correo3" Type="String" Nullable="true" />
+          <Property Name="Correo2" Type="String" Nullable="true" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Correo3" Type="String" Nullable="true" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="EsRetenedor" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Informacion_Certificado" Relationship="dbownersheModel.FK_Informacion_Certificado_Propietario" FromRole="Propietario" ToRole="Informacion_Certificado" /></EntityType>
         <EntityType Name="Reporte">
@@ -1407,7 +1408,7 @@
           </Key>
           <Property Name="IdValorVariable" Type="Int32" Nullable="false" />
           <Property Name="Valor" Type="Double" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Variable" Relationship="dbownersheModel.FK_Valor_Variable_Variable" FromRole="Valor_Variable" ToRole="Variable" />
         </EntityType>
         <EntityType Name="Valor_Variable_Suit">
@@ -1729,7 +1730,7 @@
           <Key>
             <PropertyRef Name="IdEnvioMasivo" /></Key>
           <Property Name="IdEnvioMasivo" Type="Int32" Nullable="false" />
-          <Property Name="FechaPeriodoLiquidacion" Type="DateTime" Nullable="false" />
+          <Property Name="FechaPeriodoLiquidacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Hotel" Relationship="dbownersheModel.FK_HistorialEnvioMasivo_Hotel" FromRole="HistorialEnvioMasivo" ToRole="Hotel" />
           <NavigationProperty Name="Usuario" Relationship="dbownersheModel.FK_HistorialEnvioMasivo_Usuario" FromRole="HistorialEnvioMasivo" ToRole="Usuario" /></EntityType>
         <Association Name="FK_HistorialEnvioMasivo_Hotel">
@@ -1742,7 +1743,7 @@
           <Key>
             <PropertyRef Name="IdCertificado" /></Key>
           <Property Name="IdCertificado" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" Nullable="true" />
+          <Property Name="Descripcion" Type="String" Nullable="true" MaxLength="200" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Certificado_Detalle" Relationship="dbownersheModel.FK_Certificado_Detalle_Certificado" FromRole="Certificado" ToRole="Certificado_Detalle" />
           <NavigationProperty Name="Hotel" Relationship="dbownersheModel.FK_Certificado_Hotel" FromRole="Certificado" ToRole="Hotel" /></EntityType>
         <EntityType Name="Certificado_Detalle">
@@ -1765,7 +1766,7 @@
             <PropertyRef Name="IdInformacionCertificado" /></Key>
           <Property Name="IdInformacionCertificado" Type="Int32" Nullable="false" />
           <Property Name="Valor" Type="Double" Nullable="false" />
-          <Property Name="NombreConcepto" Type="String" Nullable="true" />
+          <Property Name="NombreConcepto" Type="String" Nullable="true" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="Anio" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Hotel" Relationship="dbownersheModel.FK_Informacion_Certificado_Hotel" FromRole="Informacion_Certificado" ToRole="Hotel" />
           <NavigationProperty Name="Propietario" Relationship="dbownersheModel.FK_Informacion_Certificado_Propietario" FromRole="Informacion_Certificado" ToRole="Propietario" />
@@ -1794,6 +1795,7 @@
           <EntitySetMapping Name="Asunto_Correo">
             <EntityTypeMapping TypeName="IsTypeOf(dbownersheModel.Asunto_Correo)">
               <MappingFragment StoreEntitySet="Asunto_Correo">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="IdAsuntoCorreo" ColumnName="IdAsuntoCorreo" />
                 <ScalarProperty Name="Asunto" ColumnName="Asunto" />
               </MappingFragment>
@@ -2875,6 +2877,9 @@
     <edmx:Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

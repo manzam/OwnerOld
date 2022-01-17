@@ -127,7 +127,7 @@ namespace WebOwner.ui.WebUserControls
                 concepto.IdConcepto = itemConcepto.IdConcepto;
                 concepto.Nombre = itemConcepto.Nombre;
                 concepto.Orden = itemConcepto.Orden;
-                concepto.Activo = itemConcepto.EsActiva;
+                concepto.Activo = itemConcepto.EsActiva.Value;
                 concepto.Regla = HttpUtility.HtmlDecode(conceptoBoTmp.ObtenerRegla2(itemConcepto.IdConcepto));
                 listaConcepto.Add(concepto);
             }

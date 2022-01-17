@@ -111,9 +111,19 @@ namespace WebOwner.ui.WebUserControls
 
         protected void ddlMes_OnSelectedIndexChanged(object sender, EventArgs e)
         {
+            int idHotel = int.Parse(ddlHotel.SelectedValue);
+            DateTime fecha = new DateTime(int.Parse(txtFecha.Text), int.Parse(ddlMes.SelectedValue), 1, 0, 0, 0);
+
             AsuntoAdjuntoBo asuntoAdjuntoBoTmp = new AsuntoAdjuntoBo();
-            gvwAdjuntos.DataSource = asuntoAdjuntoBoTmp.ObtenerAdjuntosPorHotel(int.Parse(ddlHotel.SelectedValue), new DateTime(int.Parse(txtFecha.Text), int.Parse(ddlMes.SelectedValue), 1, 0, 0, 0));
+            gvwAdjuntos.DataSource = asuntoAdjuntoBoTmp.ObtenerAdjuntosPorHotel(idHotel, fecha);
             gvwAdjuntos.DataBind();
+
+            Asunto_Correo asuntoCorreoTmp = asuntoAdjuntoBoTmp.ObtenerAsuntoCorreo(idHotel, fecha);
+            txtAsunto.Text = string.Empty;
+            if (asuntoCorreoTmp != null)
+            {
+                txtAsunto.Text = asuntoCorreoTmp.Asunto;
+            }
         }
 
         protected void gvwAdjuntos_OnRowDataBound(Object sender, GridViewRowEventArgs e)

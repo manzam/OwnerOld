@@ -82,16 +82,21 @@ namespace BO
         {
             using (ContextoOwner Contexto = new ContextoOwner())
             {
-                Asunto_Correo asuntoCorreoTmp = Contexto.Asunto_Correo.Include("Asunto_Adjunto").Where(AC => AC.Hotel.IdHotel == idHotel).FirstOrDefault();
+                Asunto_Correo asuntoCorreoTmp = Contexto.Asunto_Correo.Include("Asunto_Adjunto").Where(AC => AC.Hotel.IdHotel == idHotel && AC.Fecha.Value.Year == fecha.Year && AC.Fecha.Value.Month == fecha.Month).FirstOrDefault();
 
                 if (asuntoCorreoTmp == null)
                 {
                     asuntoCorreoTmp = new Asunto_Correo();
                     asuntoCorreoTmp.Asunto = asunto;
+                    asuntoCorreoTmp.Fecha = fecha;
                     asuntoCorreoTmp.HotelReference.EntityKey = new System.Data.EntityKey("ContextoOwner.Hotel", "IdHotel", idHotel);
 
-                    asuntoCorreoTmp.Asunto_Adjunto.Add(new Asunto_Adjunto() { Fecha = fecha, AdjuntoRuta = rutaAdjunto });
+                    if (rutaAdjunto != string.Empty)
+                    {
+                        asuntoCorreoTmp.Asunto_Adjunto.Add(new Asunto_Adjunto() { Fecha = fecha, AdjuntoRuta = rutaAdjunto });                        
+                    }
                     Contexto.AddToAsunto_Correo(asuntoCorreoTmp);
+
                 }
                 else
                 {
@@ -136,6 +141,16 @@ namespace BO
                 Asunto_Adjunto oAsunto_Adjunto = Contexto.Asunto_Adjunto.Where(A => A.IdAsuntoAdjunto == id).FirstOrDefault();
                 Contexto.DeleteObject(oAsunto_Adjunto);
                 Contexto.SaveChanges();
+            }
+        }
+
+        public Asunto_Correo ObtenerAsuntoCorreo(int idHotel, DateTime fecha)
+        {
+            using (ContextoOwner Contexto = new ContextoOwner())
+            {
+                return (from AC in Contexto.Asunto_Correo
+                        where AC.Hotel.IdHotel == idHotel && AC.Fecha.Value.Year == fecha.Year && AC.Fecha.Value.Month == fecha.Month
+                        select AC).FirstOrDefault();
             }
         }
     }

@@ -9,8 +9,6 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbownersheModel", "FK_Asunto_Adjunto_Asunto_Correo", "Asunto_Correo", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DM.Asunto_Correo), "Asunto_Adjunto", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DM.Asunto_Adjunto))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbownersheModel", "FK_Asunto_Correo_Hotel", "Hotel", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DM.Hotel), "Asunto_Correo", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DM.Asunto_Correo))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbownersheModel", "FK_Auditoria_Usuario", "Usuario", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DM.Usuario), "Auditoria", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DM.Auditoria))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbownersheModel", "FK_Suit_Propietario_Banco", "Banco", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DM.Banco), "Suit_Propietario", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DM.Suit_Propietario))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbownersheModel", "FK_CentroCosto_Hotel_Centro_Costo", "Centro_Costo", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DM.Centro_Costo), "CentroCosto_Hotel", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DM.CentroCosto_Hotel))]
@@ -80,9 +78,11 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbownersheModel", "FK_Certificado_Detalle_Concepto", "Concepto", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DM.Concepto), "Certificado_Detalle", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DM.Certificado_Detalle))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbownersheModel", "FK_Informacion_Certificado_Hotel", "Hotel", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DM.Hotel), "Informacion_Certificado", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DM.Informacion_Certificado))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbownersheModel", "FK_Informacion_Certificado_Propietario", "Propietario", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DM.Propietario), "Informacion_Certificado", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DM.Informacion_Certificado))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbownersheModel", "FK_Asunto_Adjunto_Asunto_Correo", "Asunto_Correo", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DM.Asunto_Correo), "Asunto_Adjunto", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DM.Asunto_Adjunto))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbownersheModel", "FK_Asunto_Correo_Hotel", "Hotel", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DM.Hotel), "Asunto_Correo", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DM.Asunto_Correo))]
 
 // Original file name:
-// Generation date: 16/01/2022 9:13:57 p. m.
+// Generation date: 16/01/2022 8:38:49 p. m.
 namespace DM
 {
     
@@ -133,23 +133,6 @@ namespace DM
         }
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         private global::System.Data.Objects.ObjectQuery<Asunto_Adjunto> _Asunto_Adjunto;
-        /// <summary>
-        /// There are no comments for Asunto_Correo in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public global::System.Data.Objects.ObjectQuery<Asunto_Correo> Asunto_Correo
-        {
-            get
-            {
-                if ((this._Asunto_Correo == null))
-                {
-                    this._Asunto_Correo = base.CreateQuery<Asunto_Correo>("[Asunto_Correo]");
-                }
-                return this._Asunto_Correo;
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private global::System.Data.Objects.ObjectQuery<Asunto_Correo> _Asunto_Correo;
         /// <summary>
         /// There are no comments for Auditoria in the schema.
         /// </summary>
@@ -882,20 +865,29 @@ namespace DM
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         private global::System.Data.Objects.ObjectQuery<Informacion_Certificado> _Informacion_Certificado;
         /// <summary>
+        /// There are no comments for Asunto_Correo in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Data.Objects.ObjectQuery<Asunto_Correo> Asunto_Correo
+        {
+            get
+            {
+                if ((this._Asunto_Correo == null))
+                {
+                    this._Asunto_Correo = base.CreateQuery<Asunto_Correo>("[Asunto_Correo]");
+                }
+                return this._Asunto_Correo;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Data.Objects.ObjectQuery<Asunto_Correo> _Asunto_Correo;
+        /// <summary>
         /// There are no comments for Asunto_Adjunto in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         public void AddToAsunto_Adjunto(Asunto_Adjunto asunto_Adjunto)
         {
             base.AddObject("Asunto_Adjunto", asunto_Adjunto);
-        }
-        /// <summary>
-        /// There are no comments for Asunto_Correo in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public void AddToAsunto_Correo(Asunto_Correo asunto_Correo)
-        {
-            base.AddObject("Asunto_Correo", asunto_Correo);
         }
         /// <summary>
         /// There are no comments for Auditoria in the schema.
@@ -1241,6 +1233,14 @@ namespace DM
         {
             base.AddObject("Informacion_Certificado", informacion_Certificado);
         }
+        /// <summary>
+        /// There are no comments for Asunto_Correo in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public void AddToAsunto_Correo(Asunto_Correo asunto_Correo)
+        {
+            base.AddObject("Asunto_Correo", asunto_Correo);
+        }
     }
     /// <summary>
     /// There are no comments for dbownersheModel.Asunto_Adjunto in the schema.
@@ -1383,171 +1383,6 @@ namespace DM
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Asunto_Correo>("dbownersheModel.FK_Asunto_Adjunto_Asunto_Correo", "Asunto_Correo", value);
-                }
-            }
-        }
-    }
-    /// <summary>
-    /// There are no comments for dbownersheModel.Asunto_Correo in the schema.
-    /// </summary>
-    /// <KeyProperties>
-    /// IdAsuntoCorreo
-    /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="dbownersheModel", Name="Asunto_Correo")]
-    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
-    [global::System.Serializable()]
-    public partial class Asunto_Correo : global::System.Data.Objects.DataClasses.EntityObject
-    {
-        /// <summary>
-        /// Create a new Asunto_Correo object.
-        /// </summary>
-        /// <param name="idAsuntoCorreo">Initial value of IdAsuntoCorreo.</param>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public static Asunto_Correo CreateAsunto_Correo(int idAsuntoCorreo)
-        {
-            Asunto_Correo asunto_Correo = new Asunto_Correo();
-            asunto_Correo.IdAsuntoCorreo = idAsuntoCorreo;
-            return asunto_Correo;
-        }
-        /// <summary>
-        /// There are no comments for property IdAsuntoCorreo in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public int IdAsuntoCorreo
-        {
-            get
-            {
-                return this._IdAsuntoCorreo;
-            }
-            set
-            {
-                this.OnIdAsuntoCorreoChanging(value);
-                this.ReportPropertyChanging("IdAsuntoCorreo");
-                this._IdAsuntoCorreo = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("IdAsuntoCorreo");
-                this.OnIdAsuntoCorreoChanged();
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private int _IdAsuntoCorreo;
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnIdAsuntoCorreoChanging(int value);
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnIdAsuntoCorreoChanged();
-        /// <summary>
-        /// There are no comments for property Asunto in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public string Asunto
-        {
-            get
-            {
-                return this._Asunto;
-            }
-            set
-            {
-                this.OnAsuntoChanging(value);
-                this.ReportPropertyChanging("Asunto");
-                this._Asunto = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("Asunto");
-                this.OnAsuntoChanged();
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private string _Asunto;
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnAsuntoChanging(string value);
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnAsuntoChanged();
-        /// <summary>
-        /// There are no comments for property Fecha in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public global::System.Nullable<global::System.DateTime> Fecha
-        {
-            get
-            {
-                return this._Fecha;
-            }
-            set
-            {
-                this.OnFechaChanging(value);
-                this.ReportPropertyChanging("Fecha");
-                this._Fecha = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("Fecha");
-                this.OnFechaChanged();
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private global::System.Nullable<global::System.DateTime> _Fecha;
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnFechaChanging(global::System.Nullable<global::System.DateTime> value);
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnFechaChanged();
-        /// <summary>
-        /// There are no comments for Asunto_Adjunto in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("dbownersheModel", "FK_Asunto_Adjunto_Asunto_Correo", "Asunto_Adjunto")]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Asunto_Adjunto> Asunto_Adjunto
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Asunto_Adjunto>("dbownersheModel.FK_Asunto_Adjunto_Asunto_Correo", "Asunto_Adjunto");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Asunto_Adjunto>("dbownersheModel.FK_Asunto_Adjunto_Asunto_Correo", "Asunto_Adjunto", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for Hotel in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("dbownersheModel", "FK_Asunto_Correo_Hotel", "Hotel")]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Hotel Hotel
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Hotel>("dbownersheModel.FK_Asunto_Correo_Hotel", "Hotel").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Hotel>("dbownersheModel.FK_Asunto_Correo_Hotel", "Hotel").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Hotel in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Hotel> HotelReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Hotel>("dbownersheModel.FK_Asunto_Correo_Hotel", "Hotel");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Hotel>("dbownersheModel.FK_Asunto_Correo_Hotel", "Hotel", value);
                 }
             }
         }
@@ -5813,28 +5648,6 @@ namespace DM
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         partial void OnUnidadNegocioChanged();
         /// <summary>
-        /// There are no comments for Asunto_Correo in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("dbownersheModel", "FK_Asunto_Correo_Hotel", "Asunto_Correo")]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Asunto_Correo> Asunto_Correo
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Asunto_Correo>("dbownersheModel.FK_Asunto_Correo_Hotel", "Asunto_Correo");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Asunto_Correo>("dbownersheModel.FK_Asunto_Correo_Hotel", "Asunto_Correo", value);
-                }
-            }
-        }
-        /// <summary>
         /// There are no comments for CentroCosto_Hotel in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("dbownersheModel", "FK_CentroCosto_Hotel_Hotel", "CentroCosto_Hotel")]
@@ -6178,6 +5991,28 @@ namespace DM
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Informacion_Certificado>("dbownersheModel.FK_Informacion_Certificado_Hotel", "Informacion_Certificado", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Asunto_Correo in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("dbownersheModel", "FK_Asunto_Correo_Hotel", "Asunto_Correo")]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Asunto_Correo> Asunto_Correo
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Asunto_Correo>("dbownersheModel.FK_Asunto_Correo_Hotel", "Asunto_Correo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Asunto_Correo>("dbownersheModel.FK_Asunto_Correo_Hotel", "Asunto_Correo", value);
                 }
             }
         }
@@ -12608,6 +12443,173 @@ namespace DM
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Propietario>("dbownersheModel.FK_Informacion_Certificado_Propietario", "Propietario", value);
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for dbownersheModel.Asunto_Correo in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// IdAsuntoCorreo
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="dbownersheModel", Name="Asunto_Correo")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class Asunto_Correo : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new Asunto_Correo object.
+        /// </summary>
+        /// <param name="idAsuntoCorreo">Initial value of IdAsuntoCorreo.</param>
+        /// <param name="fecha">Initial value of Fecha.</param>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public static Asunto_Correo CreateAsunto_Correo(int idAsuntoCorreo, global::System.DateTime fecha)
+        {
+            Asunto_Correo asunto_Correo = new Asunto_Correo();
+            asunto_Correo.IdAsuntoCorreo = idAsuntoCorreo;
+            asunto_Correo.Fecha = fecha;
+            return asunto_Correo;
+        }
+        /// <summary>
+        /// There are no comments for property IdAsuntoCorreo in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public int IdAsuntoCorreo
+        {
+            get
+            {
+                return this._IdAsuntoCorreo;
+            }
+            set
+            {
+                this.OnIdAsuntoCorreoChanging(value);
+                this.ReportPropertyChanging("IdAsuntoCorreo");
+                this._IdAsuntoCorreo = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("IdAsuntoCorreo");
+                this.OnIdAsuntoCorreoChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private int _IdAsuntoCorreo;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnIdAsuntoCorreoChanging(int value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnIdAsuntoCorreoChanged();
+        /// <summary>
+        /// There are no comments for property Asunto in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public string Asunto
+        {
+            get
+            {
+                return this._Asunto;
+            }
+            set
+            {
+                this.OnAsuntoChanging(value);
+                this.ReportPropertyChanging("Asunto");
+                this._Asunto = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Asunto");
+                this.OnAsuntoChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private string _Asunto;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnAsuntoChanging(string value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnAsuntoChanged();
+        /// <summary>
+        /// There are no comments for property Fecha in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.DateTime Fecha
+        {
+            get
+            {
+                return this._Fecha;
+            }
+            set
+            {
+                this.OnFechaChanging(value);
+                this.ReportPropertyChanging("Fecha");
+                this._Fecha = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Fecha");
+                this.OnFechaChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.DateTime _Fecha;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnFechaChanging(global::System.DateTime value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnFechaChanged();
+        /// <summary>
+        /// There are no comments for Asunto_Adjunto in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("dbownersheModel", "FK_Asunto_Adjunto_Asunto_Correo", "Asunto_Adjunto")]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Asunto_Adjunto> Asunto_Adjunto
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Asunto_Adjunto>("dbownersheModel.FK_Asunto_Adjunto_Asunto_Correo", "Asunto_Adjunto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Asunto_Adjunto>("dbownersheModel.FK_Asunto_Adjunto_Asunto_Correo", "Asunto_Adjunto", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Hotel in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("dbownersheModel", "FK_Asunto_Correo_Hotel", "Hotel")]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Hotel Hotel
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Hotel>("dbownersheModel.FK_Asunto_Correo_Hotel", "Hotel").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Hotel>("dbownersheModel.FK_Asunto_Correo_Hotel", "Hotel").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Hotel in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Hotel> HotelReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Hotel>("dbownersheModel.FK_Asunto_Correo_Hotel", "Hotel");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Hotel>("dbownersheModel.FK_Asunto_Correo_Hotel", "Hotel", value);
                 }
             }
         }

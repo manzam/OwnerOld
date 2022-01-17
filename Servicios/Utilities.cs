@@ -157,17 +157,24 @@ namespace Servicios
             miMensaje.From = new MailAddress(correoRemitente.Trim(), nombreRemitente, Encoding.UTF8);
 
             bool _esConDestinatarios = false;
-            listaCorreoDestino = listaCorreoDestino.Distinct().ToList();
-            foreach (string itemCorreo in listaCorreoDestino)
+            if (isPruebas)
             {
-                if (!string.IsNullOrEmpty(itemCorreo))
+                string emailtest = System.Configuration.ConfigurationManager.AppSettings.GetValues("EmailTest")[0];
+                foreach (string email in emailtest.Split(',').ToList())
                 {
-                    if (isPruebas)
-                        miMensaje.To.Add("manuelzambrano@outlook.com");
-                    else
-                        miMensaje.To.Add(itemCorreo.Trim());
-
+                    miMensaje.To.Add(email);
                     _esConDestinatarios = true;
+                }
+            } else
+            {
+                listaCorreoDestino = listaCorreoDestino.Distinct().ToList();
+                foreach (string itemCorreo in listaCorreoDestino)
+                {
+                    if (!string.IsNullOrEmpty(itemCorreo))
+                    {
+                        miMensaje.To.Add(itemCorreo.Trim());
+                        _esConDestinatarios = true;
+                    }
                 }
             }
 
@@ -176,14 +183,6 @@ namespace Servicios
                 esConDestinatarios = false;
                 return;
             }
-
-            /*
-            if (!string.IsNullOrEmpty(correoOculto))
-            {
-                MailAddress bcc = new MailAddress(correoOculto);
-                miMensaje.Bcc.Add(bcc);
-            }
-            */
 
             miMensaje.Subject = asunto;
             miMensaje.Body = textoCuerpo;
@@ -225,33 +224,26 @@ namespace Servicios
             {
                 //Aquí es donde se hace lo especial
                 SmtpClient client = new SmtpClient();
+                client.Host = hostSmtp;
+                client.Port = puertoSmtp;
 
                 // Notificacin de envio
                 bool isNotification = bool.Parse(System.Configuration.ConfigurationManager.AppSettings.GetValues("isNotification")[0]);
                 if (isNotification)
                 {
-                    miMensaje.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
                     client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    miMensaje.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
                     miMensaje.Headers.Add("Disposition-Notification-To", correoRemitente);
                 }
-                
 
-                //client.Credentials = new System.Net.NetworkCredential("zambrano.manuelc@gmail.com", "Patricia115z");
+                client.UseDefaultCredentials = false;
+                client.EnableSsl = enableSsl;
                 client.Credentials = new System.Net.NetworkCredential(correoRemitente, claveRemitente);
-                //client.Credentials = new System.Net.NetworkCredential("propietarios.estelar@hotelesestelar.com", "Este2015");
-                //client.UseDefaultCredentials = false;
-                client.Port = puertoSmtp; //587;
-                //client.Host = "smtp.gmail.com";
-                client.Host = hostSmtp; // "outlook.office365.com";
-                client.EnableSsl = enableSsl; //Esto es para que vaya a través de SSL que es obligatorio con GMail
-                client.Timeout = 1999999;//900000;
+                client.Timeout = 1999999;
 
-                //client.SendCompleted += new SendCompletedEventHandler(client_SendCompleted);
-
+                
                 client.Send(miMensaje);
                 miMensaje.Dispose();
-                //client.SendAsync(miMensaje, null);
-                //return true;
             }
             catch (System.Net.Mail.SmtpException ex)
             {

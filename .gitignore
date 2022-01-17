@@ -1,4 +1,5 @@
 /.vs
+/WebOwner/extractos
 /WebOwner/obj/Debug
 /WebOwner/bin
 /Servicios/obj/Debug
@@ -7,3 +8,5 @@
 /DM/bin
 /BO/obj/Debug
 /BO/bin
+/Console/obj/Debug
+/Console/bin
