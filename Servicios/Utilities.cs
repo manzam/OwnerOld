@@ -12,6 +12,14 @@ using System.Net.Mime;
 using System.Text.RegularExpressions;
 using DM;
 
+
+using MailKit.Net.Smtp;
+using MailKit.Security;
+//using Microsoft.Extensions.Options;
+using MimeKit;
+using MimeKit.Text;
+//using WebApi.Helpers;
+
 namespace Servicios
 {
     public static class Utilities
@@ -153,8 +161,9 @@ namespace Servicios
         {
             GetEmailByHotel(idHotel, ref correoRemitente, ref claveRemitente);
 
-            MailMessage miMensaje = new MailMessage();
-            miMensaje.From = new MailAddress(correoRemitente.Trim(), nombreRemitente, Encoding.UTF8);
+            var miMensaje = new MimeMessage();
+            miMensaje.From.Add(new MailboxAddress(Encoding.UTF8, nombreRemitente, correoRemitente.Trim()));
+            miMensaje.Subject = asunto;
 
             bool _esConDestinatarios = false;
             if (isPruebas)
@@ -162,7 +171,7 @@ namespace Servicios
                 string emailtest = System.Configuration.ConfigurationManager.AppSettings.GetValues("EmailTest")[0];
                 foreach (string email in emailtest.Split(',').ToList())
                 {
-                    miMensaje.To.Add(email);
+                    miMensaje.To.Add(MailboxAddress.Parse(email));
                     _esConDestinatarios = true;
                 }
             } else
@@ -172,7 +181,7 @@ namespace Servicios
                 {
                     if (!string.IsNullOrEmpty(itemCorreo))
                     {
-                        miMensaje.To.Add(itemCorreo.Trim());
+                        miMensaje.To.Add(MailboxAddress.Parse(itemCorreo));
                         _esConDestinatarios = true;
                     }
                 }
@@ -184,13 +193,9 @@ namespace Servicios
                 return;
             }
 
-            miMensaje.Subject = asunto;
-            miMensaje.Body = textoCuerpo;
-            miMensaje.BodyEncoding = Encoding.UTF8;
-            miMensaje.IsBodyHtml = esHtml;
-
             string extension = string.Empty;
-            Attachment adjunto = null;
+            MimePart attachment = null;
+            var multipart = new Multipart("mixed");            
 
             foreach (string rutaAdjunto in listaAdjunto)
             {
@@ -198,60 +203,61 @@ namespace Servicios
                 switch (Path.GetExtension(rutaAdjunto))
                 {
                     case ".pdf":
-                        adjunto = new Attachment(rutaAdjunto, MediaTypeNames.Application.Pdf);
+                        attachment = new MimePart("application/pdf", "pdf")
+                        {
+                            Content = new MimeContent(File.OpenRead(rutaAdjunto), ContentEncoding.Default),
+                            ContentDisposition = new MimeKit.ContentDisposition(MimeKit.ContentDisposition.Attachment),
+                            ContentTransferEncoding = ContentEncoding.Base64,
+                            FileName = Path.GetFileName(rutaAdjunto)
+                        };
                         break;
 
                     case ".xls":
                     case ".xlsx":
-                        adjunto = new Attachment(rutaAdjunto, "application/msexcel");
+                        attachment = new MimePart("application/msexcel", "xls")
+                        {
+                            Content = new MimeContent(File.OpenRead(rutaAdjunto), ContentEncoding.Default),
+                            ContentDisposition = new MimeKit.ContentDisposition(MimeKit.ContentDisposition.Attachment),
+                            ContentTransferEncoding = ContentEncoding.Base64,
+                            FileName = Path.GetFileName(rutaAdjunto)
+                        };
                         break;
 
                     default:
-                        adjunto = new Attachment(rutaAdjunto);
+                        attachment = new MimePart()
+                        {
+                            Content = new MimeContent(File.OpenRead(rutaAdjunto), ContentEncoding.Default),
+                            ContentDisposition = new MimeKit.ContentDisposition(MimeKit.ContentDisposition.Attachment),
+                            ContentTransferEncoding = ContentEncoding.Base64,
+                            FileName = Path.GetFileName(rutaAdjunto)
+                        };
                         break;
                 }
-                
-                miMensaje.Attachments.Add(adjunto);
+                multipart.Add(attachment);
             }
 
-            //if (rutaAdjunto != string.Empty)
-            //{
-            //    Attachment adjunto = new Attachment(rutaAdjunto, "application/pdf");
-            //    miMensaje.Attachments.Add(adjunto);
-            //}
+            multipart.Add(new TextPart(TextFormat.Plain) { Text = textoCuerpo });
+            miMensaje.Body = multipart;
 
             try
             {
-                //Aquí es donde se hace lo especial
-                SmtpClient client = new SmtpClient();
-                client.Host = hostSmtp;
-                client.Port = puertoSmtp;
-
-                // Notificacin de envio
-                bool isNotification = bool.Parse(System.Configuration.ConfigurationManager.AppSettings.GetValues("isNotification")[0]);
-                if (isNotification)
+                // send email
+                using (var smtp = new MailKit.Net.Smtp.SmtpClient())
                 {
-                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    miMensaje.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
-                    miMensaje.Headers.Add("Disposition-Notification-To", correoRemitente);
-                }
-
-                client.UseDefaultCredentials = false;
-                client.EnableSsl = enableSsl;
-                client.Credentials = new System.Net.NetworkCredential(correoRemitente, claveRemitente);
-                client.Timeout = 1999999;
-
-                
-                client.Send(miMensaje);
-                miMensaje.Dispose();
+                    smtp.Connect(hostSmtp, puertoSmtp, SecureSocketOptions.StartTls);
+                    smtp.Authenticate(correoRemitente, claveRemitente);
+                    smtp.Send(miMensaje);
+                    smtp.Disconnect(true);
+                    miMensaje.Dispose();
+                }                
+            
             }
             catch (System.Net.Mail.SmtpException ex)
             {
                 Console.WriteLine(ex.Message);
                 Console.ReadLine();
                 miMensaje.Dispose();
-                //return false;
-            }
+            }            
         }
 
         public static string EncriptarEnVocal(string Message, string Passphrase)
