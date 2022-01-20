@@ -82,7 +82,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbownersheModel", "FK_Informacion_Certificado_Propietario", "Propietario", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DM.Propietario), "Informacion_Certificado", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DM.Informacion_Certificado))]
 
 // Original file name:
-// Generation date: 16/01/2022 9:13:57 p. m.
+// Generation date: 19/01/2022 5:57:37 p. m.
 namespace DM
 {
     
