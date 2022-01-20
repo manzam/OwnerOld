@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="dbownersheModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="dbownersheModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Asunto_Adjunto">
           <Key>
             <PropertyRef Name="IdAsuntoAdjunto" />
@@ -532,52 +532,52 @@ warning 6002: The table/view 'OwnersHE.dbo.sysdiagrams' does not have a primary 
           <Property Name="Operador" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityContainer Name="dbownersheModelStoreContainer">
-          <EntitySet Name="Asunto_Adjunto" EntityType="Self.Asunto_Adjunto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Asunto_Correo" EntityType="Self.Asunto_Correo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Auditoria" EntityType="Self.Auditoria" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Banco" EntityType="Self.Banco" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Centro_Costo" EntityType="Self.Centro_Costo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CentroCosto_Hotel" EntityType="Self.CentroCosto_Hotel" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Certificado" EntityType="Self.Certificado" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Certificado_Detalle" EntityType="Self.Certificado_Detalle" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Cierre" EntityType="Self.Cierre" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Cierre_Historial" EntityType="Self.Cierre_Historial" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Concepto" EntityType="Self.Concepto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Cuenta_Contable" EntityType="Self.Cuenta_Contable" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Detalle_Extracto" EntityType="Self.Detalle_Extracto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Extracto" EntityType="Self.Extracto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Historial_Estadias" EntityType="Self.Historial_Estadias" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Historial_Informacion_Estadistica" EntityType="Self.Historial_Informacion_Estadistica" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Historial_Liquidacion" EntityType="Self.Historial_Liquidacion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Historial_Suit_Propietario" EntityType="Self.Historial_Suit_Propietario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="HistorialEnvioMasivo" EntityType="Self.HistorialEnvioMasivo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Hotel_Usuario" EntityType="Self.Hotel_Usuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Informacion_Certificado" EntityType="Self.Informacion_Certificado" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Informacion_Estadistica" EntityType="Self.Informacion_Estadistica" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Liquidacion" EntityType="Self.Liquidacion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Modulo" EntityType="Self.Modulo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Modulo_Perfil" EntityType="Self.Modulo_Perfil" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Noticia" EntityType="Self.Noticia" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Propietario" EntityType="Self.Propietario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Reporte_Detalle" EntityType="Self.Reporte_Detalle" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Reporte_Grupo" EntityType="Self.Reporte_Grupo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Reporte_Grupo_Detalle" EntityType="Self.Reporte_Grupo_Detalle" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Suit" EntityType="Self.Suit" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Suit_Propietario" EntityType="Self.Suit_Propietario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tipo_Cuenta_Contable" EntityType="Self.Tipo_Cuenta_Contable" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Valor_Variable" EntityType="Self.Valor_Variable" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Valor_Variable_Suit" EntityType="Self.Valor_Variable_Suit" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Variable" EntityType="Self.Variable" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Variables_Concepto" EntityType="Self.Variables_Concepto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Asunto_Adjunto" EntityType="Self.Asunto_Adjunto" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Asunto_Correo" EntityType="Self.Asunto_Correo" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Auditoria" EntityType="Self.Auditoria" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Banco" EntityType="Self.Banco" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Centro_Costo" EntityType="Self.Centro_Costo" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CentroCosto_Hotel" EntityType="Self.CentroCosto_Hotel" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Certificado" EntityType="Self.Certificado" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Certificado_Detalle" EntityType="Self.Certificado_Detalle" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Cierre" EntityType="Self.Cierre" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Cierre_Historial" EntityType="Self.Cierre_Historial" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Concepto" EntityType="Self.Concepto" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Cuenta_Contable" EntityType="Self.Cuenta_Contable" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Detalle_Extracto" EntityType="Self.Detalle_Extracto" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Extracto" EntityType="Self.Extracto" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Historial_Estadias" EntityType="Self.Historial_Estadias" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Historial_Informacion_Estadistica" EntityType="Self.Historial_Informacion_Estadistica" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Historial_Liquidacion" EntityType="Self.Historial_Liquidacion" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Historial_Suit_Propietario" EntityType="Self.Historial_Suit_Propietario" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="HistorialEnvioMasivo" EntityType="Self.HistorialEnvioMasivo" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Hotel_Usuario" EntityType="Self.Hotel_Usuario" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Informacion_Certificado" EntityType="Self.Informacion_Certificado" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Informacion_Estadistica" EntityType="Self.Informacion_Estadistica" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Liquidacion" EntityType="Self.Liquidacion" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Modulo" EntityType="Self.Modulo" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Modulo_Perfil" EntityType="Self.Modulo_Perfil" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Noticia" EntityType="Self.Noticia" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Propietario" EntityType="Self.Propietario" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Reporte_Detalle" EntityType="Self.Reporte_Detalle" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Reporte_Grupo" EntityType="Self.Reporte_Grupo" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Reporte_Grupo_Detalle" EntityType="Self.Reporte_Grupo_Detalle" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Suit" EntityType="Self.Suit" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Suit_Propietario" EntityType="Self.Suit_Propietario" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Tipo_Cuenta_Contable" EntityType="Self.Tipo_Cuenta_Contable" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Valor_Variable" EntityType="Self.Valor_Variable" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Valor_Variable_Suit" EntityType="Self.Valor_Variable_Suit" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Variable" EntityType="Self.Variable" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Variables_Concepto" EntityType="Self.Variables_Concepto" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
 [sysdiagrams].[name] AS [name], 
 [sysdiagrams].[principal_id] AS [principal_id], 
@@ -590,7 +590,7 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="dbownersheModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+      <Schema Namespace="dbownersheModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityContainer Name="ContextoOwner">
           <EntitySet Name="Asunto_Adjunto" EntityType="dbownersheModel.Asunto_Adjunto" />
           <EntitySet Name="Asunto_Correo" EntityType="dbownersheModel.Asunto_Correo" />
@@ -1781,7 +1781,7 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="dbownersheModelStoreContainer" CdmEntityContainer="ContextoOwner">
           <EntitySetMapping Name="Asunto_Adjunto">
             <EntityTypeMapping TypeName="IsTypeOf(dbownersheModel.Asunto_Adjunto)">
@@ -2868,14 +2868,14 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:Designer>
     <edmx:Connection>
-      <DesignerInfoPropertySet>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
       </DesignerInfoPropertySet>
     </edmx:Connection>
     <edmx:Options>
-      <DesignerInfoPropertySet>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
@@ -2884,7 +2884,7 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="Model" ZoomLevel="64">
+      <Diagram Name="Model" ZoomLevel="64" xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
         <EntityTypeShape EntityType="dbownersheModel.Asunto_Adjunto" Width="1.5" PointX="12" PointY="23" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="dbownersheModel.Asunto_Correo" Width="1.5" PointX="9.75" PointY="23" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="dbownersheModel.Auditoria" Width="1.5" PointX="12.75" PointY="4.75" Height="2.5571907552083335" IsExpanded="true" />
@@ -3467,7 +3467,7 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
           <ConnectorPoint PointX="17.666666666666668" PointY="33.970724283854167" />
           <ConnectorPoint PointX="17.833333333333332" PointY="33.970724283854167" />
           <ConnectorPoint PointX="19.25" PointY="33.970724283854167" /></AssociationConnector>
-        <AssociationConnector Association="dbownersheModel.FK_Variable_Hotel" >
+        <AssociationConnector Association="dbownersheModel.FK_Variable_Hotel">
           <ConnectorPoint PointX="7.910883923127205" PointY="29.082947591145835" />
           <ConnectorPoint PointX="7.910883923127205" PointY="34.417674153645834" />
           <ConnectorPoint PointX="8.5815881425782532" PointY="34.417674153645834" />
@@ -3482,13 +3482,13 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
           <ConnectorPoint PointX="11.708333333333334" PointY="34.417674153645834" />
           <ConnectorPoint PointX="15" PointY="34.417674153645834" />
           </AssociationConnector>
-        <AssociationConnector Association="dbownersheModel.FK_Concepto_Cuenta_Contable1" >
+        <AssociationConnector Association="dbownersheModel.FK_Concepto_Cuenta_Contable1">
           <ConnectorPoint PointX="16.25" PointY="16.791970888740437" />
           <ConnectorPoint PointX="17.140576722412106" PointY="16.791970888740437" />
           <ConnectorPoint PointX="17.140576722412106" PointY="28.375" />
           </AssociationConnector>
         <EntityTypeShape EntityType="dbownersheModel.HistorialEnvioMasivo" Width="1.5" PointX="14.75" PointY="19.375" Height="1.7879850260416674" />
-        <AssociationConnector Association="dbownersheModel.FK_HistorialEnvioMasivo_Hotel" >
+        <AssociationConnector Association="dbownersheModel.FK_HistorialEnvioMasivo_Hotel">
           <ConnectorPoint PointX="8.007812" PointY="23.875" />
           <ConnectorPoint PointX="8.007812" PointY="22.444031575520839" />
           <ConnectorPoint PointX="8.4322896666666658" PointY="22.444031575520839" />
@@ -3509,7 +3509,7 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
           <ConnectorPoint PointX="14.375" PointY="20.547816069010416" />
           <ConnectorPoint PointX="14.75" PointY="20.547816069010416" />
           </AssociationConnector>
-        <AssociationConnector Association="dbownersheModel.FK_HistorialEnvioMasivo_Usuario" >
+        <AssociationConnector Association="dbownersheModel.FK_HistorialEnvioMasivo_Usuario">
           <ConnectorPoint PointX="12" PointY="12.790330465925862" />
           <ConnectorPoint PointX="14.5" PointY="12.790330465925862" />
           <ConnectorPoint PointX="14.5" PointY="19" />
@@ -3517,13 +3517,13 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
           <ConnectorPoint PointX="15.5" PointY="19.375" /></AssociationConnector>
         <EntityTypeShape EntityType="dbownersheModel.Certificado" Width="1.5" PointX="22.125" PointY="38.25" Height="1.5923063151041674" />
         <EntityTypeShape EntityType="dbownersheModel.Certificado_Detalle" Width="1.5" PointX="22.25" PointY="35.25" Height="1.427958984374996" />
-        <AssociationConnector Association="dbownersheModel.FK_Certificado_Detalle_Certificado" >
+        <AssociationConnector Association="dbownersheModel.FK_Certificado_Detalle_Certificado">
           <ConnectorPoint PointX="21.15625" PointY="38.125" />
           <ConnectorPoint PointX="21.15625" PointY="35.4746109375" />
           <ConnectorPoint PointX="21.916666666666668" PointY="35.4746109375" />
           <ConnectorPoint PointX="22.083333333333332" PointY="35.4746109375" />
           <ConnectorPoint PointX="22.25" PointY="35.4746109375" /></AssociationConnector>
-        <AssociationConnector Association="dbownersheModel.FK_Certificado_Hotel" >
+        <AssociationConnector Association="dbownersheModel.FK_Certificado_Hotel">
           <ConnectorPoint PointX="8.8637127379557938" PointY="29.082947591145835" />
           <ConnectorPoint PointX="8.8637127379557938" PointY="37.71875" />
           <ConnectorPoint PointX="10.244792916666667" PointY="37.71875" />
@@ -3536,14 +3536,14 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
           <ConnectorPoint PointX="19.625" PointY="38.921153157552084" />
           <ConnectorPoint PointX="20" PointY="38.921153157552084" />
           </AssociationConnector>
-        <AssociationConnector Association="dbownersheModel.FK_Certificado_Detalle_Concepto" >
+        <AssociationConnector Association="dbownersheModel.FK_Certificado_Detalle_Concepto">
           <ConnectorPoint PointX="17.75" PointY="33.582947591145839" />
           <ConnectorPoint PointX="17.75" PointY="35.33105296875" />
           <ConnectorPoint PointX="21.916666666666668" PointY="35.33105296875" />
           <ConnectorPoint PointX="22.083333333333332" PointY="35.33105296875" />
           <ConnectorPoint PointX="22.25" PointY="35.33105296875" /></AssociationConnector>
         <EntityTypeShape EntityType="dbownersheModel.Informacion_Certificado" Width="2.25" PointX="12" PointY="31.375" Height="2.0853483072916674" />
-        <AssociationConnector Association="dbownersheModel.FK_Informacion_Certificado_Hotel" >
+        <AssociationConnector Association="dbownersheModel.FK_Informacion_Certificado_Hotel">
           <ConnectorPoint PointX="7.6741894615636026" PointY="29.082947591145835" />
           <ConnectorPoint PointX="7.6741894615636026" PointY="32.2795267594401" />
           <ConnectorPoint PointX="7.827550589793872" PointY="32.2795267594401" />
@@ -3560,7 +3560,7 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
           <ConnectorPoint PointX="11.708333333333334" PointY="32.2795267594401" />
           <ConnectorPoint PointX="12" PointY="32.2795267594401" />
           </AssociationConnector>
-        <AssociationConnector Association="dbownersheModel.FK_Informacion_Certificado_Propietario" >
+        <AssociationConnector Association="dbownersheModel.FK_Informacion_Certificado_Propietario">
           <ConnectorPoint PointX="9.3281275" PointY="22.194031575520835" />
           <ConnectorPoint PointX="9.3281275" PointY="31.79601087972005" />
           <ConnectorPoint PointX="9.3541666666666661" PointY="31.79601087972005" />
