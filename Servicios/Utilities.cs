@@ -11,14 +11,10 @@ using System.Net.Mail;
 using System.Net.Mime;
 using System.Text.RegularExpressions;
 using DM;
-
-
 using MailKit.Net.Smtp;
 using MailKit.Security;
-//using Microsoft.Extensions.Options;
 using MimeKit;
 using MimeKit.Text;
-//using WebApi.Helpers;
 
 namespace Servicios
 {
@@ -408,12 +404,17 @@ namespace Servicios
 
         public static string PadLeft(string cadena, short numCaracteres, char caracterRelleno)
         {
-            //cadena = cadena.Replace(".", "");
+            if (cadena == null)
+                cadena = string.Empty;
+
             return cadena.PadLeft(numCaracteres, caracterRelleno);
         }
 
         public static string PadRight(string cadena, short numCaracteres, char caracterRelleno)
         {
+            if (cadena == null)
+                cadena = string.Empty;
+
             cadena = cadena.Replace(".", "");
             cadena = QuitarAcentuaciones(cadena);
             return cadena.PadRight(numCaracteres, caracterRelleno);
