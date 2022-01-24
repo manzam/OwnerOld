@@ -1,6 +1,7 @@
 ﻿using DM;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Data.Common;
 using System.Transactions;
 using System.Data;
@@ -361,14 +362,14 @@ namespace BO
 
         public List<ResponseValidateParticipacion> ValidateParticipationByHotel(int idHotel, ref string error)
         {
-            bool isOK = true;
             List<ResponseValidateParticipacion> listProp = new List<ResponseValidateParticipacion>();
-            try
-            {
-                using (ContextoOwner Contexto = new ContextoOwner())
+            string idHoteles = System.Configuration.ConfigurationManager.AppSettings.GetValues("IdHotelesParticipacion")[0];
+
+            if (idHoteles.Split(',').Contains(idHotel.ToString()))
+            {                
+                try
                 {
-                    string codigoHotel = Contexto.Hotel.Where(H => H.IdHotel == idHotel).Select(H => H.Codigo).FirstOrDefault();
-                    if (codigoHotel != "039")
+                    using (ContextoOwner Contexto = new ContextoOwner())
                     {
                         int idVariable = Contexto.Variable.Where(V => V.Hotel.IdHotel == idHotel && V.Tipo == "P" && V.EsConValidacion == true).Select(V => V.IdVariable).FirstOrDefault();
 
@@ -412,12 +413,12 @@ namespace BO
                         }
                     }
                 }
+                catch (System.Exception ex)
+                {
+                    error = string.Format("InnerException: {0} \n Message: {1} \n ToString: {2}", ex.InnerException, ex.Message, ex.ToString());
+                }
             }
-            catch (System.Exception ex)
-            {
-                error = string.Format("InnerException: {0} \n Message: {1} \n ToString: {2}", ex.InnerException, ex.Message, ex.ToString());
-                isOK = false;
-            }
+
             return listProp;
         }
     }

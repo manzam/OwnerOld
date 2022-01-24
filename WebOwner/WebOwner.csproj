@@ -865,6 +865,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\liquidador.js" />
     <Content Include="templates\TemplateLimpio.Master" />
     <Content Include="templates\TemplatePrincipal.Master" />
     <Content Include="ui\Paginas\Hotel.aspx" />
@@ -904,6 +905,13 @@
     <Content Include="ui\Paginas\PropietarioCliente.aspx" />
     <Content Include="ui\WebUserControls\WebUserPerfilPermisos.ascx" />
     <Content Include="ui\WebUserControls\WebUserPropietarioCliente.ascx" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\Resource.resx">
