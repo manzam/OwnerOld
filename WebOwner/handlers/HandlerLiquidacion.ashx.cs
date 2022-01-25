@@ -5,6 +5,8 @@ using System.Collections.Generic;
 //using BO;
 using BO;
 using System.Web.SessionState;
+using System.Data;
+using System.Text;
 
 namespace WebOwner.handlers
 {
@@ -21,7 +23,8 @@ namespace WebOwner.handlers
         SaveLiqProp = 4,
         DeleteLiq = 5,
         ActiveConcepto = 6,
-        ValidateParticipation = 7
+        ValidateParticipation = 7,
+        ValidateCoeficiente = 8
     }
 
     public class HandlerLiquidacion : IHttpHandler, IRequiresSessionState
@@ -120,9 +123,15 @@ namespace WebOwner.handlers
                     break;
 
                 case ActionTypeEnum.ValidateParticipation:
-                    List<ResponseValidateParticipacion> listProp = LiquidadorBoTmp.ValidateParticipationByHotel(idHotel, ref error);
+                    List<ResponseValidateParticipacion> listPropPartipacion = LiquidadorBoTmp.ValidateParticipationByHotel(idHotel, ref error);
                     context.Response.ContentType = "application/json";
-                    context.Response.Write(js.Serialize(listProp));
+                    context.Response.Write(js.Serialize(listPropPartipacion));
+                    break;
+
+                case ActionTypeEnum.ValidateCoeficiente:
+                    decimal value = LiquidadorBoTmp.ValidateCoefecienteByHotel(idHotel, ref error);
+                    context.Response.ContentType = "application/json";
+                    context.Response.Write(js.Serialize(value));
                     break;
 
                 default:

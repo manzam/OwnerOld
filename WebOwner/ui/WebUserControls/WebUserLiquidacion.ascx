@@ -34,7 +34,7 @@
     }
 
 </style>
-<script src="../../js/liquidador.js?v=1003"></script>
+<script src="../../js/liquidador.js?v=1004"></script>
 <script src="../../js/jquery-number-master/jquery.number.min.js"></script>
 <script language="javascript" type="text/javascript">
 
@@ -229,6 +229,17 @@
                     </thead>
                     <tbody id="tBodyValidadores"></tbody>
                 </table>
+            </div>
+        </div>
+
+        <br />
+
+        <div id="divValidCoeficiente" style="display:none">
+            <div>
+                <h2>Error coeficientes</h2>
+            </div>
+            <div>
+                Sumatoria coeficiente propietario: <strong><span id="spanCoe"></span></strong>
             </div>
         </div>
 

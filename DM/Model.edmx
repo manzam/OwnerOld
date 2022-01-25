@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="dbownersheModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbownersheModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Asunto_Adjunto">
           <Key>
             <PropertyRef Name="IdAsuntoAdjunto" />
@@ -21,7 +21,7 @@
           <Property Name="IdAsuntoCorreo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Asunto" Type="nvarchar(max)" />
           <Property Name="IdHotel" Type="int" />
-          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Fecha" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="Auditoria">
           <Key>
@@ -518,6 +518,7 @@ warning 6002: The table/view 'OwnersHE.dbo.sysdiagrams' does not have a primary 
           <Property Name="EsConValidacion" Type="bit" Nullable="false" />
           <Property Name="MaxNumero" Type="smallint" Nullable="false" />
           <Property Name="ValorConstante" Type="float" Nullable="false" />
+          <Property Name="TipoValidacion" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="Variables_Concepto">
           <Key>
@@ -532,52 +533,52 @@ warning 6002: The table/view 'OwnersHE.dbo.sysdiagrams' does not have a primary 
           <Property Name="Operador" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityContainer Name="dbownersheModelStoreContainer">
-          <EntitySet Name="Asunto_Adjunto" EntityType="Self.Asunto_Adjunto" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Asunto_Correo" EntityType="Self.Asunto_Correo" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Auditoria" EntityType="Self.Auditoria" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Banco" EntityType="Self.Banco" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Centro_Costo" EntityType="Self.Centro_Costo" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="CentroCosto_Hotel" EntityType="Self.CentroCosto_Hotel" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Certificado" EntityType="Self.Certificado" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Certificado_Detalle" EntityType="Self.Certificado_Detalle" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Cierre" EntityType="Self.Cierre" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Cierre_Historial" EntityType="Self.Cierre_Historial" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Concepto" EntityType="Self.Concepto" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Cuenta_Contable" EntityType="Self.Cuenta_Contable" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Detalle_Extracto" EntityType="Self.Detalle_Extracto" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Extracto" EntityType="Self.Extracto" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Historial_Estadias" EntityType="Self.Historial_Estadias" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Historial_Informacion_Estadistica" EntityType="Self.Historial_Informacion_Estadistica" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Historial_Liquidacion" EntityType="Self.Historial_Liquidacion" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Historial_Suit_Propietario" EntityType="Self.Historial_Suit_Propietario" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="HistorialEnvioMasivo" EntityType="Self.HistorialEnvioMasivo" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Hotel_Usuario" EntityType="Self.Hotel_Usuario" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Informacion_Certificado" EntityType="Self.Informacion_Certificado" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Informacion_Estadistica" EntityType="Self.Informacion_Estadistica" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Liquidacion" EntityType="Self.Liquidacion" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Modulo" EntityType="Self.Modulo" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Modulo_Perfil" EntityType="Self.Modulo_Perfil" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Noticia" EntityType="Self.Noticia" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Propietario" EntityType="Self.Propietario" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Reporte_Detalle" EntityType="Self.Reporte_Detalle" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Reporte_Grupo" EntityType="Self.Reporte_Grupo" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Reporte_Grupo_Detalle" EntityType="Self.Reporte_Grupo_Detalle" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Suit" EntityType="Self.Suit" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Suit_Propietario" EntityType="Self.Suit_Propietario" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Tipo_Cuenta_Contable" EntityType="Self.Tipo_Cuenta_Contable" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Valor_Variable" EntityType="Self.Valor_Variable" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Valor_Variable_Suit" EntityType="Self.Valor_Variable_Suit" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Variable" EntityType="Self.Variable" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Variables_Concepto" EntityType="Self.Variables_Concepto" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="Asunto_Adjunto" EntityType="Self.Asunto_Adjunto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asunto_Correo" EntityType="Self.Asunto_Correo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auditoria" EntityType="Self.Auditoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Banco" EntityType="Self.Banco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Centro_Costo" EntityType="Self.Centro_Costo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CentroCosto_Hotel" EntityType="Self.CentroCosto_Hotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Certificado" EntityType="Self.Certificado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Certificado_Detalle" EntityType="Self.Certificado_Detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cierre" EntityType="Self.Cierre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cierre_Historial" EntityType="Self.Cierre_Historial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Concepto" EntityType="Self.Concepto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cuenta_Contable" EntityType="Self.Cuenta_Contable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_Extracto" EntityType="Self.Detalle_Extracto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Extracto" EntityType="Self.Extracto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historial_Estadias" EntityType="Self.Historial_Estadias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historial_Informacion_Estadistica" EntityType="Self.Historial_Informacion_Estadistica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historial_Liquidacion" EntityType="Self.Historial_Liquidacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historial_Suit_Propietario" EntityType="Self.Historial_Suit_Propietario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistorialEnvioMasivo" EntityType="Self.HistorialEnvioMasivo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotel_Usuario" EntityType="Self.Hotel_Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Informacion_Certificado" EntityType="Self.Informacion_Certificado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Informacion_Estadistica" EntityType="Self.Informacion_Estadistica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Liquidacion" EntityType="Self.Liquidacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modulo" EntityType="Self.Modulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modulo_Perfil" EntityType="Self.Modulo_Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Noticia" EntityType="Self.Noticia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Propietario" EntityType="Self.Propietario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte_Detalle" EntityType="Self.Reporte_Detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte_Grupo" EntityType="Self.Reporte_Grupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte_Grupo_Detalle" EntityType="Self.Reporte_Grupo_Detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suit" EntityType="Self.Suit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suit_Propietario" EntityType="Self.Suit_Propietario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_Cuenta_Contable" EntityType="Self.Tipo_Cuenta_Contable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Valor_Variable" EntityType="Self.Valor_Variable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Valor_Variable_Suit" EntityType="Self.Valor_Variable_Suit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Variable" EntityType="Self.Variable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Variables_Concepto" EntityType="Self.Variables_Concepto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [sysdiagrams].[name] AS [name], 
 [sysdiagrams].[principal_id] AS [principal_id], 
@@ -930,7 +931,7 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
           <Property Name="Asunto" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Asunto_Adjunto" Relationship="dbownersheModel.FK_Asunto_Adjunto_Asunto_Correo" FromRole="Asunto_Correo" ToRole="Asunto_Adjunto" />
           <NavigationProperty Name="Hotel" Relationship="dbownersheModel.FK_Asunto_Correo_Hotel" FromRole="Asunto_Correo" ToRole="Hotel" />
-          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Auditoria">
           <Key>
@@ -1437,7 +1438,8 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
           <NavigationProperty Name="Valor_Variable_Suit" Relationship="dbownersheModel.FK_Valor_Variable_Suit_Variable" FromRole="Variable" ToRole="Valor_Variable_Suit" />
           <NavigationProperty Name="Variables_Concepto" Relationship="dbownersheModel.FK_Variables_Concepto_Variable" FromRole="Variable" ToRole="Variables_Concepto" />
           <NavigationProperty Name="Hotel" Relationship="dbownersheModel.FK_Variable_Hotel" FromRole="Variable" ToRole="Hotel" />
-          <Property Name="ValorConstante" Type="Double" Nullable="false" /></EntityType>
+          <Property Name="ValorConstante" Type="Double" Nullable="false" />
+          <Property Name="TipoValidacion" Type="Int16" Nullable="false" /></EntityType>
         <EntityType Name="Variables_Concepto">
           <Key>
             <PropertyRef Name="IdVariablesConcepto" />
@@ -2215,6 +2217,7 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
           <EntitySetMapping Name="Variable">
             <EntityTypeMapping TypeName="IsTypeOf(dbownersheModel.Variable)">
               <MappingFragment StoreEntitySet="Variable">
+                <ScalarProperty Name="TipoValidacion" ColumnName="TipoValidacion" />
                 <ScalarProperty Name="ValorConstante" ColumnName="ValorConstante" />
                 <ScalarProperty Name="IdVariable" ColumnName="IdVariable" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />

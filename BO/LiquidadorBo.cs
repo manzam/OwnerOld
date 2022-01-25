@@ -14,6 +14,12 @@ namespace BO
 {
     public class LiquidadorBo
     {
+        enum TipoValidacion
+        {
+            Ninguna = 0,
+            ParticipacionPropietario = 1,
+            CoeficienteSuite = 2
+        }
         public List<LiquidadorOwners> ObtenerPropietariosConSuiteActivas(int idHotel)
         {
             using (ContextoOwner Contexto = new ContextoOwner())
@@ -360,6 +366,12 @@ namespace BO
             return isOK;
         }
 
+        /// <summary>
+        /// Valida la sumatoria de participacion propietario
+        /// </summary>
+        /// <param name="idHotel"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
         public List<ResponseValidateParticipacion> ValidateParticipationByHotel(int idHotel, ref string error)
         {
             List<ResponseValidateParticipacion> listProp = new List<ResponseValidateParticipacion>();
@@ -371,7 +383,8 @@ namespace BO
                 {
                     using (ContextoOwner Contexto = new ContextoOwner())
                     {
-                        int idVariable = Contexto.Variable.Where(V => V.Hotel.IdHotel == idHotel && V.Tipo == "P" && V.EsConValidacion == true).Select(V => V.IdVariable).FirstOrDefault();
+                        int tipoVali = TipoValidacion.ParticipacionPropietario.GetHashCode();
+                        int idVariable = Contexto.Variable.Where(V => V.Hotel.IdHotel == idHotel && V.Tipo == "P" && V.EsConValidacion == true && V.TipoValidacion == tipoVali).Select(V => V.IdVariable).FirstOrDefault();
 
                         if (idVariable != 0)
                         {
@@ -420,6 +433,64 @@ namespace BO
             }
 
             return listProp;
+        }
+
+        /// <summary>
+        /// Valida el coeficiente suite
+        /// </summary>
+        /// <param name="idHotel"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        public decimal ValidateCoefecienteByHotel(int idHotel, ref string error)
+        {
+            string idHoteles = System.Configuration.ConfigurationManager.AppSettings.GetValues("IdHotelesParticipacion")[0];
+            //DataTable dtProp = null;
+            decimal valorCoe = 1;
+
+            if (idHoteles.Split(',').Contains(idHotel.ToString()))
+            {
+                try
+                {
+                    using (ContextoOwner Contexto = new ContextoOwner())
+                    {
+                        int tipoVali = TipoValidacion.CoeficienteSuite.GetHashCode();
+                        int idVariable = Contexto.Variable.Where(V => V.Hotel.IdHotel == idHotel && V.Tipo == "P" && V.EsConValidacion == true && V.TipoValidacion == tipoVali).Select(V => V.IdVariable).FirstOrDefault();
+
+                        if (idVariable != 0)
+                        {
+                            string sql = $@"select sum(Valor_Variable_Suit.Valor) from Suit_Propietario 
+                                            inner join Valor_Variable_Suit on Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario
+                                            where Suit_Propietario.EsActivo = 1 and Valor_Variable_Suit.IdVariable = {idVariable} ";
+
+                            object value = Utilities.ExecuteScalar(sql);
+
+                            valorCoe = decimal.Parse(value.ToString());
+
+                            //if (valueCoe != (decimal)1)
+                            //{
+
+                            //    sql = $@"SELECT  
+                            //            (Propietario.NombrePrimero + ' ' + Propietario.NombreSegundo + ' ' + Propietario.ApellidoPrimero + ' ' + Propietario.ApellidoSegundo) Nombre, 
+                            //            Propietario.NumIdentificacion, Suit.NumSuit, Valor_Variable_Suit.Valor
+                            //            FROM Suit_Propietario 
+                            //            INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario 
+                            //            INNER JOIN Propietario ON Suit_Propietario.IdPropietario = Propietario.IdPropietario 
+                            //            INNER JOIN Suit ON Suit_Propietario.IdSuit = Suit.IdSuit
+                            //            where Suit.IdHotel = {idHotel} and Suit_Propietario.EsActivo = 1 and Valor_Variable_Suit.IdVariable = {idVariable}
+                            //            order by Nombre ";
+
+                            //    dtProp = Utilities.Select(sql, "listPtop");
+                            //}
+                        }
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    error = string.Format("InnerException: {0} \n Message: {1} \n ToString: {2}", ex.InnerException, ex.Message, ex.ToString());
+                }
+            }
+
+            return valorCoe;
         }
     }
 

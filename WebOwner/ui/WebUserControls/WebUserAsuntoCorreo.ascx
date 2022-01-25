@@ -24,7 +24,7 @@
             var d = new Date();
             var y = d.getFullYear();
 
-            $j("#ctl00_Contenidoprincipal_WebUserAsuntoCorreo1_txtFecha").spinner({
+            $j("input[id$='txtFecha']").spinner({
                 min: 2000,
                 max: y
             });

@@ -92,6 +92,19 @@ namespace Servicios
             }
         }
 
+        public static object ExecuteScalar(string sql)
+        {
+            using (SqlConnection cnn = new SqlConnection())
+            {
+                cnn.ConnectionString = new EntityConnection("name=ContextoOwner").StoreConnection.ConnectionString;
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand(sql, cnn);
+                object valor = cmd.ExecuteScalar();
+                return valor;
+            }
+        }
+
         public static void Insertupdate(string sql)
         {
             using (SqlConnection cnn = new SqlConnection())

@@ -413,14 +413,13 @@ function ValidarDatosLiqHotel() {
     return ok;
 }
 
-function ValidacionVariableProp() {
-    idHotelSel = jQuery("select[id$='ddlHotel']").val();
-    
+function ValidacionParticipacion() {
+    idHotelSel = jQuery("select[id$='ddlHotel']").val();    
     $j("#divValidParticipation").hide();
 
     $j.ajax({
         method: "POST",
-        //async: false,
+        async: false,
         url: "../../handlers/HandlerLiquidacion.ashx",
         data: { ActionType: 7, IdHotel: idHotelSel }
     }).done(function (res) {
@@ -440,26 +439,37 @@ function ValidacionVariableProp() {
             $j("#divValidParticipation").show();
         }
         $j("#tBodyValidadores").html(htmlDetail);
-        
-        /*
-        if (!res.OK) {
-            $j("#lbltextoError").text("Error en el guardado");
-            $j("#divError").show();
-            console.log(res.ERROR);
-        } else {
-            CargarPropietarios(); // Volvemos  a llamar este metodo para cargar las variables liquidadas
-            $j("#lbltextoExito").text("Liquidación guardada");
-            $j("#divExito").show();
-            okLiqHotel = true;
-        }
-        $j("#modalLiq").dialog("close");
-        */
     });
 }
 
+function ValidacionCoeficiente() {
+    idHotelSel = jQuery("select[id$='ddlHotel']").val();
+    $j("#divValidCoeficiente").hide();
+
+    $j.ajax({
+        method: "POST",
+        async: false,
+        url: "../../handlers/HandlerLiquidacion.ashx",
+        data: { ActionType: 8, IdHotel: idHotelSel }
+    }).done(function (res) {
+        if (res != 1) {
+            $j("#spanCoe").text(res);
+            $j("#divValidCoeficiente").show();
+        }        
+    });
+
+}
+
 function LiquidarTodos() {
+    
     ClearControl();
-    ValidacionVariableProp();
+    ValidacionParticipacion();
+    ValidacionCoeficiente();
+
+    if (!$j("#divValidParticipation").is(":hidden") || !$j("#divValidCoeficiente").is(":hidden")) {
+        return;
+    }
+
     $j("#GuardarSel,#GuardarAll").hide();
     if (ValidarDatosLiqPropietario()) {
 

@@ -11845,7 +11845,8 @@ namespace DM
         /// <param name="esConValidacion">Initial value of the EsConValidacion property.</param>
         /// <param name="maxNumero">Initial value of the MaxNumero property.</param>
         /// <param name="valorConstante">Initial value of the ValorConstante property.</param>
-        public static Variable CreateVariable(global::System.Int32 idVariable, global::System.String nombre, global::System.Boolean activo, global::System.Boolean esConValidacion, global::System.Int16 maxNumero, global::System.Double valorConstante)
+        /// <param name="tipoValidacion">Initial value of the TipoValidacion property.</param>
+        public static Variable CreateVariable(global::System.Int32 idVariable, global::System.String nombre, global::System.Boolean activo, global::System.Boolean esConValidacion, global::System.Int16 maxNumero, global::System.Double valorConstante, global::System.Int16 tipoValidacion)
         {
             Variable variable = new Variable();
             variable.IdVariable = idVariable;
@@ -11854,6 +11855,7 @@ namespace DM
             variable.EsConValidacion = esConValidacion;
             variable.MaxNumero = maxNumero;
             variable.ValorConstante = valorConstante;
+            variable.TipoValidacion = tipoValidacion;
             return variable;
         }
 
@@ -12055,6 +12057,30 @@ namespace DM
         private global::System.Double _ValorConstante;
         partial void OnValorConstanteChanging(global::System.Double value);
         partial void OnValorConstanteChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 TipoValidacion
+        {
+            get
+            {
+                return _TipoValidacion;
+            }
+            set
+            {
+                OnTipoValidacionChanging(value);
+                ReportPropertyChanging("TipoValidacion");
+                _TipoValidacion = StructuralObject.SetValidValue(value, "TipoValidacion");
+                ReportPropertyChanged("TipoValidacion");
+                OnTipoValidacionChanged();
+            }
+        }
+        private global::System.Int16 _TipoValidacion;
+        partial void OnTipoValidacionChanging(global::System.Int16 value);
+        partial void OnTipoValidacionChanged();
 
         #endregion
 
