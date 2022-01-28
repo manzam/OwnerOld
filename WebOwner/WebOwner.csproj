@@ -865,7 +865,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\funcionesGenericas.js" />
     <Content Include="js\liquidador.js" />
+    <Content Include="js\variablePropietario.js" />
     <Content Include="templates\TemplateLimpio.Master" />
     <Content Include="templates\TemplatePrincipal.Master" />
     <Content Include="ui\Paginas\Hotel.aspx" />
