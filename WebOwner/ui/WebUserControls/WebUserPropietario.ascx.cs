@@ -347,7 +347,7 @@ namespace WebOwner.ui.WebUserControls
                 TextBox txtControl = new TextBox();
                 txtControl.ID = "varSuitUpdate_" + variableTmp.IdValorVariableSuit;
                 txtControl.Attributes.Add("IdValorVariableSuit", variableTmp.IdValorVariableSuit.ToString());
-                txtControl.Attributes.Add("IdVariable", "-1");
+                txtControl.Attributes.Add("IdVariable", variableTmp.IdVariableSuite.ToString());
                 txtControl.Attributes.Add("ValMax", variableTmp.ValMax.ToString());
                 txtControl.Attributes.Add("EsValidacion", variableTmp.EsValidacion ? "true" : "false");
                 txtControl.Attributes.Add("NomVariable", variableTmp.Nombre);
@@ -697,6 +697,8 @@ namespace WebOwner.ui.WebUserControls
 
             this.IdSuitPropietarioSeleccionado = Convert.ToInt32(gvwSuits.DataKeys[e.NewSelectedIndex]["IdSuitPropietario"]);
             int idSuit = Convert.ToInt32(gvwSuits.DataKeys[e.NewSelectedIndex]["IdSuit"]);
+
+            hiddenIdSuitSeleccionado.Value = idSuit.ToString();
             hiddenIdSuitPropietarioSeleccionado.Value = this.IdSuitPropietarioSeleccionado.ToString();
             hiddenIdUsuario.Value = this.UsuarioLogin.Id.ToString();
 

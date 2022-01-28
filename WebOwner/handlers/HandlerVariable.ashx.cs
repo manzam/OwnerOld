@@ -2,7 +2,7 @@
 using System.Web.Script.Serialization;
 using System.Web;
 using System.Collections.Generic;
-//using BO;
+using System.Linq;
 using BO;
 using System.Web.SessionState;
 
@@ -33,25 +33,52 @@ namespace WebOwner.handlers
                 {
                     case ActionEnum.Update:
                         DataSuite dataSave = js.Deserialize<DataSuite>(HttpContext.Current.Request.Params["data"]);
+                        result.OK = true;
+                        context.Response.ContentType = "application/json";
+                        result.ERROR = "";
 
                         if (dataSave != null)
                         {
-                            List<ObjetoGenerico> itemVariable = new List<ObjetoGenerico>();
-                            foreach (var item in dataSave.ListDataVariable)
+
+                            List<DataVariable> listVariableVal = dataSave.ListDataVariable.Where(V => V.EsValidacion == true).ToList();
+                            LiquidadorBo oLiquidadorBo = new LiquidadorBo();
+                            foreach (var item in listVariableVal)
                             {
-                                ObjetoGenerico oItem = new ObjetoGenerico();
-                                oItem.IdValorVariableSuit = item.IdValorVariableSuit;
-                                oItem.Valor = item.Valor;
-                                itemVariable.Add(oItem);
+                                List<ResponseValidateParticipacion> listError = oLiquidadorBo.ValidateParticipationByHotel(dataSave.IdSuitPropietarioSeleccionado, item.IdVariable, dataSave.IdPropietarioSeleccionado, item.Valor);
+                                if (listError.Count() > 1)
+                                {
+                                    result.OK = false;
+                                    result.ERROR = "La participación supera el 100%";
+                                    result.ErrorDescripcion = js.Serialize(listError);
+                                    continue;
+                                }
+
+                                if (listError.Count() < 1)
+                                {
+                                    result.ERROR = "La participación no cumple con el 100% aun";
+                                    result.ErrorDescripcion = js.Serialize(listError);
+                                    continue;
+                                }
                             }
-                            SuitPropietarioBo suitPropietarioBoTmp = new SuitPropietarioBo();
-                            ValorVariableBo valorVariableBo = new ValorVariableBo();
-                            suitPropietarioBoTmp.Actualizar(dataSave.IdSuitPropietarioSeleccionado, dataSave.IdBanco, dataSave.NumCuenta, dataSave.NumEstadias, dataSave.TitularBanco, dataSave.TipoCuenta, "", "", dataSave.IdUsuario);
-                            valorVariableBo.Actualizar(itemVariable, "", dataSave.IdUsuario);
-                        }
-                        result.OK = true;
-                        result.ERROR = "";
-                        context.Response.ContentType = "application/json";
+
+                            if (result.OK)
+                            {
+                                List<ObjetoGenerico> itemVariable = new List<ObjetoGenerico>();
+                                foreach (var item in dataSave.ListDataVariable)
+                                {
+                                    ObjetoGenerico oItem = new ObjetoGenerico();
+                                    oItem.IdValorVariableSuit = item.IdValorVariableSuit;
+                                    oItem.Valor = item.Valor;
+                                    itemVariable.Add(oItem);
+                                }
+                                SuitPropietarioBo suitPropietarioBoTmp = new SuitPropietarioBo();
+                                ValorVariableBo valorVariableBo = new ValorVariableBo();
+                                suitPropietarioBoTmp.Actualizar(dataSave.IdSuitPropietarioSeleccionado, dataSave.IdBanco, dataSave.NumCuenta, dataSave.NumEstadias, dataSave.TitularBanco, dataSave.TipoCuenta, "", "", dataSave.IdUsuario);
+                                valorVariableBo.Actualizar(itemVariable, "", dataSave.IdUsuario);
+
+                                result.ERROR = "Guardado con exito.";
+                            }
+                        }                        
                         context.Response.Write(js.Serialize(result));
                         break;
 
@@ -194,6 +221,7 @@ namespace WebOwner.handlers
             public string NumCuenta { get; set; }
             public int NumEstadias { get; set; }
             public int IdSuitPropietarioSeleccionado { get; set; }
+            public int IdPropietarioSeleccionado { get; set; }
             public int IdUsuario { get; set; }
             public List<DataVariable> ListDataVariable { get; set; }
         }
@@ -202,6 +230,7 @@ namespace WebOwner.handlers
             public int IdValorVariableSuit { get; set; }
             public int IdVariable { get; set; }
             public double Valor { get; set; }
+            public bool EsValidacion { get; set; }
         }
         public bool IsReusable
         {

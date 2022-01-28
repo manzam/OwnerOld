@@ -162,12 +162,13 @@ function GuardarVariables() {
         $j("[id$=divExito]").hide();
 
         if (!res.OK) {
-            $j("[id$=lbltextoError]").text('Error al gurdar');
+            $j("[id$=lbltextoError]").text(res.ERROR);
             $j("[id$=divError]").show();
+            //alert(res.ErrorDescripcion);
             console.log(res.ERROR);
         } else {
             alert('Guardado con exito.');
-            $j("[id$=lbltextoExito]").html('Guardado con exito.');
+            $j("[id$=lbltextoExito]").html(res.ERROR);
             $j("[id$=divExito]").show();
         }
     });
@@ -296,25 +297,26 @@ function getValorVariable(nomClass) {
         var nombre = $j(this).attr('NomVariable');
         var idVariable = $j(this).attr('IdVariable');
 
-        if (esCond == 'true') {
-            valorActual = parseFloat(valorActual);
-            valor = parseFloat(valor);
-            valorMax = parseFloat(valorMax);
+        //if (esCond == 'true') {
+        //    valorActual = parseFloat(valorActual);
+        //    valor = parseFloat(valor);
+        //    valorMax = parseFloat(valorMax);
 
-            if ((valorActual + valor) > valorMax) {
-                alert('La variable : ' + nombre + ' debe de sumar: ' + valorMax);
-                isOK = false;
-            }
+        //    if ((valorActual + valor) > valorMax) {
+        //        alert('La variable : ' + nombre + ' debe de sumar: ' + valorMax);
+        //        isOK = false;
+        //    }
 
-            if ((valorActual + valor) < valorMax) {
-                alert('No te olvides que la variable : ' + nombre + ' debe de sumar: ' + valorMax);
-            }
-        }
+        //    if ((valorActual + valor) < valorMax) {
+        //        alert('No te olvides que la variable : ' + nombre + ' debe de sumar: ' + valorMax);
+        //    }
+        //}
 
         var oVaraible = new Object();
         oVaraible.IdValorVariableSuit = id;
         oVaraible.Valor = valor;
         oVaraible.IdVariable = idVariable;
+        oVaraible.EsValidacion = esCond;
         dataVariable.push(oVaraible);
 
         console.log(id + ' ' + valor);
@@ -332,11 +334,11 @@ function AgregarSuite() {
 
         var ID = $j("[id$=HiddenIdPropietario]").val();
         if (isDataProp || ID != '-1') {
-            $j("#ctl00_Contenidoprincipal_WebUserPropietario1_modalSuit").dialog("open");
-            $j("#ctl00_Contenidoprincipal_WebUserPropietario1_txtDescripcionSuit").val("");
-            $j("#ctl00_Contenidoprincipal_WebUserPropietario1_txtNumEstadias").val("");
-            $j("#ctl00_Contenidoprincipal_WebUserPropietario1_txtTitular").val("");
-            $j("#ctl00_Contenidoprincipal_WebUserPropietario1_txtNumCuenta").val("");
+            $j("[id$='modalSuit']").dialog("open");
+            $j("[id$='txtDescripcionSuit']").val("");
+            $j("[id$='txtNumEstadias']").val("");
+            $j("[id$='txtTitular']").val("");
+            $j("[id$='txtNumCuenta']").val("");
         } else {
             alert('Debe de llenar los datos del propietario');
         }
@@ -356,7 +358,8 @@ function SaveData() {
         dataSuite.NumCuenta = $j("[id$=txtCuentaDetalleUpdate]").val();
         dataSuite.NumEstadias = $j("[id$=txtNumEstadiasUpdate]").val();
 
-        dataSuite.IdSuitPropietarioSeleccionado = $j("[id$=hiddenIdSuitPropietarioSeleccionado]").val();
+        dataSuite.IdSuitPropietarioSeleccionado = $j("[id$=hiddenIdSuitSeleccionado]").val();
+        dataSuite.IdPropietarioSeleccionado = $j("[id$=HiddenIdPropietario]").val();
         dataSuite.IdUsuario = $j("[id$=hiddenIdUsuario]").val();
 
         dataSuite.ListDataVariable = dataVariable;

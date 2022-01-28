@@ -31,24 +31,6 @@ namespace BO
         {
             using (ContextoOwner Contexto = new ContextoOwner())
             {
-                //List<DM.Asunto_Correo> listaCorreo = Contexto.Asunto_Correo.ToList();
-                //List<DM.Asunto_Adjunto> listaAdjuntos = Contexto.Asunto_Adjunto.ToList();
-                //string ss = "";
-                //foreach (DM.Asunto_Adjunto adjunto in listaAdjuntos)
-                //{
-                //    ss += adjunto.AdjuntoRuta + "\r\n";
-                //}
-
-                //object o = (from AC in Contexto.Asunto_Correo
-                // join AA in Contexto.Asunto_Adjunto on AC.IdAsuntoCorreo equals AA.Asunto_Correo.IdAsuntoCorreo
-                // where AC.Hotel.IdHotel == idHotel && AA.Fecha.Year == fecha.Year && AA.Fecha.Month == fecha.Month
-                // select AA.AdjuntoRuta);
-
-                //string aRetornar = (from AC in Contexto.Asunto_Correo
-                // join AA in Contexto.Asunto_Adjunto on AC.IdAsuntoCorreo equals AA.Asunto_Correo.IdAsuntoCorreo
-                // where AC.Hotel.IdHotel == idHotel && AA.Fecha.Year == fecha.Year && AA.Fecha.Month == fecha.Month
-                // select AA.AdjuntoRuta).FirstOrDefault();
-
                 return (from AC in Contexto.Asunto_Correo
                         join AA in Contexto.Asunto_Adjunto on AC.IdAsuntoCorreo equals AA.Asunto_Correo.IdAsuntoCorreo
                         where AC.Hotel.IdHotel == idHotel && AA.Fecha.Year == fecha.Year && AA.Fecha.Month == fecha.Month
@@ -61,12 +43,12 @@ namespace BO
         /// </summary>
         /// <param name="idHotel"></param>
         /// <returns></returns>
-        public string ObtenerTextoAdjunto(int idHotel)
+        public string ObtenerTextoAdjunto(int idHotel, DateTime fecha)
         {
             using (ContextoOwner Contexto = new ContextoOwner())
             {
                 return (from AC in Contexto.Asunto_Correo
-                        where AC.Hotel.IdHotel == idHotel
+                        where AC.Hotel.IdHotel == idHotel && AC.Fecha.Value.Year == fecha.Year && AC.Fecha.Value.Month == fecha.Month
                         select AC.Asunto).FirstOrDefault();
             }
         }

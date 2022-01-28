@@ -4,7 +4,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>    
 <%@ Register src="WebUserBuscadorPropietario.ascx" tagname="WebUserBuscadorPropietario" tagprefix="uc1" %>
-<script src="../../js/variablePropietario.js?v=00001"></script>
+<script src="../../js/variablePropietario.js?v=00002"></script>
     
 <%--<asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="1">
     <ProgressTemplate>
@@ -16,6 +16,7 @@
     <ContentTemplate>   --%> 
 
 <asp:HiddenField ID="hiddenIdSuitPropietarioSeleccionado" runat="server" />
+<asp:HiddenField ID="hiddenIdSuitSeleccionado" runat="server" />
 <asp:HiddenField ID="hiddenIdUsuario" runat="server" />
 <asp:HiddenField ID="HiddenIdPropietario" runat="server" />
     
@@ -306,7 +307,7 @@
                                 <Columns>
                                     <asp:TemplateField ShowHeader="False" HeaderText="Ver Detalle">
                                         <ItemTemplate>
-                                            <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" 
+                                            <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False"
                                                 CommandName="Select" 
                                                 ImageUrl="~/img/23.png" 
                                                 Text="<%$ Resources:Resource, btnSeleccionar %>" 
@@ -498,11 +499,6 @@
                 
                 <tr>
                     <td>
-                        <%--<asp:Button ID="btnActualizarSuit" runat="server" 
-                            ValidationGroup="ActualizarSuit"
-                            Text="<%$ Resources:Resource, btnActualizar %>" 
-                            OnClientClick="SaveData();" />--%>
-
                         <input type="button" onclick="SaveData();" value="Guardar" class="ui-button ui-widget ui-state-default ui-corner-all" />
                     </td>
                 </tr>

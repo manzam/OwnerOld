@@ -308,7 +308,7 @@ namespace WebOwner.ui.WebUserControls
 
             AsuntoAdjuntoBo asuntoAdjuntoBo = new AsuntoAdjuntoBo();
             string archivoAdjunto = asuntoAdjuntoBo.ObtenerArchivoAdjunto(idHotel, fechaDesde);
-            string textoAdjunto = asuntoAdjuntoBo.ObtenerTextoAdjunto(idHotel);
+            string textoAdjunto = asuntoAdjuntoBo.ObtenerTextoAdjunto(idHotel, fechaDesde);
 
             PropietarioBo propietarioBoTmp = new PropietarioBo();
             ObjetoGenerico propietarioTmp = propietarioBoTmp.ObtenerPropietario(this.IdPropietario, this.IdSuit);
@@ -514,7 +514,7 @@ namespace WebOwner.ui.WebUserControls
 
             AsuntoAdjuntoBo asuntoAdjuntoBo = new AsuntoAdjuntoBo();
             string archivoAdjunto = asuntoAdjuntoBo.ObtenerArchivoAdjunto(idHotel, fechaDesde);
-            string textoAdjunto = asuntoAdjuntoBo.ObtenerTextoAdjunto(idHotel);
+            string textoAdjunto = asuntoAdjuntoBo.ObtenerTextoAdjunto(idHotel, fechaDesde);
 
             #region valido si este hotel tiene configurado la plantilla del extracto
             ConfigurarExtractoBo configExtractoBoTmp = new ConfigurarExtractoBo();
@@ -792,7 +792,7 @@ namespace WebOwner.ui.WebUserControls
 
             AsuntoAdjuntoBo asuntoAdjuntoBo = new AsuntoAdjuntoBo();
             string archivoAdjunto = asuntoAdjuntoBo.ObtenerArchivoAdjunto(idHotel, fechaDesde);
-            string textoAdjunto = asuntoAdjuntoBo.ObtenerTextoAdjunto(idHotel);
+            string textoAdjunto = asuntoAdjuntoBo.ObtenerTextoAdjunto(idHotel, fechaDesde);
 
             #region valido si este hotel tiene configurado la plantilla del extracto
             ConfigurarExtractoBo configExtractoBoTmp = new ConfigurarExtractoBo();

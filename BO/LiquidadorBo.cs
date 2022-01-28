@@ -367,6 +367,72 @@ namespace BO
         }
 
         /// <summary>
+        /// Calcula la sumatoria de las participaciones por suite y propietario
+        /// </summary>
+        /// <param name="idSuit"></param>
+        /// <param name="idVariable"></param>
+        /// <returns></returns>
+        public List<ResponseValidateParticipacion> ValidateParticipationByHotel(int idSuit, int idVariable, int idPropietario, double valor)
+        {
+            List<ResponseValidateParticipacion> listProp = new List<ResponseValidateParticipacion>();
+            try
+            {
+                using (ContextoOwner Contexto = new ContextoOwner())
+                {
+                    int idVar = Contexto.Variable.Where(V => V.IdVariable == idVariable && V.TipoValidacion == 1 && V.Tipo == "P").Select(V => V.IdVariable).FirstOrDefault();
+
+                    if (idVar > 0)
+                    {
+                        string sql = $@"SELECT (sum(Valor_Variable_Suit.Valor) + {valor.ToString().Replace(',','.')}) valor
+                                    FROM Suit_Propietario 
+                                    INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario
+                                    INNER JOIN Variable ON Valor_Variable_Suit.IdVariable = Variable.IdVariable
+                                    WHERE Valor_Variable_Suit.IdVariable = {idVariable} and Suit_Propietario.IdSuit = {idSuit} and Suit_Propietario.IdPropietario <> {idPropietario} and Variable.TipoValidacion = 1 ";
+
+                        object value = Utilities.ExecuteScalar(sql);
+                        if (value == null)
+                        {
+                            value = 0;
+                        }
+                        valor = int.Parse(value.ToString());
+
+                        if (valor > 1)
+                        {
+                            sql = $@"SELECT 
+                            (Propietario.NombrePrimero + ' ' + Propietario.NombreSegundo + ' ' + Propietario.ApellidoPrimero + ' ' + Propietario.ApellidoSegundo) Nombre, 
+                            Propietario.NumIdentificacion, 
+                            Suit.NumSuit,
+                            Valor_Variable_Suit.Valor
+                            FROM Suit_Propietario 
+                            INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario 
+                            INNER JOIN Propietario ON Suit_Propietario.IdPropietario = Propietario.IdPropietario 
+                            INNER JOIN Suit ON Suit_Propietario.IdSuit = Suit.IdSuit
+                            WHERE (Valor_Variable_Suit.IdVariable = {idVariable}) AND (Suit_Propietario.IdSuit = {idSuit}) AND (Suit_Propietario.IdPropietario <> {idPropietario}) ";
+                            DataTable dtProp = Utilities.Select(sql, "listPtop");
+                            if (dtProp != null)
+                            {
+                                listProp = (from row in dtProp.AsEnumerable()
+                                            select new ResponseValidateParticipacion()
+                                            {
+                                                Nombre = row["Nombre"].ToString(),
+                                                NumIdentificacion = row["NumIdentificacion"].ToString(),
+                                                NumSuit = row["NumSuit"].ToString(),
+                                                Valor = Convert.ToDecimal(row["Valor"])
+                                            }).ToList();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                return listProp;
+            }
+
+            return listProp;
+        }
+
+        /// <summary>
         /// Valida la sumatoria de participacion propietario
         /// </summary>
         /// <param name="idHotel"></param>

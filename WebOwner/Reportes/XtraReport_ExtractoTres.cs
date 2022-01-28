@@ -51,7 +51,7 @@ namespace WebOwner.reportes
 
                 AsuntoAdjuntoBo asuntoAdjuntoBo = new AsuntoAdjuntoBo();
                 string archivoAdjunto = asuntoAdjuntoBo.ObtenerArchivoAdjunto(idHotel, fechaDesde);
-                string textoAdjunto = asuntoAdjuntoBo.ObtenerTextoAdjunto(idHotel);
+                string textoAdjunto = asuntoAdjuntoBo.ObtenerTextoAdjunto(idHotel, fechaDesde);
 
                 string rutaAdjuntos = rutaPdf;
                 ruta = rutaPdf + "envioExtracto_" + DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + ".pdf";

@@ -144,6 +144,7 @@ namespace WebOwner.handlers
         {
             public bool OK { get; set; }
             public string ERROR { get; set; }
+            public string ErrorDescripcion { get; set; }
         }
 
         public class ResultDelete
