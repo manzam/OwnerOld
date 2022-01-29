@@ -14,8 +14,7 @@ $j(document).ready(function() {
     CargasIniciales(null, null);
 
     function CargasIniciales(sender, args) {
-
-        $j("#ctl00_Contenidoprincipal_WebUserPropietario1_modalSuit").dialog({
+        $j("[id$='modalSuit']").dialog({
             width: 1200,
             autoOpen: false,
             resizable: false,
@@ -23,7 +22,7 @@ $j(document).ready(function() {
             modal: true,
             height: "auto",
             open: function(event, ui) {
-                $j('#ctl00_Contenidoprincipal_WebUserPropietario1_btnObtenerVariables').click();
+                $j("[id$='btnObtenerVariables']").click();
             },
             buttons: {
                 "Aceptar": function() {
@@ -33,8 +32,8 @@ $j(document).ready(function() {
 
                 },
                 "Cancelar": function() {
-                    $j('#ctl00_Contenidoprincipal_WebUserPropietario1_txtValoresVariables').val('');
-                    $j('#ctl00_Contenidoprincipal_WebUserPropietario1_RequiredFieldValidator4').hide()
+                    $j("[id$='txtValoresVariables']").val('');
+                    $j("[id$='RequiredFieldValidator4']").hide()
                     $j(this).dialog("close");
                 }
             }
@@ -68,11 +67,11 @@ $j(document).ready(function() {
             height: "auto",
             buttons: {
                 "Aceptar": function() {
-                    $j('#ctl00_Contenidoprincipal_WebUserPropietario1_uc_WebUserBuscadorPropietario_btnAceptar').click();
+                    $j("[id$='btnAceptar']").click();
                     $j(this).dialog("close");
                 },
                 "Cancelar": function() {
-                    $j('#ctl00_Contenidoprincipal_WebUserPropietario1_WebUserBuscadorPropietario1_btnCancelar').click();
+                    $j("[id$='btnCancelar']").click();
                     $j(this).dialog("close");
                 }
             }
@@ -110,6 +109,10 @@ $j(document).ready(function() {
 
 });
 
+function mostrarErrorSumCoeficientes(dataError) {
+    alert(dataError);
+}
+
 function AddNuevosSuites() {
 
     $j.ajax({
@@ -121,6 +124,7 @@ function AddNuevosSuites() {
         if (!res.OK) {
             $j("#lbltextoError").text("Error en el guardado");
             $j("#divError").show();
+            mostrarErrorSumCoeficientes(res.ErrorDescripcion);
             console.log(res.ERROR);
         } else {
             $j(".nuevas").remove();
@@ -136,7 +140,7 @@ function AddNuevosSuites() {
                 html += '<td align="center">' + dataPropietario.ListaDataSuite[i].NomSuite + '</td>';
                 html += '<td align="center">' + dataPropietario.ListaDataSuite[i].NomEscritura + '</td>';
                 html += '<td align="center">' + dataPropietario.ListaDataSuite[i].NumEstadias + '</td>';
-                html += '<td align="center"> - </td>';
+                //html += '<td align="center"> <img src="../../img/126.png" /> </td>';
                 html += '</tr >';
             }
             $j("[id$=gvwSuits] tbody").append(html);
@@ -164,7 +168,7 @@ function GuardarVariables() {
         if (!res.OK) {
             $j("[id$=lbltextoError]").text(res.ERROR);
             $j("[id$=divError]").show();
-            //alert(res.ErrorDescripcion);
+            mostrarErrorSumCoeficientes(res.ErrorDescripcion);
             console.log(res.ERROR);
         } else {
             alert('Guardado con exito.');
@@ -358,7 +362,8 @@ function SaveData() {
         dataSuite.NumCuenta = $j("[id$=txtCuentaDetalleUpdate]").val();
         dataSuite.NumEstadias = $j("[id$=txtNumEstadiasUpdate]").val();
 
-        dataSuite.IdSuitPropietarioSeleccionado = $j("[id$=hiddenIdSuitSeleccionado]").val();
+        dataSuite.IdSuitPropietarioSeleccionado = $j("[id$=hiddenIdSuitPropietarioSeleccionado]").val();
+        dataSuite.IdSuite = $j("[id$=hiddenIdSuitSeleccionado]").val();
         dataSuite.IdPropietarioSeleccionado = $j("[id$=HiddenIdPropietario]").val();
         dataSuite.IdUsuario = $j("[id$=hiddenIdUsuario]").val();
 
