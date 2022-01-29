@@ -1058,7 +1058,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="lib\" />
   </ItemGroup>
   <PropertyGroup>
