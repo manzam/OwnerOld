@@ -1224,6 +1224,52 @@ namespace DM
 
         #endregion
 
+        #region Function Imports
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="idHotel">No Metadata Documentation available.</param>
+        /// <param name="idVarProp">No Metadata Documentation available.</param>
+        /// <param name="idVarSuite">No Metadata Documentation available.</param>
+        /// <param name="res">No Metadata Documentation available.</param>
+        public int ValidarPesosParticipacionYSuite(Nullable<global::System.Int32> idHotel, Nullable<global::System.Int32> idVarProp, Nullable<global::System.Int32> idVarSuite, ObjectParameter res)
+        {
+            ObjectParameter idHotelParameter;
+            if (idHotel.HasValue)
+            {
+                idHotelParameter = new ObjectParameter("IdHotel", idHotel);
+            }
+            else
+            {
+                idHotelParameter = new ObjectParameter("IdHotel", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter idVarPropParameter;
+            if (idVarProp.HasValue)
+            {
+                idVarPropParameter = new ObjectParameter("IdVarProp", idVarProp);
+            }
+            else
+            {
+                idVarPropParameter = new ObjectParameter("IdVarProp", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter idVarSuiteParameter;
+            if (idVarSuite.HasValue)
+            {
+                idVarSuiteParameter = new ObjectParameter("IdVarSuite", idVarSuite);
+            }
+            else
+            {
+                idVarSuiteParameter = new ObjectParameter("IdVarSuite", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction("ValidarPesosParticipacionYSuite", idHotelParameter, idVarPropParameter, idVarSuiteParameter, res);
+        }
+
+        #endregion
+
     }
 
     #endregion

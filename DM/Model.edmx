@@ -532,6 +532,12 @@ warning 6002: The table/view 'OwnersHE.dbo.sysdiagrams' does not have a primary 
           <Property Name="Orden" Type="int" Nullable="false" />
           <Property Name="Operador" Type="varchar" MaxLength="10" />
         </EntityType>
+        <Function Name="ValidarPesosParticipacionYSuite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdHotel" Type="int" Mode="In" />
+          <Parameter Name="IdVarProp" Type="int" Mode="In" />
+          <Parameter Name="IdVarSuite" Type="int" Mode="In" />
+          <Parameter Name="Res" Type="varchar(max)" Mode="InOut" />
+        </Function>
         <EntityContainer Name="dbownersheModelStoreContainer">
           <EntitySet Name="Asunto_Adjunto" EntityType="Self.Asunto_Adjunto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Asunto_Correo" EntityType="Self.Asunto_Correo" Schema="dbo" store:Type="Tables" />
@@ -913,6 +919,12 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
           <AssociationSet Name="FK_Informacion_Certificado_Propietario" Association="dbownersheModel.FK_Informacion_Certificado_Propietario">
             <End Role="Propietario" EntitySet="Propietario" />
             <End Role="Informacion_Certificado" EntitySet="Informacion_Certificado" /></AssociationSet>
+          <FunctionImport Name="ValidarPesosParticipacionYSuite">
+            <Parameter Name="IdHotel" Mode="In" Type="Int32" />
+            <Parameter Name="IdVarProp" Mode="In" Type="Int32" />
+            <Parameter Name="IdVarSuite" Mode="In" Type="Int32" />
+            <Parameter Name="Res" Mode="InOut" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="Asunto_Adjunto">
           <Key>
@@ -2866,6 +2878,7 @@ FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
             <EndProperty Name="Propietario">
               <ScalarProperty Name="IdPropietario" ColumnName="IdPropietario" /></EndProperty>
             <Condition ColumnName="IdPropietario" IsNull="false" /></AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="ValidarPesosParticipacionYSuite" FunctionName="dbownersheModel.Store.ValidarPesosParticipacionYSuite" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -209,16 +209,15 @@
                     <input type="text" id="txtYYYY" disabled="disabled" style="width:40px" />
                 </td>
             </tr>
-        </table>
-        
-        <br />
+        </table>        
 
         <div id="divValidParticipation" style="display:none">
+            <br />
             <div>
                 <h2>Error participaciones propietarios</h2>
             </div>
             <div>
-                <table id="tblValidadores" style="width:100%; border-spacing:0px;">
+                <table style="width:100%; border-spacing:0px;">
                     <thead>
                         <tr>
                             <td class="textoTabla" style="text-align: center;">No Suite</td>
@@ -232,9 +231,29 @@
             </div>
         </div>
 
-        <br />
+        <div id="divValidPesos" style="display:none">
+            <br />
+            <div>
+                <h2>Error participaciones propietarios</h2>
+            </div>
+            <div>
+                <table style="width:100%; border-spacing:0px;">
+                    <thead>
+                        <tr>
+                            <td class="textoTabla" style="text-align: center;">No Suite</td>
+                            <td class="textoTabla" style="text-align: center;">Propietario</td>
+                            <td class="textoTabla" style="text-align: center;">No Identificación</td>
+                            <td class="textoTabla" style="text-align: center;">Valor Propietario</td>
+                            <td class="textoTabla" style="text-align: center;">Valor Suite</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tBodyPesos"></tbody>
+                </table>
+            </div>
+        </div>
 
         <div id="divValidCoeficiente" style="display:none">
+            <br />
             <div>
                 <h2>Error coeficientes</h2>
             </div>

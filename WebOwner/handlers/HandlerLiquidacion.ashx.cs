@@ -24,7 +24,8 @@ namespace WebOwner.handlers
         DeleteLiq = 5,
         ActiveConcepto = 6,
         ValidateParticipation = 7,
-        ValidateCoeficiente = 8
+        ValidateCoeficiente = 8,
+        ValidatePesos = 9
     }
 
     public class HandlerLiquidacion : IHttpHandler, IRequiresSessionState
@@ -132,6 +133,11 @@ namespace WebOwner.handlers
                     decimal value = LiquidadorBoTmp.ValidateCoefecienteByHotel(idHotel, ref error);
                     context.Response.ContentType = "application/json";
                     context.Response.Write(js.Serialize(value));
+                    break;
+                case ActionTypeEnum.ValidatePesos:
+                    List<ResponseValidateParticipacion> listSuites = LiquidadorBoTmp.ValidacionPesoSuiteProp(idHotel, ref error);
+                    context.Response.ContentType = "application/json";
+                    context.Response.Write(js.Serialize(listSuites));
                     break;
 
                 default:

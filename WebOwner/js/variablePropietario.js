@@ -110,7 +110,25 @@ $j(document).ready(function() {
 });
 
 function mostrarErrorSumCoeficientes(dataError) {
-    alert(dataError);
+    console.log(dataError);
+
+    var htmlDetail = '';
+    var arrayError = JSON.parse(dataError);
+    if (arrayError.length > 0) {
+        arrayError.forEach(function (item) {
+
+            htmlDetail += `<tr>
+                                <td>${item.NumSuit}</td>
+                                <td>${item.Nombre}</td>
+                                <td>${item.NumIdentificacion}</td>
+                                <td style="text-align: right;">${item.ValorProp}</td>
+                                <td style="text-align: right;">${item.ValorSuite}</td>
+                            </tr>`;
+        });
+        $j("#divValidPesos").show();
+    }
+    $j("#tBodyPesos").empty();
+    $j("#tBodyPesos").html(htmlDetail);
 }
 
 function AddNuevosSuites() {

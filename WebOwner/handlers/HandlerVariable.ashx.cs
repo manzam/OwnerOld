@@ -36,6 +36,9 @@ namespace WebOwner.handlers
                         result.OK = true;
                         context.Response.ContentType = "application/json";
                         result.ERROR = "";
+                        int[] idhotles = { 365 };
+                        SuitBo SuitBoTmp = new SuitBo();
+                        int idHotel = SuitBoTmp.ObtenerSuitElHotel(dataSave.IdSuite);
 
                         if (dataSave != null)
                         {
@@ -44,18 +47,33 @@ namespace WebOwner.handlers
                             LiquidadorBo oLiquidadorBo = new LiquidadorBo();
                             foreach (var item in listVariableVal)
                             {
-                                List<ResponseValidateParticipacion> listError = oLiquidadorBo.ValidateParticipationByHotel(dataSave.IdSuitPropietarioSeleccionado, item.IdVariable, dataSave.IdPropietarioSeleccionado, item.Valor);
-                                if (listError.Count() > 1)
+                                List<ResponseValidateParticipacion> listError = null;
+
+                                if (!idhotles.Contains(idHotel))
+                                {
+                                    listError = oLiquidadorBo.ValidateParticipationByHotel(dataSave.IdSuitPropietarioSeleccionado, item.IdVariable, dataSave.IdPropietarioSeleccionado, item.Valor);
+                                    if (listError.Count() > 1)
+                                    {
+                                        result.OK = false;
+                                        result.ERROR = "La participación supera el 100%";
+                                        result.ErrorDescripcion = js.Serialize(listError);
+                                        continue;
+                                    }
+
+                                    if (listError.Count() < 1)
+                                    {
+                                        result.ERROR = "La participación no cumple con el 100% aun";
+                                        result.ErrorDescripcion = js.Serialize(listError);
+                                        continue;
+                                    }
+                                }                                
+
+                                listError = null;
+                                listError = oLiquidadorBo.ValidatePesoParticipationConSuite(dataSave.IdSuitPropietarioSeleccionado, item.IdVariable, item.Valor);
+                                if (listError.Count() > 0)
                                 {
                                     result.OK = false;
-                                    result.ERROR = "La participación supera el 100%";
-                                    result.ErrorDescripcion = js.Serialize(listError);
-                                    continue;
-                                }
-
-                                if (listError.Count() < 1)
-                                {
-                                    result.ERROR = "La participación no cumple con el 100% aun";
+                                    result.ERROR = "La sumatoria de los coeficientes de propietario, supera el coeficiente de la suite";
                                     result.ErrorDescripcion = js.Serialize(listError);
                                     continue;
                                 }
@@ -223,6 +241,7 @@ namespace WebOwner.handlers
             public int IdSuitPropietarioSeleccionado { get; set; }
             public int IdPropietarioSeleccionado { get; set; }
             public int IdUsuario { get; set; }
+            public int IdHotel { get; set; }
             public List<DataVariable> ListDataVariable { get; set; }
         }
 

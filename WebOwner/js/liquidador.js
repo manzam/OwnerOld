@@ -413,6 +413,37 @@ function ValidarDatosLiqHotel() {
     return ok;
 }
 
+function ValidacionPesos() {
+    idHotelSel = jQuery("select[id$='ddlHotel']").val();
+    $j("#divValidPesos").hide();
+    $j("#tBodyPesos").empty();
+
+    $j.ajax({
+        method: "POST",
+        async: false,
+        url: "../../handlers/HandlerLiquidacion.ashx",
+        data: { ActionType: 9, IdHotel: idHotelSel }
+    }).done(function (res) {
+        console.log(res);
+
+        var htmlDetail = '';
+        if (res.length > 0) {
+            res.forEach(function (item, indexRegla) {
+
+                htmlDetail += `<tr>
+                                    <td>${item.NumSuit}</td>
+                                    <td>${item.Nombre}</td>
+                                    <td>${item.NumIdentificacion}</td>
+                                    <td style="text-align: right;">${item.ValorProp}</td>
+                                    <td style="text-align: right;">${item.ValorSuite}</td>
+                                </tr>`;
+            });
+            $j("#divValidPesos").show();
+        }
+        $j("#tBodyPesos").html(htmlDetail);
+    });
+}
+
 function ValidacionParticipacion() {
     idHotelSel = jQuery("select[id$='ddlHotel']").val();    
     $j("#divValidParticipation").hide();
@@ -465,6 +496,7 @@ function LiquidarTodos() {
     ClearControl();
     ValidacionParticipacion();
     ValidacionCoeficiente();
+    ValidacionPesos();
 
     if (!$j("#divValidParticipation").is(":hidden") || !$j("#divValidCoeficiente").is(":hidden")) {
         return;

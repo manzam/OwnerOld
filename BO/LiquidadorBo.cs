@@ -9,6 +9,7 @@ using System;
 using System.Data.EntityClient;
 using System.Data.SqlClient;
 using Servicios;
+using System.Data.Objects;
 
 namespace BO
 {
@@ -366,6 +367,115 @@ namespace BO
             return isOK;
         }
 
+        ///// <summary>
+        ///// Valida las variables desde el modulo propietarios
+        ///// </summary>
+        ///// <param name="idSuit"></param>
+        ///// <param name="idVariable"></param>
+        ///// <param name="idPropietario"></param>
+        ///// <param name="valor"></param>
+        ///// <returns></returns>
+        //public List<ResponseValidateParticipacion> ValidacionesDesdePropeitario(int idSuit, int idVariable, int idPropietario, double valor)
+        //{
+        //    List<ResponseValidateParticipacion> listProp = new List<ResponseValidateParticipacion>();
+
+        //    listProp = this.ValidateParticipationByHotel(idSuit, idVariable, idPropietario, valor);
+        //}
+
+
+        /// <summary>
+        /// Calcula la sumatoria de las participaciones propietario contra el peso de la suite
+        /// </summary>
+        /// <param name="idSuit"></param>
+        /// <param name="idVariable"></param>
+        /// <returns></returns>
+        public List<ResponseValidateParticipacion> ValidatePesoParticipationConSuite(int idSuitPropeitario, int idVariable, double valor)
+        {
+            List<ResponseValidateParticipacion> listProp = new List<ResponseValidateParticipacion>();
+            try
+            {
+                using (ContextoOwner Contexto = new ContextoOwner())
+                {
+                    int idVarProp = Contexto.Variable.Where(V => V.IdVariable == idVariable && V.TipoValidacion == 3 && V.Tipo == "P").Select(V => V.IdVariable).FirstOrDefault();
+
+                    if (idVarProp > 0)
+                    {
+                        ObjetoGenerico dataProp = (from SP in Contexto.Suit_Propietario
+                                                   join S in Contexto.Suit on SP.Suit.IdSuit equals S.IdSuit
+                                                   join P in Contexto.Propietario on SP.Propietario.IdPropietario equals P.IdPropietario
+                                                   where SP.IdSuitPropietario == idSuitPropeitario
+                                                   select new ObjetoGenerico
+                                                   {
+                                                       IdSuit = S.IdSuit,
+                                                       IdPropietario = P.IdPropietario
+                                                   }).FirstOrDefault();
+
+                        // Sacamos la info de la variable de peso de la suite
+                        int idVarSuite = Contexto.Variable.Where(V => V.TipoValidacion == 4 && V.Tipo == "P").Select(V => V.IdVariable).FirstOrDefault();
+
+                        string sqlProp = $@"SELECT sum(Valor_Variable_Suit.Valor) valor
+                                            FROM Suit_Propietario 
+                                            INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario
+                                            INNER JOIN Variable ON Valor_Variable_Suit.IdVariable = Variable.IdVariable
+                                            WHERE Valor_Variable_Suit.IdVariable = {idVariable} and Suit_Propietario.IdSuit = {dataProp.IdSuit} and Suit_Propietario.IdPropietario <> {dataProp.IdPropietario} ";
+
+                        object valueProp = Utilities.ExecuteScalar(sqlProp);
+
+                        string sqlSuite = $@"SELECT top 1 Valor_Variable_Suit.Valor
+                                                FROM Suit_Propietario 
+                                                INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario
+                                                INNER JOIN Variable ON Valor_Variable_Suit.IdVariable = Variable.IdVariable
+                                                WHERE 
+                                                Valor_Variable_Suit.IdVariable = {idVarSuite} and Suit_Propietario.IdSuit = {dataProp.IdSuit} ";
+
+                        object valueSuite = Utilities.ExecuteScalar(sqlSuite);
+
+                        double valorProp = 0;
+                        double valorSuite = 0;
+                        if (valueProp != null && valueSuite != null)
+                        {
+                            valorProp = Convert.ToDouble(valueProp) + valor;
+                            valorSuite = Convert.ToDouble(valueSuite);
+                        }
+
+                        if (valorProp > valorSuite)
+                        {
+
+                            string sql = $@"SELECT 
+                            (Propietario.NombrePrimero + ' ' + Propietario.NombreSegundo + ' ' + Propietario.ApellidoPrimero + ' ' + Propietario.ApellidoSegundo) Nombre, 
+                            Propietario.NumIdentificacion, 
+                            Suit.NumSuit,
+                            Valor_Variable_Suit.Valor
+                            FROM Suit_Propietario 
+                            INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario 
+                            INNER JOIN Propietario ON Suit_Propietario.IdPropietario = Propietario.IdPropietario 
+                            INNER JOIN Suit ON Suit_Propietario.IdSuit = Suit.IdSuit
+                            WHERE (Valor_Variable_Suit.IdVariable = {idVariable}) AND (Suit_Propietario.IdSuit = {dataProp.IdSuit})";
+                            DataTable dtProp = Utilities.Select(sql, "listPtop");
+                            if (dtProp != null)
+                            {
+                                listProp = (from row in dtProp.AsEnumerable()
+                                            select new ResponseValidateParticipacion()
+                                            {
+                                                Nombre = row["Nombre"].ToString(),
+                                                NumIdentificacion = row["NumIdentificacion"].ToString(),
+                                                NumSuit = row["NumSuit"].ToString(),
+                                                ValorProp = Convert.ToDouble(row["Valor"]),
+                                                ValorSuite = valorSuite
+                                            }).ToList();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                return listProp;
+            }
+
+            return listProp;
+        }
+
         /// <summary>
         /// Calcula la sumatoria de las participaciones por suite y propietario
         /// </summary>
@@ -430,6 +540,73 @@ namespace BO
             }
 
             return listProp;
+        }
+
+        public void GetVariablespesos(int idhotel, ref int idVarSuite, ref int idVarProp)
+        {
+            switch (idhotel)
+            {
+                case 365: // Suite Jones
+                    idVarSuite = int.Parse(System.Configuration.ConfigurationManager.AppSettings.GetValues("idVarSuiteSuiteJones")[0]);
+                    idVarProp = int.Parse(System.Configuration.ConfigurationManager.AppSettings.GetValues("idVarPropSuiteJones")[0]);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Valida la sumatoria de participacion propietario que no supere el peso de la suite
+        /// </summary>
+        /// <param name="idHotel"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        public List<ResponseValidateParticipacion> ValidacionPesoSuiteProp(int idHotel, ref string error)
+        {
+            int idVarSuite = -1;
+            int idVarProp = -1;
+            List<ResponseValidateParticipacion> listaFull = new List<ResponseValidateParticipacion>();
+            List<ResponseValidateParticipacion> listaTmp = null;
+            GetVariablespesos(idHotel, ref idVarSuite, ref idVarProp);
+
+            using (ContextoOwner Contexto = new ContextoOwner())
+            {
+                ObjectParameter errorSuite = new ObjectParameter("Res", typeof(string));
+                Contexto.ValidarPesosParticipacionYSuite(idHotel, idVarProp, idVarSuite, errorSuite);
+                if (!string.IsNullOrEmpty(errorSuite.Value.ToString()))
+                {                    
+                    string[] idSuit = errorSuite.Value.ToString().Split(',');
+                    foreach (string id in idSuit)
+                    {
+                        listaTmp = new List<ResponseValidateParticipacion>();
+                        listaTmp = (from SP in Contexto.Suit_Propietario
+                                 join S in Contexto.Suit on SP.Suit.IdSuit equals S.IdSuit
+                                 join VVS in Contexto.Valor_Variable_Suit on SP.IdSuitPropietario equals VVS.Suit_Propietario.IdSuitPropietario
+                                 join P in Contexto.Propietario on SP.Propietario.IdPropietario equals P.IdPropietario
+                                 where S.Hotel.IdHotel == idHotel && VVS.Variable.IdVariable == idVarProp && S.NumEscritura == id
+                                 select new ResponseValidateParticipacion
+                                 {
+                                     Nombre =P.NombrePrimero,
+                                     Nombre2 = P.NombreSegundo,
+                                     Apellido = P.ApellidoPrimero,
+                                     Apellido2 = P.ApellidoSegundo,
+                                     NumIdentificacion = P.NumIdentificacion,
+                                     NumSuit = S.NumSuit,
+                                     ValorProp = VVS.Valor
+                                 }).ToList();
+                        foreach (ResponseValidateParticipacion item in listaTmp)
+                        {
+                            item.ValorSuite = (from SP in Contexto.Suit_Propietario
+                                                join S in Contexto.Suit on SP.Suit.IdSuit equals S.IdSuit
+                                                join VVS in Contexto.Valor_Variable_Suit on SP.IdSuitPropietario equals VVS.Suit_Propietario.IdSuitPropietario
+                                                where S.Hotel.IdHotel == idHotel && VVS.Variable.IdVariable == idVarSuite && S.NumEscritura == id
+                                                select VVS.Valor).FirstOrDefault();
+                            listaFull.Add(item);
+                        }
+                    }
+                }                
+            }
+            return listaFull;
         }
 
         /// <summary>
@@ -564,7 +741,12 @@ namespace BO
     {
         public string NumSuit { get; set; }
         public string Nombre { get; set; }
+        public string Nombre2 { get; set; }
+        public string Apellido { get; set; }
+        public string Apellido2 { get; set; }
         public string NumIdentificacion { get; set; }
         public decimal Valor { get; set; }
+        public double ValorProp { get; set; }
+        public double ValorSuite { get; set; }
     }
 }

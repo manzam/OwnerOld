@@ -324,6 +324,17 @@ namespace BO
             }
         }
 
+        public int ObtenerSuitElHotel(int idSuit)
+        {
+            using (ContextoOwner contexto = new ContextoOwner())
+            {
+                return (from S in contexto.Suit
+                        join H in contexto.Hotel on S.Hotel.IdHotel equals H.IdHotel
+                        where S.IdSuit == idSuit
+                        select H.IdHotel).FirstOrDefault();
+            }
+        }
+
         public Suit ObtenerSuitByNumSuite(string numSuit, string codigoHotel)
         {
             using (ContextoOwner contexto = new ContextoOwner())

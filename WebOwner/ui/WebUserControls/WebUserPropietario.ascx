@@ -4,7 +4,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>    
 <%@ Register src="WebUserBuscadorPropietario.ascx" tagname="WebUserBuscadorPropietario" tagprefix="uc1" %>
-<script src="../../js/variablePropietario.js?v=00007"></script>
+<script src="../../js/variablePropietario.js?v=00008"></script>
     
 <%--<asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="1">
     <ProgressTemplate>
@@ -500,6 +500,29 @@
                 <tr>
                     <td>
                         <input type="button" onclick="SaveData();" value="Guardar" class="ui-button ui-widget ui-state-default ui-corner-all" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="divValidPesos" style="display:none">
+                            <div>
+                                <h2>Error Coeficientes propietarios vr Suites</h2>
+                            </div>
+                            <div>
+                                <table style="width:100%; border-spacing:0px;">
+                                    <thead>
+                                        <tr>
+                                            <td class="textoTabla" style="text-align: center;">No Suite</td>
+                                            <td class="textoTabla" style="text-align: center;">Propietario</td>
+                                            <td class="textoTabla" style="text-align: center;">No Identificación</td>
+                                            <td class="textoTabla" style="text-align: center;">Valor Propietario</td>
+                                            <td class="textoTabla" style="text-align: center;">Valor Suite</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tBodyPesos"></tbody>
+                                </table>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             </table>  
