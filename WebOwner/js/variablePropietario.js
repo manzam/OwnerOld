@@ -14,6 +14,11 @@ $j(document).ready(function() {
     CargasIniciales(null, null);
 
     function CargasIniciales(sender, args) {
+
+        if ($j("[id$=txtErrorVar]").val() != '' && $j("[id$=txtErrorVar]").val() != undefined) {
+            mostrarErrorSumCoeficientes($j("[id$=txtErrorVar]").val(), $j("[id$=txtTipoValidacion]").val());
+        }
+
         $j("[id$='modalSuit']").dialog({
             width: 1200,
             autoOpen: false,
@@ -109,26 +114,39 @@ $j(document).ready(function() {
 
 });
 
-function mostrarErrorSumCoeficientes(dataError) {
+function mostrarErrorSumCoeficientes(dataError, type) {
     console.log(dataError);
-
     var htmlDetail = '';
     var arrayError = JSON.parse(dataError);
+    $j("#divValidCoef,#divValidPesos").hide();
+
     if (arrayError.length > 0) {
         arrayError.forEach(function (item) {
 
-            htmlDetail += `<tr>
+            if (type == 1) {
+                htmlDetail += `<tr>
+                                <td>${item.NumSuit}</td>
+                                <td>${item.Nombre}</td>
+                                <td>${item.NumIdentificacion}</td>
+                                <td style="text-align: right;">${item.Valor}</td>
+                            </tr>`;
+                $j("#divValidCoef").show();
+            }
+            if (type == 3) {
+                htmlDetail += `<tr>
                                 <td>${item.NumSuit}</td>
                                 <td>${item.Nombre}</td>
                                 <td>${item.NumIdentificacion}</td>
                                 <td style="text-align: right;">${item.ValorProp}</td>
                                 <td style="text-align: right;">${item.ValorSuite}</td>
                             </tr>`;
+                $j("#divValidPesos").show();
+            }
         });
-        $j("#divValidPesos").show();
+        
     }
-    $j("#tBodyPesos").empty();
-    $j("#tBodyPesos").html(htmlDetail);
+    $j("#tBodyPesos,#tBodyCoef").empty();
+    $j("#tBodyPesos,#tBodyCoef").html(htmlDetail);
 }
 
 function AddNuevosSuites() {
@@ -138,31 +156,38 @@ function AddNuevosSuites() {
         url: "../../handlers/HandlerVariable.ashx",
         data: { Action: 2, data: JSON.stringify(dataPropietario) }
     })
-    .done(function(res) {
-        if (!res.OK) {
-            $j("#lbltextoError").text("Error en el guardado");
-            $j("#divError").show();
-            mostrarErrorSumCoeficientes(res.ErrorDescripcion);
-            console.log(res.ERROR);
-        } else {
-            $j(".nuevas").remove();
-            var html = '';
-            for (var i = 0; i < dataPropietario.ListaDataSuite.length; i++) {
-                html += '<tr class="nuevas">';
-                //html += '<td align="center"> <input type="image" src="../../img/23.png" style="height:30px;width:30px;border-width:0px;"> </td >';
-                //html += '<td align="center"> <input type="image" src="../../img/126.png" onclick="quitar(' + dataPropietario.ListaDataSuite[i].Id + ');" style="height:30px;width:30px;border-width:0px;"> </td>';
+        .done(function (res) {
+            $j("[id$=txtErrorVar").val(res.ErrorDescripcion);
+            $j("[id$=txtIdPropietario]").val(res.IdPropietario);
+            $j("[id$=txtTipoValidacion]").val(res.TipoValidacion);
 
-                html += '<td align="center"> - </td >';
-                html += '<td align="center"> - </td>';
-                html += '<td>' + dataPropietario.ListaDataSuite[i].NomHotel + '</td>';
-                html += '<td align="center">' + dataPropietario.ListaDataSuite[i].NomSuite + '</td>';
-                html += '<td align="center">' + dataPropietario.ListaDataSuite[i].NomEscritura + '</td>';
-                html += '<td align="center">' + dataPropietario.ListaDataSuite[i].NumEstadias + '</td>';
-                //html += '<td align="center"> <img src="../../img/126.png" /> </td>';
-                html += '</tr >';
-            }
-            $j("[id$=gvwSuits] tbody").append(html);
-        }
+        setTimeout(() => {
+            $j("[id$=btnEdit]").click();
+        }, 1000);
+
+        
+        //if (!res.OK) {
+        //    mostrarErrorSumCoeficientes(res.ErrorDescripcion);
+        //    console.log(res.ERROR);
+        //} else {
+
+        //    $j(".nuevas").remove();
+        //    var html = '';
+        //    for (var i = 0; i < dataPropietario.ListaDataSuite.length; i++) {
+        //        html += '<tr class="nuevas">';
+        //        //html += '<td align="center"> <input type="image" src="../../img/23.png" style="height:30px;width:30px;border-width:0px;"> </td >';
+        //        //html += '<td align="center"> <input type="image" src="../../img/126.png" onclick="quitar(' + dataPropietario.ListaDataSuite[i].Id + ');" style="height:30px;width:30px;border-width:0px;"> </td>';
+
+        //        html += '<td align="center"> - </td >';
+        //        html += '<td align="center"> - </td>';
+        //        html += '<td>' + dataPropietario.ListaDataSuite[i].NomHotel + '</td>';
+        //        html += '<td align="center">' + dataPropietario.ListaDataSuite[i].NomSuite + '</td>';
+        //        html += '<td align="center">' + dataPropietario.ListaDataSuite[i].NomEscritura + '</td>';
+        //        html += '<td align="center"> <img src="../../img/126.png" /> </td>';
+        //        html += '</tr >';
+        //    }
+        //    $j("[id$=gvwSuits] tbody").append(html);
+        //}
     });
 }
 
@@ -186,7 +211,7 @@ function GuardarVariables() {
         if (!res.OK) {
             $j("[id$=lbltextoError]").text(res.ERROR);
             $j("[id$=divError]").show();
-            mostrarErrorSumCoeficientes(res.ErrorDescripcion);
+            mostrarErrorSumCoeficientes(res.ErrorDescripcion, res.TipoValidacion);
             console.log(res.ERROR);
         } else {
             alert('Guardado con exito.');

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BO;
 using System.Web.SessionState;
+using DM;
 
 namespace WebOwner.handlers
 {
@@ -26,6 +27,12 @@ namespace WebOwner.handlers
             JavaScriptSerializer js = new JavaScriptSerializer();
             ActionEnum actionType = (ActionEnum)Enum.Parse(typeof(ActionEnum), HttpContext.Current.Request.Params["Action"]);
             WebOwner.handlers.HandlerLiquidacion.ResultGuardado result = new WebOwner.handlers.HandlerLiquidacion.ResultGuardado();
+            LiquidadorBo oLiquidadorBo = null;
+            SuitBo SuitBoTmp = null;
+            SuitPropietarioBo SuitPropietarioBoTmp = null;
+            List<ResponseValidateParticipacion> listError = null;
+            int[] idhotles = { 365 };
+            int idHotel = -1;
 
             try
             {
@@ -35,36 +42,35 @@ namespace WebOwner.handlers
                         DataSuite dataSave = js.Deserialize<DataSuite>(HttpContext.Current.Request.Params["data"]);
                         result.OK = true;
                         context.Response.ContentType = "application/json";
-                        result.ERROR = "";
-                        int[] idhotles = { 365 };
-                        SuitBo SuitBoTmp = new SuitBo();
-                        int idHotel = SuitBoTmp.ObtenerSuitElHotel(dataSave.IdSuite);
+                        result.ERROR = "";                        
+                        SuitBoTmp = new SuitBo();
+                        idHotel = SuitBoTmp.ObtenerSuitElHotel(dataSave.IdSuite);
 
                         if (dataSave != null)
                         {
 
                             List<DataVariable> listVariableVal = dataSave.ListDataVariable.Where(V => V.EsValidacion == true).ToList();
-                            LiquidadorBo oLiquidadorBo = new LiquidadorBo();
+                            oLiquidadorBo = new LiquidadorBo();
                             foreach (var item in listVariableVal)
                             {
-                                List<ResponseValidateParticipacion> listError = null;
-
                                 if (!idhotles.Contains(idHotel))
                                 {
-                                    listError = oLiquidadorBo.ValidateParticipationByHotel(dataSave.IdSuitPropietarioSeleccionado, item.IdVariable, dataSave.IdPropietarioSeleccionado, item.Valor);
+                                    listError = oLiquidadorBo.ValidateParticipationByHotel(dataSave.IdSuite, item.IdVariable, dataSave.IdPropietarioSeleccionado, item.Valor);
                                     if (listError.Count() > 1)
                                     {
                                         result.OK = false;
                                         result.ERROR = "La participación supera el 100%";
                                         result.ErrorDescripcion = js.Serialize(listError);
-                                        continue;
+                                        result.TipoValidacion = 1;
+                                        break;
                                     }
 
                                     if (listError.Count() < 1)
                                     {
                                         result.ERROR = "La participación no cumple con el 100% aun";
                                         result.ErrorDescripcion = js.Serialize(listError);
-                                        continue;
+                                        result.TipoValidacion = 1;
+                                        break;
                                     }
                                 }                                
 
@@ -75,7 +81,8 @@ namespace WebOwner.handlers
                                     result.OK = false;
                                     result.ERROR = "La sumatoria de los coeficientes de propietario, supera el coeficiente de la suite";
                                     result.ErrorDescripcion = js.Serialize(listError);
-                                    continue;
+                                    result.TipoValidacion = 3;
+                                    break;
                                 }
                             }
 
@@ -105,7 +112,7 @@ namespace WebOwner.handlers
                         if (dataPropietario != null)
                         {
                             PropietarioBo propietarioBo = new PropietarioBo();
-                            SuitPropietarioBo suitPropietarioBo = new SuitPropietarioBo();
+                            SuitPropietarioBoTmp = new SuitPropietarioBo();
 
                             if (dataPropietario.IdPropietario > 0)
                             {
@@ -135,7 +142,7 @@ namespace WebOwner.handlers
                                     }
                                     listaSuitPropietario.Add(oObjetoGenerico);
                                 }
-                                suitPropietarioBo.Guardar(listaSuitPropietario, idPropi);
+                                SuitPropietarioBoTmp.Guardar(listaSuitPropietario, idPropi);
                             }
                         }
                         result.OK = true;
@@ -146,45 +153,95 @@ namespace WebOwner.handlers
 
                     case ActionEnum.SaveNuevaSuite:
                         Propietario dataNuevaSuite = js.Deserialize<Propietario>(HttpContext.Current.Request.Params["data"]);
-                        if (dataNuevaSuite.IdPropietario < 0) {
-                            result.OK = true;
-                            result.ERROR = "";
-                            context.Response.ContentType = "application/json";
-                            context.Response.Write(js.Serialize(result));
-                            break;
-                        }
-                            
 
-                        if (dataNuevaSuite != null)
+                        try
                         {
-                            SuitPropietarioBo suitPropietarioBo = new SuitPropietarioBo();
-
-                            List<ObjetoGenerico> listaSuitPropietario = new List<ObjetoGenerico>();
-                            foreach (DataSuite item in dataNuevaSuite.ListaDataSuite)
+                            if (dataNuevaSuite != null)
                             {
-                                ObjetoGenerico oObjetoGenerico = new ObjetoGenerico();
-                                oObjetoGenerico.NumCuenta = item.NumCuenta;
-                                oObjetoGenerico.NumEstadias = item.NumEstadias;
-                                oObjetoGenerico.TipoCuenta = item.TipoCuenta;
-                                oObjetoGenerico.Titular = item.TitularBanco;
-                                oObjetoGenerico.IdSuit = item.IdSuite;
-                                oObjetoGenerico.IdBanco = item.IdBanco;
-                                oObjetoGenerico.ListaVariables = new List<ObjetoGenerico>();
-
-                                foreach (DataVariable itemVariable in item.ListDataVariable)
+                                if (dataNuevaSuite.IdPropietario < 0)
                                 {
-                                    ObjetoGenerico oVariable = new ObjetoGenerico();
-                                    oVariable.IdVariable = itemVariable.IdVariable;
-                                    oVariable.Valor = itemVariable.Valor;
-                                    oObjetoGenerico.ListaVariables.Add(oVariable);
+                                    PropietarioBo propietarioBo = new PropietarioBo();
+                                    dataNuevaSuite.IdPropietario = propietarioBo.Guardar(dataNuevaSuite.Nombre1, dataNuevaSuite.Nombre2, dataNuevaSuite.Apellido1, dataNuevaSuite.Apellido2, dataNuevaSuite.TipoPersona, dataNuevaSuite.NumIdentificacion, dataNuevaSuite.NumIdentificacion, dataNuevaSuite.NumIdentificacion, dataNuevaSuite.Correo1, dataNuevaSuite.Correo2, dataNuevaSuite.Correo3, dataNuevaSuite.Activo, dataNuevaSuite.IdCiudad, 2, dataNuevaSuite.Direccion, dataNuevaSuite.Tel1, dataNuevaSuite.Tel2, "", dataNuevaSuite.NomContacto, dataNuevaSuite.TelContacto, dataNuevaSuite.CorreoContacto, dataNuevaSuite.TipoDoc, dataNuevaSuite.Retencion);
+                                    result.IdPropietario = dataNuevaSuite.IdPropietario;
                                 }
-                                listaSuitPropietario.Add(oObjetoGenerico);
-                            }
-                            suitPropietarioBo.Guardar(listaSuitPropietario, dataNuevaSuite.IdPropietario);
 
+                                SuitPropietarioBo suitPropietarioBo = new SuitPropietarioBo();
+                                oLiquidadorBo = new LiquidadorBo();
+                                SuitBoTmp = new SuitBo();
+                                SuitPropietarioBoTmp = new SuitPropietarioBo();
+                                result.OK = true;
+                                result.ERROR = "";
+
+                                List<ObjetoGenerico> listaSuitPropietario = new List<ObjetoGenerico>();
+                                foreach (DataSuite item in dataNuevaSuite.ListaDataSuite)
+                                {
+                                    ObjetoGenerico oObjetoGenerico = new ObjetoGenerico();
+                                    oObjetoGenerico.NumCuenta = item.NumCuenta;
+                                    oObjetoGenerico.NumEstadias = item.NumEstadias;
+                                    oObjetoGenerico.TipoCuenta = item.TipoCuenta;
+                                    oObjetoGenerico.Titular = item.TitularBanco;
+                                    oObjetoGenerico.IdSuit = item.IdSuite;
+                                    oObjetoGenerico.IdBanco = item.IdBanco;
+                                    oObjetoGenerico.ListaVariables = new List<ObjetoGenerico>();
+                                    
+                                    foreach (DataVariable itemVariable in item.ListDataVariable)
+                                    {
+                                        ObjetoGenerico oVariable = new ObjetoGenerico();
+                                        oVariable.IdVariable = itemVariable.IdVariable;
+                                        oVariable.Valor = itemVariable.Valor;
+                                        oObjetoGenerico.ListaVariables.Add(oVariable);
+                                    }
+
+                                    listaSuitPropietario.Add(oObjetoGenerico);
+                                }
+                                suitPropietarioBo.Guardar(listaSuitPropietario, dataNuevaSuite.IdPropietario);
+
+                                // Validamos las variables
+                                foreach (DataSuite item in dataNuevaSuite.ListaDataSuite)
+                                {
+                                    idHotel = SuitBoTmp.ObtenerSuitElHotel(item.IdSuite);
+
+                                    foreach (DataVariable itemVariable in item.ListDataVariable)
+                                    {
+                                        if (!idhotles.Contains(idHotel))
+                                        {
+                                            listError = oLiquidadorBo.ValidateParticipationByHotel(item.IdSuite, itemVariable.IdVariable, dataNuevaSuite.IdPropietario, itemVariable.Valor);
+                                            if (listError.Count() > 1)
+                                            {
+                                                result.OK = false;
+                                                result.ERROR = "La participación supera el 100%";
+                                                result.ErrorDescripcion = js.Serialize(listError);
+                                                break;
+                                            }
+
+                                            if (listError.Count() < 1)
+                                            {
+                                                result.ERROR = "La participación no cumple con el 100% aun";
+                                                result.ErrorDescripcion = js.Serialize(listError);
+                                                break;
+                                            }
+                                        }
+
+                                        listError = null;
+                                        Suit_Propietario suit_PropietarioTmp = SuitPropietarioBoTmp.Obtener(dataNuevaSuite.IdPropietario, item.IdSuite);
+                                        listError = oLiquidadorBo.ValidatePesoParticipationConSuite(suit_PropietarioTmp.IdSuitPropietario, itemVariable.IdVariable, itemVariable.Valor);
+                                        if (listError.Count() > 0)
+                                        {
+                                            result.OK = false;
+                                            result.ERROR = "La sumatoria de los coeficientes de propietario, supera el coeficiente de la suite";
+                                            result.ErrorDescripcion = js.Serialize(listError);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
                         }
-                        result.OK = true;
-                        result.ERROR = "";
+                        catch (Exception)
+                        {
+                            result.OK = false;
+                            result.ERROR = "Error inesperado.";
+                        }
+
                         context.Response.ContentType = "application/json";
                         context.Response.Write(js.Serialize(result));
                         break;

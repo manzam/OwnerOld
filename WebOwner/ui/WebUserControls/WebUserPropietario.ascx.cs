@@ -1045,6 +1045,9 @@ namespace WebOwner.ui.WebUserControls
             Session["ListaSuit"] = new List<ObjetoGenerico>();
             Session["ListaVariablesSuit"] = new List<ObjetoGenerico>();
 
+            txtIdPropietario.Text = "";
+            txtErrorVar.Text = "";
+
             this.IdPropietarioSeleccionado = -1; //limpiamos el id por precaucion.
             hiddenIdSuitPropietarioSeleccionado.Value = "-1";
             hiddenIdUsuario.Value = this.UsuarioLogin.Id.ToString();
@@ -1132,6 +1135,23 @@ namespace WebOwner.ui.WebUserControls
         }
 
         #endregion
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            GridViewRow filaSeleccionada = gvwPropietario.SelectedRow;
+            this.IdPropietarioSeleccionado = int.Parse(txtIdPropietario.Text);
+
+            this.CargarDatosPropietario(this.IdPropietarioSeleccionado);
+            this.CargarGrillaSuits(this.IdPropietarioSeleccionado);
+
+            this.btnNuevo.Visible = false;
+            this.GrillaPropietario.Visible = false;
+            //this.btnGuardar.Visible = false;
+
+            //this.btnActualizar.Visible = true;
+            this.NuevoHotel.Visible = true;
+            this.btnEliminar.Visible = true;
+        }
     }
 }
 

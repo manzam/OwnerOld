@@ -493,20 +493,22 @@ namespace BO
 
                     if (idVar > 0)
                     {
-                        string sql = $@"SELECT (sum(Valor_Variable_Suit.Valor) + {valor.ToString().Replace(',','.')}) valor
-                                    FROM Suit_Propietario 
-                                    INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario
-                                    INNER JOIN Variable ON Valor_Variable_Suit.IdVariable = Variable.IdVariable
-                                    WHERE Valor_Variable_Suit.IdVariable = {idVariable} and Suit_Propietario.IdSuit = {idSuit} and Suit_Propietario.IdPropietario <> {idPropietario} and Variable.TipoValidacion = 1 ";
+                        string sql = $@"SELECT (isnull(sum(Valor_Variable_Suit.Valor),0) + {valor.ToString().Replace(',','.')}) valor
+                                        FROM Suit_Propietario 
+                                        INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario
+                                        INNER JOIN Variable ON Valor_Variable_Suit.IdVariable = Variable.IdVariable
+                                        WHERE Suit_Propietario.EsActivo = 1 and Valor_Variable_Suit.IdVariable = {idVariable} and 
+                                        Suit_Propietario.IdSuit = {idSuit} and Suit_Propietario.IdPropietario <> {idPropietario} ";
 
+                        float valorTmp = 0;
                         object value = Utilities.ExecuteScalar(sql);
                         if (value == null)
                         {
                             value = 0;
                         }
-                        valor = int.Parse(value.ToString());
+                        valorTmp = float.Parse(value.ToString());
 
-                        if (valor > 1)
+                        if (valorTmp > 1)
                         {
                             sql = $@"SELECT 
                             (Propietario.NombrePrimero + ' ' + Propietario.NombreSegundo + ' ' + Propietario.ApellidoPrimero + ' ' + Propietario.ApellidoSegundo) Nombre, 

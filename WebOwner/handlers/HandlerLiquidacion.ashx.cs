@@ -151,6 +151,8 @@ namespace WebOwner.handlers
             public bool OK { get; set; }
             public string ERROR { get; set; }
             public string ErrorDescripcion { get; set; }
+            public int IdPropietario { get; set; }
+            public int TipoValidacion { get; set; }
         }
 
         public class ResultDelete

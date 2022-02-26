@@ -4,7 +4,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>    
 <%@ Register src="WebUserBuscadorPropietario.ascx" tagname="WebUserBuscadorPropietario" tagprefix="uc1" %>
-<script src="../../js/variablePropietario.js?v=00008"></script>
+<script src="../../js/variablePropietario.js?v=00009"></script>
     
 <%--<asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="1">
     <ProgressTemplate>
@@ -276,7 +276,7 @@
                         </td>
                     </tr>                                       
                 </tbody>
-            </table>
+            </table>            
             
             <br />
             
@@ -372,6 +372,12 @@
                                 <HeaderStyle BackColor="#7599a9" ForeColor="White" BorderColor="#7599a9" />
                             </asp:GridView>
                             
+                            <div style="display:none">
+                                <asp:Button ID="btnEdit" runat="server" Text="Editar" OnClick="btnEdit_Click" />
+                                <asp:TextBox ID="txtIdPropietario" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtErrorVar" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtTipoValidacion" runat="server"></asp:TextBox>
+                            </div>
                             <div id="divNuevasSuite" style="display:none">
                                 <table style="width:100%" id="tblSuitNuevos" cellspacing="0" border="1" style="border-color:#7599A9;border-width:1px;border-style:Solid;width:100%;border-collapse:collapse;">
                                     
@@ -503,33 +509,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <div id="divValidPesos" style="display:none">
-                            <div>
-                                <h2>Error Coeficientes propietarios vr Suites</h2>
-                            </div>
-                            <div>
-                                <table style="width:100%; border-spacing:0px;">
-                                    <thead>
-                                        <tr>
-                                            <td class="textoTabla" style="text-align: center;">No Suite</td>
-                                            <td class="textoTabla" style="text-align: center;">Propietario</td>
-                                            <td class="textoTabla" style="text-align: center;">No Identificación</td>
-                                            <td class="textoTabla" style="text-align: center;">Valor Propietario</td>
-                                            <td class="textoTabla" style="text-align: center;">Valor Suite</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tBodyPesos"></tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <td>                        
                     </td>
                 </tr>
             </table>  
             
             <div style="display:none;">
                 <asp:TextBox ID="txtValorVariableUpdate" runat="server"></asp:TextBox>
-            </div>
+            </div>            
             
         </div>        
                   
@@ -599,6 +586,47 @@
             <asp:Button ID="btnAceptarSuit" runat="server" Text="btnAceptarSuit" onclick="btnAceptarSuit_Click" ValidationGroup="AceptarSuit" />
             <input type="text" id="idCtrl" value="" />
         </div>
+
+<div>
+    <br />
+    <div id="divValidPesos" style="display:none">
+        <div>
+            <h2>Error Coeficientes propietarios vr Suites</h2>
+        </div>
+        <div>
+            <table style="width:100%; border-spacing:0px;">
+                <thead>
+                    <tr>
+                        <td class="textoTabla" style="text-align: center;">No Suite</td>
+                        <td class="textoTabla" style="text-align: center;">Propietario</td>
+                        <td class="textoTabla" style="text-align: center;">No Identificación</td>
+                        <td class="textoTabla" style="text-align: center;">Valor Propietario</td>
+                        <td class="textoTabla" style="text-align: center;">Valor Suite</td>
+                    </tr>
+                </thead>
+                <tbody id="tBodyPesos"></tbody>
+            </table>
+        </div>
+    </div>
+    <div id="divValidCoef" style="display:none">
+        <div>
+            <h2>Error Coeficientes propietarios</h2>
+        </div>
+        <div>
+            <table style="width:100%; border-spacing:0px;">
+                <thead>
+                    <tr>
+                        <td class="textoTabla" style="text-align: center;">No Suite</td>
+                        <td class="textoTabla" style="text-align: center;">Propietario</td>
+                        <td class="textoTabla" style="text-align: center;">No Identificación</td>
+                        <td class="textoTabla" style="text-align: center;">Valor Propietario</td>
+                    </tr>
+                </thead>
+                <tbody id="tBodyCoef"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
         
 <%--    </ContentTemplate>
 </asp:UpdatePanel>--%>
@@ -712,6 +740,8 @@
                         
             <br />
             <asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource, lblAyudaPorcentaje %>"></asp:Label>
+
+            
            
         </ContentTemplate>
     </asp:UpdatePanel>

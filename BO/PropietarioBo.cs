@@ -1354,10 +1354,23 @@ namespace BO
 
                 if (p == 0)
                 {
+                    List<Suit_Propietario> SuitPropietarioTmp = Contexto.Suit_Propietario.Where(SP => SP.Propietario.IdPropietario == idPropietario).ToList();
+                    foreach (var item in SuitPropietarioTmp)
+                    {
+                        List<Valor_Variable_Suit> ValorVariableSuitTmp = Contexto.Valor_Variable_Suit.Where(VV => VV.Suit_Propietario.IdSuitPropietario == item.IdSuitPropietario).ToList();
+                        foreach (var itemVV in ValorVariableSuitTmp)
+                        {
+                            Contexto.DeleteObject(itemVV);
+                            Contexto.SaveChanges();
+                        }
+
+                        Contexto.DeleteObject(item);
+                        Contexto.SaveChanges();
+                    }
+
                     Propietario propietarioTmp = Contexto.Propietario.Where(P => P.IdPropietario == idPropietario).FirstOrDefault();
                     Contexto.DeleteObject(propietarioTmp);
-                    Contexto.SaveChanges();
-
+                    Contexto.SaveChanges();                    
                     return true;
                 }
                 else
