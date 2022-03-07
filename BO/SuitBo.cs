@@ -262,6 +262,7 @@ namespace BO
                                  NumEstadias = SP.NumEstadias,
                                  Titular = SP.Titular,
                                  TipoCuenta = SP.TipoCuenta,
+                                 Activo = SP.EsActivo,
                                  Estado = (SP.EsActivo) ? "Inactivar" : "Activar"
                              }).ToList();
 

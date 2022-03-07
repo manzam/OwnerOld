@@ -21,6 +21,7 @@ namespace BO
                     suitPropietarioTmp.NumEstadias = item.NumEstadias;
                     suitPropietarioTmp.TipoCuenta = item.TipoCuenta;
                     suitPropietarioTmp.Titular = item.Titular;
+                    suitPropietarioTmp.EsActivo = true;
                     suitPropietarioTmp.SuitReference.EntityKey = new System.Data.EntityKey("ContextoOwner.Suit", "IdSuit", item.IdSuit);
                     suitPropietarioTmp.PropietarioReference.EntityKey = new System.Data.EntityKey("ContextoOwner.Propietario", "IdPropietario", idPropietario);
                     suitPropietarioTmp.BancoReference.EntityKey = new System.Data.EntityKey("ContextoOwner.Banco", "IdBanco", item.IdBanco);
@@ -284,6 +285,42 @@ namespace BO
             }
         }
 
+        public ObjetoGenerico Obtener(int idSuitePropietario)
+        {
+            using (ContextoOwner contexto = new ContextoOwner())
+            {
+                ObjetoGenerico obj = (from SP in contexto.Suit_Propietario
+                                      join B in contexto.Banco on SP.Banco.IdBanco equals B.IdBanco
+                                      join S in contexto.Suit on SP.Suit.IdSuit equals S.IdSuit
+                                      join H in contexto.Hotel on S.Hotel.IdHotel equals H.IdHotel
+                                      where SP.IdSuitPropietario == idSuitePropietario
+                                      select new ObjetoGenerico()
+                                      {
+                                          NombreHotel = H.Nombre,
+                                          NumSuit = S.NumSuit,
+                                          NumEscritura = S.NumEscritura,
+                                          IdBanco = B.IdBanco,
+                                          Titular = SP.Titular,
+                                          TipoCuenta = SP.TipoCuenta,
+                                          NumCuenta = SP.NumCuenta,
+                                          NumEstadias = SP.NumEstadias
+                                      }).FirstOrDefault();
+
+                obj.ListaVariables = (from VVS in contexto.Valor_Variable_Suit
+                                      join SP in contexto.Suit_Propietario on VVS.Suit_Propietario.IdSuitPropietario equals SP.IdSuitPropietario
+                                      join V in contexto.Variable on VVS.Variable.IdVariable equals V.IdVariable
+                                      where SP.IdSuitPropietario == idSuitePropietario
+                                      select new ObjetoGenerico()
+                                      {
+                                          IdValorVariableSuit = VVS.IdValorVariableSuit,
+                                          IdVariable = V.IdVariable,
+                                          Nombre = V.Nombre,
+                                          Valor = VVS.Valor
+                                      }).ToList();
+                return obj;
+            }
+        }
+
         public Suit_Propietario Obtener(string numIdentificacion, string NumSuiteEscritura, string codHotel)
         {
             using (ContextoOwner contexto = new ContextoOwner())
@@ -306,6 +343,17 @@ namespace BO
                 Suit_Propietario suitePropietario = contexto.Suit_Propietario.Where(SP => SP.IdSuitPropietario == idSuitePropietario).FirstOrDefault();
                 suitePropietario.EsActivo = esActivo;
                 contexto.SaveChanges();
+            }
+        }
+
+        public bool Activar(int idSuitePropietario)
+        {
+            using (ContextoOwner contexto = new ContextoOwner())
+            {
+                Suit_Propietario suitePropietario = contexto.Suit_Propietario.Where(SP => SP.IdSuitPropietario == idSuitePropietario).FirstOrDefault();
+                suitePropietario.EsActivo = !suitePropietario.EsActivo;
+                contexto.SaveChanges();
+                return suitePropietario.EsActivo;
             }
         }
     }

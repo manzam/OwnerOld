@@ -1352,7 +1352,7 @@ namespace BO
             {
                 int p = Contexto.Liquidacion.Where(L => L.Propietario.IdPropietario == idPropietario).Count();
 
-                if (p == 0)
+                if (p > 0)
                 {
                     List<Suit_Propietario> SuitPropietarioTmp = Contexto.Suit_Propietario.Where(SP => SP.Propietario.IdPropietario == idPropietario).ToList();
                     foreach (var item in SuitPropietarioTmp)

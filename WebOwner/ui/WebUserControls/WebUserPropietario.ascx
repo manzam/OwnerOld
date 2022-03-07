@@ -4,45 +4,19 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>    
 <%@ Register src="WebUserBuscadorPropietario.ascx" tagname="WebUserBuscadorPropietario" tagprefix="uc1" %>
-<script src="../../js/variablePropietario.js?v=00009"></script>
+<script src="../../js/variablePropietario.js?v=00010"></script>
     
-<%--<asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="1">
-    <ProgressTemplate>
-        <div class="procesar redondeo">Procesando..</div>
-    </ProgressTemplate>
-</asp:UpdateProgress>   --%> 
-    
-<%--<asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" >
-    <ContentTemplate>   --%> 
-
-<asp:HiddenField ID="hiddenIdSuitPropietarioSeleccionado" runat="server" />
-<asp:HiddenField ID="hiddenIdSuitSeleccionado" runat="server" />
-<asp:HiddenField ID="hiddenIdUsuario" runat="server" />
-<asp:HiddenField ID="HiddenIdPropietario" runat="server" />
-    
+   
         <div class="botonera">
-            
-            <asp:Button ID="btnNuevo" runat="server" 
-                Text="<%$ Resources:Resource, btnNuevo %>" ValidationGroup="Nuevo" onclick="btnNuevo_Click" />                               
-
+            <asp:Button ID="btnNuevo" runat="server" Text="<%$ Resources:Resource, btnNuevo %>" ValidationGroup="Nuevo" />
             <input type="button" value="Guardar" onclick="GuardarPropietario();" id="btnguardar" class="ui-button ui-widget ui-state-default ui-corner-all" />
+            <asp:Button ID="btnVerTodos" runat="server" Text="Ver Todos" OnClientClick="verTodos();" />
+            <asp:Button ID="btnBuscar" runat="server" Text="<%$ Resources:Resource, btnBuscar %>" OnClientClick="$j('#modalBuscadorPropietario').dialog('open')" />
+            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" Visible="false" />            
+        </div>
 
-
-            <%--<asp:Button ID="btnGuardar" runat="server" 
-                Text="<%$ Resources:Resource, btnGuardar %>" Visible="false" ValidationGroup="NuevoActualizar" onclick="btnGuardar_Click" />
-            <asp:Button ID="btnActualizar" runat="server" 
-                Text="<%$ Resources:Resource, btnGuardar %>" Visible="false" ValidationGroup="Actualizar" onclick="btnActualizar_Click" />--%>
-            <asp:Button ID="btnVerTodos" runat="server" 
-                Text="<%$ Resources:Resource, btnVerTodos %>" ValidationGroup="VerTodos" onclick="btnVerTodos_Click" />
-            <asp:Button ID="btnBuscar" runat="server" 
-                Text="<%$ Resources:Resource, btnBuscar %>" 
-                OnClientClick="$j('#modalBuscadorPropietario').dialog('open')" 
-                onclick="btnBuscar_Click" />
-            <asp:Button ID="btnEliminar" runat="server" 
-                Text="Eliminar" Visible="false" onclick="btnEliminar_Click" />
-
-            
-        </div>       
+        <input type="hidden" id="idPropietario" value="-1" />
+        <input type="hidden" id="idSuitePropietario" value="-1" />
         
         <br />
         
@@ -58,7 +32,7 @@
             <asp:Label ID="lbltextoError" runat="server" CssClass="textoError" ></asp:Label>
         </div>
         
-        <div id="NuevoHotel" runat="server" visible="false">
+        <div id="dataPropietario">
             <table width="100%" cellpadding="3" cellspacing="0">
                 <thead>
                     <tr>
@@ -83,7 +57,7 @@
                             <asp:Label ID="Label15" runat="server" Text="<%$ Resources:Resource, lblActivo %>"></asp:Label>
                         </td>
                         <td style="width: 35%;">
-                            <asp:CheckBox ID="chActivo" runat="server" Checked="true" />
+                            <asp:CheckBox ID="chActivo" runat="server" />
                         </td>
                     </tr>
                     <tr>
@@ -91,9 +65,7 @@
                             <asp:Label ID="Label43" runat="server" Text="<%$ Resources:Resource, lblTipoPersona %>"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlTipoPersona" runat="server" Width="150px" 
-                                AutoPostBack="true" 
-                                onselectedindexchanged="ddlTipoPersona_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddlTipoPersona" runat="server" Width="150px">
                                 <asp:ListItem Text="NATURAL" Value="NATURAL"></asp:ListItem>
                                 <asp:ListItem Text="JURIDICO" Value="JURIDICO"></asp:ListItem>
                             </asp:DropDownList>
@@ -173,18 +145,15 @@
                             <asp:Label ID="Label10" runat="server" Text="<%$ Resources:Resource, lblDepto %>"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlDepto" Width="90%" runat="server" 
-                                OnSelectedIndexChanged="ddlDepto_SelectedIndexChanged"
-                                AutoPostBack="true">
-                            </asp:DropDownList>
+                            <select id="selectDepto" onchange="selectDepto_onchange()">                            
+                            </select>
                         </td>
                         <td class="textoTabla">
                             <asp:Label ID="Label11" runat="server" Text="<%$ Resources:Resource, lblCiudad %>"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlCiudad" Width="90%" runat="server">
-                                <asp:ListItem Selected="True" Text="Seleccione..." Value=" "></asp:ListItem>
-                            </asp:DropDownList>
+                            <select id="selectCity">                            
+                            </select>
                         </td>
                     </tr>                                        
                     <tr>
@@ -280,8 +249,7 @@
             
             <br />
             
-            <asp:Panel ID="pnlSuit" runat="server">
-            
+            <div id="listaSuite">
                 <table width="100%">
                     <tr>
                         <td align="center">
@@ -292,299 +260,199 @@
                             </div>
                         </td>
                     </tr>
+                </table>
+                <table style="width:100%">
+                    <thead>
+                        <tr style="color: White; background-color: #7599A9; border-color: #7599A9;">
+                            <td>Ver detalle</td>
+                            <td>Eliminar</td>
+                            <td>Hotel</td>
+                            <td>No. Suite</td>
+                            <td>Escritura</td>
+                            <td>Activo</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tblListaSuite"></tbody>                    
+                </table>
+            </div>
+
+            <br />
+
+            <div id="editSuite">
+                <table width="100%" id="tablaSuit">
                     <tr>
-                        <td>
-                            <asp:GridView ID="gvwSuits" 
-                                          runat="server" 
-                                          DataKeyNames="IdSuitPropietario,IdSuit" 
-                                          Width="100%" 
-                                          AutoGenerateColumns="False" 
-                                          CellPadding="2"
-                                          EmptyDataText="<%$ Resources:Resource, TituloGrillaSinDatos %>" BorderColor="#7599A9" 
-                                          BorderStyle="Solid" BorderWidth="1px"
-                                          onselectedindexchanging="gvwSuits_SelectedIndexChanging">
-                                <PagerSettings Position="TopAndBottom"  />
-                                <Columns>
-                                    <asp:TemplateField ShowHeader="False" HeaderText="Ver Detalle">
-                                        <ItemTemplate>
-                                            <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False"
-                                                CommandName="Select" 
-                                                ImageUrl="~/img/23.png" 
-                                                Text="<%$ Resources:Resource, btnSeleccionar %>" 
-                                                ToolTip="<%$ Resources:Resource, btnSeleccionar %>" />
-                                        </ItemTemplate>
-                                        <ControlStyle Height="30px" Width="30px" />
-                                        <HeaderStyle Width="10%" />
-                                        <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" 
-                                            HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="<%$ Resources:Resource, lblEliminar %>">
-                                        <ItemTemplate>
-                                            <asp:ImageButton 
-                                                ID="imgBtnEliminar" 
-                                                runat="server"
-                                                ImageUrl="~/img/126.png"
-                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem,"IdSuitPropietario") %>'
-                                                onclick="imgBtnEliminar_Click" />
-                                        </ItemTemplate>
-                                        <ControlStyle Height="30px" Width="30px" />
-                                        <ItemStyle HorizontalAlign="Center" BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" />
-                                        <HeaderStyle Width="10%" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="<%$ Resources:Resource, lblHotel %>">
-                                        <ItemTemplate>
-                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("NombreHotel") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle Width="35%" />
-                                        <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="<%$ Resources:Resource, lblNumSuit %>">
-                                        <ItemTemplate>
-                                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("NumSuit") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle Width="5%" />
-                                        <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="<%$ Resources:Resource, lblEscritura %>">
-                                        <ItemTemplate>
-                                            <asp:Label ID="Label100" runat="server" Text='<%# Bind("NumEscritura") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle Width="5%" />
-                                        <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="<%$ Resources:Resource, lblEstadia %>">
-                                        <ItemTemplate>
-                                            <asp:Label ID="Label51" runat="server" Text='<%# Bind("NumEstadias") %>'></asp:Label>                                        
-                                        </ItemTemplate>                                    
-                                        <HeaderStyle Width="5%" />
-                                        <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Estado">
-                                        <ItemTemplate>
-                                            <asp:Button ID="btnEstado" CommandArgument='<%# Bind("IdSuitPropietario") %>' 
-                                                runat="server" Text='<%# Bind("Estado") %>' onclick="btnEstado_Click" />
-                                        </ItemTemplate>                                    
-                                        <HeaderStyle Width="5%" />
-                                        <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                </Columns>
-                                <SelectedRowStyle ForeColor="White" BackColor="#4D606E" />
-                                <HeaderStyle BackColor="#7599a9" ForeColor="White" BorderColor="#7599a9" />
-                            </asp:GridView>
-                            
-                            <div style="display:none">
-                                <asp:Button ID="btnEdit" runat="server" Text="Editar" OnClick="btnEdit_Click" />
-                                <asp:TextBox ID="txtIdPropietario" runat="server"></asp:TextBox>
-                                <asp:TextBox ID="txtErrorVar" runat="server"></asp:TextBox>
-                                <asp:TextBox ID="txtTipoValidacion" runat="server"></asp:TextBox>
-                            </div>
-                            <div id="divNuevasSuite" style="display:none">
-                                <table style="width:100%" id="tblSuitNuevos" cellspacing="0" border="1" style="border-color:#7599A9;border-width:1px;border-style:Solid;width:100%;border-collapse:collapse;">
-                                    
-                                </table>
+                        <td colspan="4" align="center">
+                            <div class="tituloGrilla">
+                                <h2>
+                                    <asp:Label ID="Label4" runat="server" Text="Datos Suite"></asp:Label>
+                                </h2>
                             </div>
                         </td>
                     </tr>
+                    <tr id="nuevaSuite">
+                        <td style="width:15%" class="textoTabla">
+                            <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, lblHotel %>"></asp:Label>
+                        </td>
+                        <td style="vertical-align:top;width:35%;">
+                            <select id="selectHotel" onchange="selectHotel_onchange()">                            
+                            </select>
+                        </td>
+                        <td style="width:20%;" class="textoTabla">
+                            <asp:Label ID="Label8" runat="server" Text="Num. Suite"></asp:Label> *
+                        </td>
+                        <td style="vertical-align:top;width:30%;">
+                            <select id="selectSuite" onchange="selectSuite_onchange()">                            
+                            </select>
+                        </td>                    
+                    </tr>
+                    <tr id="updateSuite">
+                        <td style="width:15%" class="textoTabla">
+                            <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, lblHotel %>"></asp:Label>
+                        </td>
+                        <td style="vertical-align:top;width:35%;">
+                            <span id="nombreHotel"></span>
+                        </td>
+                        <td style="width:20%;" class="textoTabla">
+                            <asp:Label ID="Label2" runat="server" Text="Num. Suite"></asp:Label>
+                        </td>
+                        <td style="vertical-align:top;width:30%;">
+                            <span id="nombreSuite"></span>
+                        </td>                    
+                    </tr>
+                    <tr>
+                        <td class="textoTabla">
+                            <asp:Label ID="Label13" runat="server" Text="<%$ Resources:Resource, lblDescripcion %>"></asp:Label>                        
+                        </td>                    
+                        <td>
+                            <textarea id="txtDescripcionSuit" style="width:95%;" rows="3" disabled></textarea>
+                        </td>
+                        <td class="textoTabla">
+                            <asp:Label ID="Label27" runat="server" Text="<%$ Resources:Resource, lblEstadias %>"></asp:Label> *
+                        </td>
+                        <td>
+                            <input type="text" id="txtEstadias" />
+                        </td>
+                    </tr> 
+                    <tr>                    
+                        <td class="textoTabla">
+                            <asp:Label ID="Label30" runat="server" Text="<%$ Resources:Resource, lblTitular %>"></asp:Label> *
+                        </td>
+                        <td>
+                            <input type="text" id="txtTitularCuenta" style="width: 90%;" />
+                        </td>
+                        <td class="textoTabla">
+                            <asp:Label ID="Label31" runat="server" Text="<%$ Resources:Resource, lblTipoCuenta %>"></asp:Label>
+                        </td>
+                        <td>
+                            <select id="selectTipoCuenta">
+                                <option value="CH">Cuenta de Ahorro</option>
+                                <option value="CC">Cuenta Corriente</option>
+                            </select>                        
+                        </td>                    
+                    </tr>
+                    <tr>                    
+                        <td class="textoTabla">
+                            <asp:Label ID="Label32" runat="server" Text="<%$ Resources:Resource, lblBanco %>"></asp:Label>
+                        </td>                    
+                        <td>
+                            <select id="selectBank">                            
+                            </select>
+                        </td>
+                        <td class="textoTabla">
+                            <asp:Label ID="Label33" runat="server" Text="<%$ Resources:Resource, lblCuenta %>"></asp:Label> *
+                        </td>
+                        <td>
+                            <input id="txtNumCuenta" type="text" />
+                        </td>
+                    </tr>
                 </table>
-                
-            </asp:Panel>
-            
-        </div>       
-        
-        <div id="suitDetalle" runat="server" visible="false">
-            <table width="100%" id="Table1">
-                <tr>
-                    <td colspan="3" align="center">
-                        <div class="tituloGrilla">
-                            <h2>
-                                <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, DatosSuit %>"></asp:Label>
-                            </h2>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <table width="100%">
-                            <tr>
-                                <td style="width:33%;" class="textoTabla"><asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, lblHotel %>"></asp:Label></td>
-                                <td style="width:33%;" class="textoTabla"><asp:Label ID="Label30" runat="server" Text="<%$ Resources:Resource, lblSuit %>"></asp:Label></td>
-                                <td style="width:33%;" class="textoTabla"><asp:Label ID="Label39" runat="server" Text="<%$ Resources:Resource, lblEscritura %>"></asp:Label></td>
-                            </tr>
-                        </table>                        
-                    </td>
-                    <td style="width:33%;" class="textoTabla">
-                        <asp:Label ID="Label31" runat="server" Text="<%$ Resources:Resource, lblBanco %>"></asp:Label>
-                    </td>                    
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <table width="100%">
-                            <tr>
-                                <td style="width:33%;">
-                                    <asp:Label ID="lblHotelDetalle" runat="server" Text="Label"></asp:Label>
-                                </td>
-                                <td style="width:33%;">
-                                    <asp:Label ID="lblSuitDetalle" runat="server" Text="Label"></asp:Label>
-                                </td>
-                                <td style="width:33%;">
-                                    <asp:Label ID="lblEscrituraDetalle" runat="server" Text="Label"></asp:Label>
-                                </td>
-                            </tr>
-                        </table>                        
-                    </td>
-                    <td>
-                        <asp:DropDownList ID="ddlBancoDetalleUpdate" runat="server" Width="90%" ValidationGroup="ActualizarSuit">
-                        </asp:DropDownList>
-                    </td>                    
-                </tr> 
-                <tr>
-                    <td class="textoTabla">
-                        <asp:Label ID="Label33" runat="server" Text="<%$ Resources:Resource, lblTitular %>"></asp:Label>
-                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="*" 
-                                ControlToValidate="txtTitularDetalleUpdate" Display="Dynamic" CssClass="error" ValidationGroup="AceptarSuit" >
-                        </asp:RequiredFieldValidator>--%>
-                    </td>                                
-                    <td class="textoTabla">
-                        <asp:Label ID="Label34" runat="server" Text="<%$ Resources:Resource, lblTipoCuenta %>"></asp:Label>
-                    </td>
-                    <td style="width:10%;" class="textoTabla">
-                        <asp:Label ID="Label32" runat="server" Text="<%$ Resources:Resource, lblCuenta %>"></asp:Label>
-                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="*" 
-                                ControlToValidate="txtCuentaDetalleUpdate" Display="Dynamic" CssClass="error" ValidationGroup="ActualizarSuit" >
-                        </asp:RequiredFieldValidator>--%>
-                    </td>
-                </tr>             
-                <tr>
-                    <td>
-                        <asp:TextBox ID="txtTitularDetalleUpdate" Width="90%" MaxLength="80" runat="server" ValidationGroup="ActualizarSuit"></asp:TextBox>
-                    </td>
-                    <td>
-                        <asp:DropDownList ID="ddlTipoCuentaDetalleUpdate" Width="80%" runat="server">
-                            <asp:ListItem Value="-1" Text="Sin Tipo Cuenta"></asp:ListItem>
-                            <asp:ListItem Value="CH" Text="<%$ Resources:Resource, lblCuentaAhorro %>"></asp:ListItem>
-                            <asp:ListItem Value="CC" Text="<%$ Resources:Resource, lblCuentaCorriente %>"></asp:ListItem>
-                            <asp:ListItem Value="HH" Text="CHEQUE"></asp:ListItem>
-                        </asp:DropDownList>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtCuentaDetalleUpdate" runat="server" MaxLength="50" ValidationGroup="ActualizarSuit"></asp:TextBox>
-                        <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" FilterType="Custom,Numbers" ValidChars="-"  
-                            runat="server" Enabled="True" TargetControlID="txtCuentaDetalleUpdate">
-                        </asp:FilteredTextBoxExtender>                        
-                        
-                    </td>
-                </tr> 
-                <tr>
-                    <td class="textoTabla">
-                        <asp:Label ID="Label35" runat="server" Text="<%$ Resources:Resource, lblEstadia %>"></asp:Label> *
-                    </td>
-                    <td colspan="2">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:TextBox ID="txtNumEstadiasUpdate" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="*" 
-                                ControlToValidate="txtNumEstadiasUpdate" Display="Dynamic" CssClass="error" ValidationGroup="ActualizarSuit" >
-                        </asp:RequiredFieldValidator>
-                        <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" FilterType="Numbers"  
-                            runat="server" Enabled="True" TargetControlID="txtNumEstadiasUpdate">
-                        </asp:FilteredTextBoxExtender>
-                    </td>
-                    <td colspan="2">&nbsp;</td>
-                    
-                </tr>
-                <tr>
-                    <td colspan="3">&nbsp;</td>
-                </tr>  
-                <tr>
-                    <td colspan="3">
-                        <asp:Panel ID="pnlVariablesValor" runat="server">
-                        </asp:Panel>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <input type="button" onclick="SaveData();" value="Guardar" class="ui-button ui-widget ui-state-default ui-corner-all" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>                        
-                    </td>
-                </tr>
-            </table>  
-            
-            <div style="display:none;">
-                <asp:TextBox ID="txtValorVariableUpdate" runat="server"></asp:TextBox>
-            </div>            
-            
-        </div>        
-                  
-        <div id="GrillaPropietario" runat="server">
-        
-            <div class="tituloGrilla" style="text-align:center;">
-                <h2>
-                    <asp:Label ID="Label23" runat="server" Text="<%$ Resources:Resource, TituloGrillaPropietarios %>"></asp:Label>                          
-                </h2>
+
+                <br />
+                <table id="tblVariables" style="width:100%">                    
+                </table>
+                <br />
+                <div>
+                    <div style="float:left; width:80%;">Los valores de porcentajes, debe ir expresdas en decimales.</div>
+                    <div style="float:left; text-align:right;">
+                        <input type="button" value="Actualizar valores" id="btnUpdateVariables" onclick="UpdateVariables()"  class="ui-button ui-widget ui-state-default ui-corner-all" />
+                    </div>
+                </div>
             </div>
             
-            <table width="100%">
-                <tr>
-                    <td style="width:10%;" class="textoTabla">Hotel</td>
-                    <td style="width:90%;">
-                        <asp:DropDownList ID="ddlHotelFiltro" Width="50%" runat="server" AutoPostBack="true" 
-                            onselectedindexchanged="ddlHotelFiltro_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </td>
-                </tr>
-            </table>
-            
-            <br />
-        
-            <asp:GridView 
-                ID="gvwPropietario" 
-                runat="server" 
-                AutoGenerateColumns="False" 
-                BorderStyle="Solid" 
-                AllowPaging="true"
-                BorderWidth="1px"               
-                BorderColor="#7599A9"
-                CellPadding="2"
-                DataKeyNames="IdPropietario" 
-                EmptyDataText="<%$ Resources:Resource, TituloGrillaSinDatos %>" 
-                OnPageIndexChanging="gvwPropietario_PageIndexChanging"
-                OnSelectedIndexChanged="gvwPropietario_OnSelectedIndexChanged" 
-                Width="100%">
-                <Columns>
-                    <asp:TemplateField HeaderText="<%$ Resources:Resource, lblNombreSolo %>">
-                        <ItemTemplate>
-                            <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Select" 
-                                Text='<%# Bind("NombreCompleto") %>'></asp:LinkButton>                                    
-                        </ItemTemplate>
-                        <HeaderStyle Width="70%" />
-                        <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" />
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="TipoPersona" HeaderText="Tipo Persona" >
-                        <HeaderStyle Width="10%" />
-                        <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="NumSuit" HeaderText="Num. Suite" >
-                        <HeaderStyle Width="10%" />
-                        <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="NumEscritura" HeaderText="Num. Escritura" >
-                        <HeaderStyle Width="10%" />
-                        <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" />
-                    </asp:BoundField>
-                </Columns>
-                <HeaderStyle BackColor="#7599a9" ForeColor="White" BorderColor="#7599a9" />
-            </asp:GridView>
-            
         </div>
+ 
+        <div id="GrillaPropietario">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+
+                    <div class="tituloGrilla" style="text-align:center;">
+                        <h2>
+                            Lista Propietarios                       
+                        </h2>
+                    </div>            
+                    <table width="100%">
+                        <tr>
+                            <td style="width:10%;" class="textoTabla">Hotel</td>
+                            <td style="width:90%;">
+                                <asp:DropDownList ID="ddlHotelFiltro" Width="50%" runat="server" AutoPostBack="true" 
+                                    onselectedindexchanged="ddlHotelFiltro_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br />
+
+                    <asp:GridView 
+                        ID="gvwPropietario" 
+                        runat="server" 
+                        AutoGenerateColumns="False" 
+                        BorderStyle="Solid" 
+                        AllowPaging="true"
+                        BorderWidth="1px"               
+                        BorderColor="#7599A9"
+                        CellPadding="2"
+                        DataKeyNames="IdPropietario" 
+                        EmptyDataText="<%$ Resources:Resource, TituloGrillaSinDatos %>" 
+                        OnPageIndexChanging="gvwPropietario_PageIndexChanging"
+                        OnRowDataBound="gvwPropietario_RowDataBound"
+                        Width="100%">
+                        <Columns>
+                            <asp:TemplateField HeaderText="<%$ Resources:Resource, lblNombreSolo %>">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="linkSelect" runat="server" Text='<%# Bind("NombreCompleto") %>'>
+                                    </asp:LinkButton>                                    
+                                </ItemTemplate>
+                                <HeaderStyle Width="70%" />
+                                <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" />
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="TipoPersona" HeaderText="Tipo Persona" >
+                                <HeaderStyle Width="10%" />
+                                <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="NumSuit" HeaderText="Num. Suite" >
+                                <HeaderStyle Width="10%" />
+                                <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="NumEscritura" HeaderText="Num. Escritura" >
+                                <HeaderStyle Width="10%" />
+                                <ItemStyle BorderColor="#7599A9" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" />
+                            </asp:BoundField>
+                        </Columns>
+                        <HeaderStyle BackColor="#7599a9" ForeColor="White" BorderColor="#7599a9" />
+                    </asp:GridView>
+                </ContentTemplate>
+                <Triggers>
+
+                </Triggers>
+            </asp:UpdatePanel>   
         
-        <div style="display:none;">
-            <asp:Button ID="btnAceptarSuit" runat="server" Text="btnAceptarSuit" onclick="btnAceptarSuit_Click" ValidationGroup="AceptarSuit" />
-            <input type="text" id="idCtrl" value="" />
+            
+            
+            
+        
+            
+            
         </div>
 
 <div>
@@ -626,125 +494,6 @@
             </table>
         </div>
     </div>
-</div>
-        
-<%--    </ContentTemplate>
-</asp:UpdatePanel>--%>
-
-<div id="modalSuit" runat="server">
-    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-        <ContentTemplate>  
-
-            <table width="100%" id="tablaSuit">
-                <tr>
-                    <td colspan="4" align="center">
-                        <div class="tituloGrilla">
-                            <h2>
-                                <asp:Label ID="Label17" runat="server" Text="<%$ Resources:Resource, DatosSuit %>"></asp:Label>
-                            </h2>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width:15%" class="textoTabla">
-                        <asp:Label ID="Label18" runat="server" Text="<%$ Resources:Resource, lblHotel %>"></asp:Label>
-                    </td>
-                    <td style="vertical-align:top;width:35%;">
-                        <asp:DropDownList ID="ddlHotel" runat="server" Width="90%" AutoPostBack="true" 
-                            onselectedindexchanged="ddlHotel_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </td>
-                    <td style="width:20%;" class="textoTabla">
-                        <asp:Label ID="Label19" runat="server" Text="Num. Suite"></asp:Label> *
-                    </td>
-                    <td style="vertical-align:top;width:30%;">
-                        <asp:DropDownList ID="ddlSuit" runat="server" Width="50%" AutoPostBack="true" 
-                            onselectedindexchanged="ddlSuit_SelectedIndexChanged">
-                        </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="*" 
-                                ControlToValidate="ddlSuit" Display="Dynamic" CssClass="error" ValidationGroup="AceptarSuit" >
-                        </asp:RequiredFieldValidator>
-                    </td>                    
-                </tr>
-                <tr>
-                    <td class="textoTabla">
-                        <asp:Label ID="Label22" runat="server" Text="<%$ Resources:Resource, lblDescripcion %>"></asp:Label>                        
-                    </td>                    
-                    <td>
-                        <asp:TextBox ID="txtDescripcionSuit" TextMode="MultiLine" runat="server" Width="95%" Height="60" Enabled="false"></asp:TextBox>
-                    </td>
-                    <td class="textoTabla">
-                        <asp:Label ID="Label50" runat="server" Text="<%$ Resources:Resource, lblEstadias %>"></asp:Label> *
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtNumEstadias" runat="server" Width="50%" ValidationGroup="AceptarSuit"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="*" 
-                                ControlToValidate="txtNumEstadias" Display="Dynamic" CssClass="error" ValidationGroup="AceptarSuit" >
-                        </asp:RequiredFieldValidator> 
-                        <asp:FilteredTextBoxExtender ID="txtEstadias_FilteredTextBoxExtender" 
-                            runat="server" Enabled="True" FilterType="Numbers" TargetControlID="txtNumEstadias">
-                        </asp:FilteredTextBoxExtender>    
-                    </td>
-                </tr> 
-                <tr>                    
-                    <td class="textoTabla">
-                        <asp:Label ID="Label28" runat="server" Text="<%$ Resources:Resource, lblTitular %>"></asp:Label> *
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtTitular" Width="80%" MaxLength="80" runat="server" ValidationGroup="AceptarSuit"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" 
-                                ControlToValidate="txtTitular" Display="Dynamic" CssClass="error" ValidationGroup="AceptarSuit" >
-                        </asp:RequiredFieldValidator>
-                    </td>
-                    <td class="textoTabla">
-                        <asp:Label ID="Label29" runat="server" Text="<%$ Resources:Resource, lblTipoCuenta %>"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:DropDownList ID="ddlTipoCuenta" Width="80%" runat="server">
-                            <asp:ListItem Selected="True" Value="CH" Text="<%$ Resources:Resource, lblCuentaAhorro %>"></asp:ListItem>
-                            <asp:ListItem Value="CC" Text="<%$ Resources:Resource, lblCuentaCorriente %>"></asp:ListItem>
-                        </asp:DropDownList>
-                    </td>                    
-                </tr>
-                <tr>                    
-                    <td class="textoTabla">
-                        <asp:Label ID="Label20" runat="server" Text="<%$ Resources:Resource, lblBanco %>"></asp:Label>
-                    </td>                    
-                    <td>
-                        <asp:DropDownList ID="ddlBanco" runat="server" Width="90%" ValidationGroup="AceptarSuit">
-                        </asp:DropDownList>
-                    </td>
-                    <td class="textoTabla">
-                        <asp:Label ID="Label21" runat="server" Text="<%$ Resources:Resource, lblCuenta %>"></asp:Label> *
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtNumCuenta" runat="server" MaxLength="50" Width="50%" ValidationGroup="AceptarSuit"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" 
-                                ControlToValidate="txtNumCuenta" Display="Dynamic" CssClass="error" ValidationGroup="AceptarSuit" >
-                        </asp:RequiredFieldValidator>
-                        <asp:FilteredTextBoxExtender ID="txtNumCuenta_FilteredTextBoxExtender" FilterType="Custom,Numbers" ValidChars="-"  
-                            runat="server" Enabled="True" TargetControlID="txtNumCuenta">
-                        </asp:FilteredTextBoxExtender>
-                    </td>
-                </tr>
-            </table>
-            
-            <div style="display:none;">
-                <asp:TextBox ID="txtValoresVariables" runat="server"></asp:TextBox>
-            </div>
-            
-            <br />          
-            
-            <asp:Panel ID="pnlMisVariables" runat="server">
-            </asp:Panel>
-                        
-            <br />
-            <asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource, lblAyudaPorcentaje %>"></asp:Label>
-
-            
-           
-        </ContentTemplate>
-    </asp:UpdatePanel>
 </div>
 
 <div id="modalBuscadorPropietario">

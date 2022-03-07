@@ -2,65 +2,57 @@
 
 var dataPropietario = {};
 var data = {};
-var dataSuite = {};
-var dataVariable = [];
-var textError = '';
-var isDataProp = false;
 
 $j(document).ready(function() {
-
-    Sys.WebForms.PageRequestManager.getInstance().add_endRequest(CargasIniciales);
 
     CargasIniciales(null, null);
 
     function CargasIniciales(sender, args) {
 
-        if ($j("[id$=txtErrorVar]").val() != '' && $j("[id$=txtErrorVar]").val() != undefined) {
-            mostrarErrorSumCoeficientes($j("[id$=txtErrorVar]").val(), $j("[id$=txtTipoValidacion]").val());
-        }
+        $j("#dataPropietario,#editSuite,#nuevaSuite,#updateSuite,#btnUpdateVariables").hide();
 
-        $j("[id$='modalSuit']").dialog({
-            width: 1200,
-            autoOpen: false,
-            resizable: false,
-            show: "slow",
-            modal: true,
-            height: "auto",
-            open: function(event, ui) {
-                $j("[id$='btnObtenerVariables']").click();
-            },
-            buttons: {
-                "Aceptar": function() {
+        // Hotel
+        $j.ajax({
+            method: "POST",
+            url: "../../handlers/HandlerPropietario.ashx",
+            data: { Action: 4 }
+        }).done(function (listDeptos) {
+            $j.each(listDeptos, function (i, item) {
+                $j('#selectHotel').append($j('<option>', {
+                    value: item.IdHotel,
+                    text: item.Name
+                }));
+            });
+            selectHotel_onchange();
+        });
 
-                    if (getDataNuevSuite())
-                        $j(this).dialog("close");
+        // Depto
+        $j.ajax({
+            method: "POST",
+            url: "../../handlers/HandlerPropietario.ashx",
+            data: { Action: 2 }
+        }).done(function (listDeptos) {            
+            $j.each(listDeptos, function (i, item) {
+                $j('#selectDepto').append($j('<option>', {
+                    value: item.IdDepto,
+                    text: item.Name
+                }));
+            });
+            selectDepto_onchange();
+        });
 
-                },
-                "Cancelar": function() {
-                    $j("[id$='txtValoresVariables']").val('');
-                    $j("[id$='RequiredFieldValidator4']").hide()
-                    $j(this).dialog("close");
-                }
-            }
-        }).parent().appendTo($j("form:first")).css('z-index', '1005');
-
-        $j("#modalOk").dialog({
-            autoOpen: false,
-            resizable: false,
-            show: "slow",
-            modal: true,
-            height: "auto",
-            title: "Eliminar",
-            buttons: {
-                "Aceptar": function() {
-                    $j(this).dialog('close');
-                    $j('#' + $j('#ctl00_idCtrl').val()).click();
-                },
-                "Cancelar": function() {
-                    $j('#idCtrl').val('');
-                    $j(this).dialog('close');
-                }
-            }
+        // Banco
+        $j.ajax({
+            method: "POST",
+            url: "../../handlers/HandlerPropietario.ashx",
+            data: { Action: 7 }
+        }).done(function (listBanco) {
+            $j.each(listBanco, function (i, item) {
+                $j('#selectBank').append($j('<option>', {
+                    value: item.IdBanco,
+                    text: item.Name
+                }));
+            });
         });
 
         $j("#modalBuscadorPropietario").dialog({
@@ -71,349 +63,252 @@ $j(document).ready(function() {
             modal: true,
             height: "auto",
             buttons: {
-                "Aceptar": function() {
+                "Aceptar": function () {
                     $j("[id$='btnAceptar']").click();
                     $j(this).dialog("close");
                 },
-                "Cancelar": function() {
+                "Cancelar": function () {
                     $j("[id$='btnCancelar']").click();
                     $j(this).dialog("close");
                 }
             }
         }).parent().appendTo($j("form:first")).css('z-index', '1005');
-
-        function getDataNuevSuite() {
-            var isOK = true;
-            dataSuite = {};
-            dataSuite.Id = new Date().getTime();
-            dataSuite.NomHotel = $j("[id$=ddlHotel]  option:selected").text();
-            var nomSuite = $j("[id$=ddlSuit]  option:selected").text().split(' ');
-            dataSuite.NomEscritura = nomSuite[1];
-            dataSuite.NomSuite = nomSuite[4];
-
-            dataSuite.IdSuite = $j("[id$=ddlSuit]").val();
-            dataSuite.IdBanco = $j("[id$=ddlBanco]").val();
-            dataSuite.TitularBanco = $j("[id$=txtTitular]").val();
-            dataSuite.TipoCuenta = $j("[id$=ddlTipoCuenta]").val();
-            dataSuite.NumCuenta = $j("[id$=txtNumCuenta]").val();
-            dataSuite.NumEstadias = $j("[id$=txtNumEstadias]").val();
-            dataSuite.ListDataVariable = [];
-
-            if (getValorVariable('valorVariables')) {
-                dataSuite.ListDataVariable = dataVariable;
-                dataPropietario.ListaDataSuite.push(dataSuite);
-                AddNuevosSuites();
-            } else {
-                alert('fail');
-                isOK = false;
-            }
-            return isOK;
-        }
-
     }
 
 });
 
-function mostrarErrorSumCoeficientes(dataError, type) {
-    console.log(dataError);
-    var htmlDetail = '';
-    var arrayError = JSON.parse(dataError);
-    $j("#divValidCoef,#divValidPesos").hide();
+function GuardarPropietario() {
+    dataPropietario = {};
+    getDataPropietario();
 
-    if (arrayError.length > 0) {
-        arrayError.forEach(function (item) {
-
-            if (type == 1) {
-                htmlDetail += `<tr>
-                                <td>${item.NumSuit}</td>
-                                <td>${item.Nombre}</td>
-                                <td>${item.NumIdentificacion}</td>
-                                <td style="text-align: right;">${item.Valor}</td>
-                            </tr>`;
-                $j("#divValidCoef").show();
-            }
-            if (type == 3) {
-                htmlDetail += `<tr>
-                                <td>${item.NumSuit}</td>
-                                <td>${item.Nombre}</td>
-                                <td>${item.NumIdentificacion}</td>
-                                <td style="text-align: right;">${item.ValorProp}</td>
-                                <td style="text-align: right;">${item.ValorSuite}</td>
-                            </tr>`;
-                $j("#divValidPesos").show();
-            }
+    $j.ajax({
+        method: "POST",
+        url: "../../handlers/HandlerPropietario.ashx",
+        data: { Action: 0, data: JSON.stringify(dataPropietario) }
+    }).done(function (listCity) {
+        $j('#selectCity').empty();
+        $j.each(listCity, function (i, item) {
+            $j('#selectCity').append($j('<option>', {
+                value: item.IdCity,
+                text: item.Name
+            }));
         });
-        
-    }
-    $j("#tBodyPesos,#tBodyCoef").empty();
-    $j("#tBodyPesos,#tBodyCoef").html(htmlDetail);
-}
-
-function AddNuevosSuites() {
-
-    $j.ajax({
-        method: "POST",
-        url: "../../handlers/HandlerVariable.ashx",
-        data: { Action: 2, data: JSON.stringify(dataPropietario) }
-    })
-        .done(function (res) {
-            $j("[id$=txtErrorVar").val(res.ErrorDescripcion);
-            $j("[id$=txtIdPropietario]").val(res.IdPropietario);
-            $j("[id$=txtTipoValidacion]").val(res.TipoValidacion);
-
-        setTimeout(() => {
-            $j("[id$=btnEdit]").click();
-        }, 1000);
-
-        
-        //if (!res.OK) {
-        //    mostrarErrorSumCoeficientes(res.ErrorDescripcion);
-        //    console.log(res.ERROR);
-        //} else {
-
-        //    $j(".nuevas").remove();
-        //    var html = '';
-        //    for (var i = 0; i < dataPropietario.ListaDataSuite.length; i++) {
-        //        html += '<tr class="nuevas">';
-        //        //html += '<td align="center"> <input type="image" src="../../img/23.png" style="height:30px;width:30px;border-width:0px;"> </td >';
-        //        //html += '<td align="center"> <input type="image" src="../../img/126.png" onclick="quitar(' + dataPropietario.ListaDataSuite[i].Id + ');" style="height:30px;width:30px;border-width:0px;"> </td>';
-
-        //        html += '<td align="center"> - </td >';
-        //        html += '<td align="center"> - </td>';
-        //        html += '<td>' + dataPropietario.ListaDataSuite[i].NomHotel + '</td>';
-        //        html += '<td align="center">' + dataPropietario.ListaDataSuite[i].NomSuite + '</td>';
-        //        html += '<td align="center">' + dataPropietario.ListaDataSuite[i].NomEscritura + '</td>';
-        //        html += '<td align="center"> <img src="../../img/126.png" /> </td>';
-        //        html += '</tr >';
-        //    }
-        //    $j("[id$=gvwSuits] tbody").append(html);
-        //}
-    });
-}
-
-function quitar(item) {
-    alert(item);
-}
-
-function GuardarVariables() {
-
-    $j.ajax({
-        method: "POST",
-        //async: false,
-        url: "../../handlers/HandlerVariable.ashx",
-        data: { Action: 0, data: JSON.stringify(dataSuite) }
-    }).done(function(res) {
-        $j("[id$=lbltextoError]").text('');
-        $j("[id$=divError]").hide();
-        $j("[id$=lbltextoExito]").html('');
-        $j("[id$=divExito]").hide();
-
-        if (!res.OK) {
-            $j("[id$=lbltextoError]").text(res.ERROR);
-            $j("[id$=divError]").show();
-            mostrarErrorSumCoeficientes(res.ErrorDescripcion, res.TipoValidacion);
-            console.log(res.ERROR);
-        } else {
-            alert('Guardado con exito.');
-            $j("[id$=lbltextoExito]").html(res.ERROR);
-            $j("[id$=divExito]").show();
-        }
     });
 }
 
 function getDataPropietario() {
-    //dataPropietario = {};
-    dataPropietario.IdUsuario = $j("[id$=hiddenIdUsuario]").val();
-    dataPropietario.IdPropietario = $j("[id$=HiddenIdPropietario]").val();
+    // Propietario
+    dataPropietario = {};
+    dataPropietario.PrimeroNombre = $j("[id$=txtNombre]").val();
+    dataPropietario.SegundoNombre = $j("[id$=xtNombreSegundo]").val();
+    dataPropietario.PrimerApellido = $j("[id$=txtApellidoPrimero]").val();
+    dataPropietario.SegundoApellido = $j("[id$=txtApellidoSegundo]").val();
     dataPropietario.TipoPersona = $j("[id$=ddlTipoPersona]").val();
-    dataPropietario.Activo = $j("[id$=chActivo]").is(":checked");
-    dataPropietario.Retencion = $j("[id$=cbEsRetenedor]").is(":checked");
-    dataPropietario.Nombre1 = $j("[id$=txtNombre]").val();
-    dataPropietario.Nombre2 = $j("[id$=xtNombreSegundo]").val();
-    dataPropietario.Apellido1 = $j("[id$=txtApellidoPrimero]").val();
-    dataPropietario.Apellido2 = $j("[id$=txtApellidoSegundo]").val();
+    dataPropietario.TipoDocumento = $j("[id$=ddlTipoDocumento]").val();
     dataPropietario.NumIdentificacion = $j("[id$=txtNumIdentificacion]").val();
-    dataPropietario.TipoDoc = $j("[id$=ddlTipoDocumento]").val();
-    dataPropietario.IdDepto = $j("[id$=ddlDepto]").val();
-    dataPropietario.IdCiudad = $j("[id$=ddlCiudad]").val();
-    dataPropietario.Direccion = $j("[id$=txtDireccion]").val();
-    dataPropietario.Correo1 = $j("[id$=txtCorreo]").val();
+    dataPropietario.Activo = $j("[id$=chActivo]").is(":checked");
+    dataPropietario.IdCiudad = $j("#selectCity").val();
+    dataPropietario.Correo = $j("[id$=txtCorreo]").val();
     dataPropietario.Correo2 = $j("[id$=txtCorreo2]").val();
     dataPropietario.Correo3 = $j("[id$=txtCorreo3]").val();
-    dataPropietario.Tel1 = $j("[id$=txtTel1]").val();
-    dataPropietario.Tel2 = $j("[id$=txtTel2]").val();
-    dataPropietario.NomContacto = $j("[id$=txtNombreContacto]").val();
+    dataPropietario.Direccion = $j("[id$=txtDireccion]").val();
+    dataPropietario.Telefono1 = $j("[id$=txtTel1]").val();
+    dataPropietario.Telefono2 = $j("[id$=txtTel2]").val();
+    dataPropietario.NombreContacto = $j("[id$=txtNombreContacto]").val();
     dataPropietario.TelContacto = $j("[id$=txtTelContacto]").val();
     dataPropietario.CorreoContacto = $j("[id$=txtCorreoContacto]").val();
-
-    if (dataPropietario.ListaDataSuite == undefined) {
-        dataPropietario.ListaDataSuite = [];
-    }
+    dataPropietario.EsRetenedor = $j("[id$=cbEsRetenedor]").is(":checked");
+    // Suite
+    dataPropietario.IdSuit = $j("#selectSuite").val();
+    dataPropietario.IdBanco = $j("#selectBank").val();
+    dataPropietario.NumCuenta = $j("#txtNumCuenta").val();
+    dataPropietario.NumEstadias = $j("#txtEstadias").val();
+    dataPropietario.TipoCuenta = $j("#selectTipoCuenta").val();
+    dataPropietario.Titular = $j("#txtTitularCuenta").val();
+    dataPropietario.Activo = true;
+    // Variables
+    dataPropietario.ListaVariables = [];
+    dataPropietario.ListaVariables = getDataVariables();
 }
 
-function GuardarPropietario() {
-
-    $j("[id$=lbltextoError]").text('');
-    $j("[id$=divError]").hide();
-    $j("[id$=lbltextoExito]").html('');
-    $j("[id$=divExito]").hide();
-
-    getDataPropietario();
-
-    if (validarCampos(dataPropietario)) {
-        $j.ajax({
-            method: "POST",
-            url: "../../handlers/HandlerVariable.ashx",
-            data: { Action: 1, data: JSON.stringify(dataPropietario) }
-        })
-        .done(function(res) {
-            if (!res.OK) {
-                $j("#lbltextoError").text("Error en el guardado");
-                $j("#divError").show();
-                console.log(res.ERROR);
-            } else {
-                $j("[id$=lbltextoExito]").html('Guardado con exito.');
-                $j("[id$=divExito]").show();
-                setTimeout(function() {
-                    $j("[id$=btnVerTodos]").click();
-                }, 2000, "JavaScript");
-
-            }
-        });
-    } else {
-        $j("[id$=lbltextoError]").html('Campos obligatorios: ' + textError);
-        $j("[id$=divError]").show();
-    }
-}
-
-function validarCampos(data) {
-    var isOK = true;
-    isDataProp = true;
-    textError = '';
-    var tipo = $j("[id$=ddlTipoPersona]").val();
-
-    if (dataPropietario.Nombre1.trim() == '') {
-        isOK = false;
-        isDataProp = false;
-        textError += 'Primer Nombre - '
-    }
-    if (tipo == 'NATURAL') {
-        if (dataPropietario.Apellido1.trim() == '') {
-            isOK = false;
-            isDataProp = false;
-            textError += 'Primer Apellido - '
-        }
-    }
-    if (dataPropietario.NumIdentificacion.trim() == '') {
-        isOK = false;
-        isDataProp = false;
-        textError += 'N° identificación - '
-    }
-    if ($j("[id$=ddlTipoDocumento]").val().trim() == '0') {
-        isOK = false;
-        isDataProp = false;
-        textError += 'Tipo de Documento - '
-    }
-    if (dataPropietario.Correo1.trim() == '') {
-        isOK = false;
-        isDataProp = false;
-        textError += 'Correo 1 - '
-    }
-    //if (dataPropietario.Correo2.trim() == '') {
-    //    isOK = false;
-    //    isDataProp = false;
-    //    textError += 'Correo 2 - '
-    //}
-    //if (dataPropietario.CorreoContacto.trim() == '') {
-    //    isOK = false;
-    //    isDataProp = false;
-    //    textError += 'Correo Contacto - '
-    //}
-    return isOK;
-}
-
-function getValorVariable(nomClass) {
-    var isOK = true;
-    dataVariable = [];
-    $j("." + nomClass).each(function(index) {
-        var id = $j(this).attr('IdValorVariableSuit');
-        var valor = $j(this).val();
-        var esCond = $j(this).attr('EsValidacion');
-        var valorMax = $j(this).attr('ValMax');
-        var valorActual = $j(this).attr('valor');
-        var nombre = $j(this).attr('NomVariable');
-        var idVariable = $j(this).attr('IdVariable');
-
-        //if (esCond == 'true') {
-        //    valorActual = parseFloat(valorActual);
-        //    valor = parseFloat(valor);
-        //    valorMax = parseFloat(valorMax);
-
-        //    if ((valorActual + valor) > valorMax) {
-        //        alert('La variable : ' + nombre + ' debe de sumar: ' + valorMax);
-        //        isOK = false;
-        //    }
-
-        //    if ((valorActual + valor) < valorMax) {
-        //        alert('No te olvides que la variable : ' + nombre + ' debe de sumar: ' + valorMax);
-        //    }
-        //}
-
-        var oVaraible = new Object();
-        oVaraible.IdValorVariableSuit = id;
-        oVaraible.Valor = valor;
-        oVaraible.IdVariable = idVariable;
-        oVaraible.EsValidacion = esCond;
-        dataVariable.push(oVaraible);
-
-        console.log(id + ' ' + valor);
+function getDataVariables() {
+    var listaVariables = [];
+    $j(".vars").each(function () {
+        listaVariables.push({ IdVariable: $j(this).attr('id'), Valor: $j(this).val(), IdValorVariableSuit: $j(this).attr('idVVS') });
     });
-    return isOK;
+    return listaVariables;
 }
 
-function AgregarSuite() {
+function setDataPropietario(dataPropietario) {
+    // Propietario
+    $j("[id$=txtNombre]").val(dataPropietario.PrimeroNombre);
+    $j("[id$=xtNombreSegundo]").val(dataPropietario.SegundoNombre);
+    $j("[id$=txtApellidoPrimero]").val(dataPropietario.PrimerApellido);
+    $j("[id$=txtApellidoSegundo]").val(dataPropietario.SegundoApellido);
+    $j("[id$=ddlTipoPersona]").val(dataPropietario.TipoPersona);
+    $j("[id$=ddlTipoDocumento]").val(dataPropietario.TipoDocumento);
+    $j("[id$=txtNumIdentificacion]").val(dataPropietario.NumIdentificacion);
+    $j("[id$=chActivo]").prop("checked", dataPropietario.Activo);
+    $j("#selectCity").val(dataPropietario.IdCiudad);
+    $j("[id$=txtCorreo]").val(dataPropietario.Correo);
+    $j("[id$=txtCorreo2]").val(dataPropietario.Correo2);
+    $j("[id$=txtCorreo3]").val(dataPropietario.Correo3);
+    $j("[id$=txtDireccion]").val(dataPropietario.Direccion);
+    $j("[id$=txtTel1]").val(dataPropietario.Telefono1);
+    $j("[id$=txtTel2]").val(dataPropietario.Telefono2);
+    $j("[id$=txtNombreContacto]").val(dataPropietario.NombreContacto);
+    $j("[id$=txtTelContacto]").val(dataPropietario.TelContacto);
+    $j("[id$=txtCorreoContacto]").val(dataPropietario.CorreoContacto);
+    $j("[id$=cbEsRetenedor]").prop("checked", dataPropietario.EsRetenedor);
+    // Suite
+    $j("#tblListaSuite").empty();
+    var htmlSuites = '';
+    dataPropietario.ListaSuite.each(function (item) {
+        htmlSuites += '<tr>';
+        htmlSuites += `<td style="text-align: center;">
+                            <img src="../../img/23.png" style="height: 30px; width: 30px;" onclick="SetDetalleSuite(${item.IdSuitPropietario});" />
+                        </td>
+                        <td style="text-align: center;">
+                            <img src="../../img/126.png" style="height: 30px; width: 30px;" onclick="" />
+                        </td>
+                        <td>${item.NombreHotel}</td>
+                        <td>${item.NumSuit}</td>
+                        <td>${item.NumEscritura}</td>
+                        <td style="text-align: center;">
+                            <input type="checkbox" onclick="ActivarSuite(${item.IdSuitPropietario})" checked="${(item.Activo) ? 'checked' : ''}" />
+                        </td>`;
+        htmlSuites += '</tr>';
+    });
+    
+    $j("#tblListaSuite").html(htmlSuites);
 
-    $j("[id$=lbltextoError]").html('');
-    $j("[id$=divError]").hide();
-    getDataPropietario();
-
-    if (validarCampos(dataPropietario)) {
-
-        var ID = $j("[id$=HiddenIdPropietario]").val();
-        if (isDataProp || ID != '-1') {
-            $j("[id$='modalSuit']").dialog("open");
-            $j("[id$='txtDescripcionSuit']").val("");
-            $j("[id$='txtNumEstadias']").val("");
-            $j("[id$='txtTitular']").val("");
-            $j("[id$='txtNumCuenta']").val("");
-        } else {
-            alert('Debe de llenar los datos del propietario');
-        }
-    } else {
-        $j("[id$=lbltextoError]").html('Campos obligatorios: ' + textError);
-        $j("[id$=divError]").show();
-    }
 }
 
+function SetDetalleSuite(idSuitPropietario) {
+    $j("#nuevaSuite").hide();
+    $j("#updateSuite").show();
+    $j("#idSuitePropietario").val(idSuitPropietario);
 
-function SaveData() {
+    $j.ajax({
+        method: "POST",
+        url: "../../handlers/HandlerPropietario.ashx",
+        data: { Action: 10, data: idSuitPropietario }
+    }).done(function (dataSuite) {
+        $j("#editSuite,#btnUpdateVariables").show();
+        
+        $j("#nombreHotel").text(dataSuite.NombreHotel);
+        $j("#nombreSuite").text(dataSuite.NumSuit);
+        $j("#selectBank").val(dataSuite.IdBanco);
+        $j("#txtNumCuenta").val(dataSuite.NumCuenta);
+        $j("#txtEstadias").val(dataSuite.NumEstadias);
+        $j("#selectTipoCuenta").val(dataSuite.TipoCuenta);
+        $j("#txtTitularCuenta").val(dataSuite.Titular);
+        // Variables
+        loadVariables(dataSuite.ListaVariables);
+    });
 
-    if (getValorVariable('valorVariablesUpdate')) {
-        dataSuite.IdBanco = $j("[id$=ddlBancoDetalleUpdate]").val();
-        dataSuite.TitularBanco = $j("[id$=txtTitularDetalleUpdate]").val();
-        dataSuite.TipoCuenta = $j("[id$=ddlTipoCuentaDetalleUpdate]").val();
-        dataSuite.NumCuenta = $j("[id$=txtCuentaDetalleUpdate]").val();
-        dataSuite.NumEstadias = $j("[id$=txtNumEstadiasUpdate]").val();
+}
 
-        dataSuite.IdSuitPropietarioSeleccionado = $j("[id$=hiddenIdSuitPropietarioSeleccionado]").val();
-        dataSuite.IdSuite = $j("[id$=hiddenIdSuitSeleccionado]").val();
-        dataSuite.IdPropietarioSeleccionado = $j("[id$=HiddenIdPropietario]").val();
-        dataSuite.IdUsuario = $j("[id$=hiddenIdUsuario]").val();
+function UpdateVariables() {
+    dataPropietario = {};
+    dataPropietario.IdSuitPropietario = $j("#idSuitePropietario").val();
+    dataPropietario.IdBanco = $j("#selectBank").val();
+    dataPropietario.Titular = $j("#txtTitularCuenta").val();
+    dataPropietario.TipoCuenta = $j("#selectTipoCuenta").val();
+    dataPropietario.NumCuenta = $j("#txtNumCuenta").val();
+    dataPropietario.NumEstadias = $j("#txtEstadias").val();
 
-        dataSuite.ListDataVariable = dataVariable;
+    dataPropietario.ListaVariables = getDataVariables();
 
-        GuardarVariables();
-    }
+    $j.ajax({
+        method: "POST",
+        url: "../../handlers/HandlerPropietario.ashx",
+        data: { Action: 11, data: JSON.stringify(dataPropietario) }
+    }).done(function (res) {
+        $j("#editSuite").hide();
+        $j("#idSuitePropietario").val('-1');
+        
+        alert('Datos actualizados');
+    });
+}
+
+function ActivarSuite(idSuite) {
+    $j.ajax({
+        method: "POST",
+        url: "../../handlers/HandlerPropietario.ashx",
+        data: { Action: 9, data: idSuite }
+    }).done(function (isActive) {
+        alert('Suite: ' + (isActive ? 'Activa' : 'Inactiva'));
+    });
+}
+
+function selectDepto_onchange() {
+    $j.ajax({
+        method: "POST",
+        url: "../../handlers/HandlerPropietario.ashx",
+        data: { Action: 3, data: $j("#selectDepto").val() }
+    }).done(function (listCity) {
+        $j('#selectCity').empty();
+        $j.each(listCity, function (i, item) {
+            $j('#selectCity').append($j('<option>', {
+                value: item.IdCity,
+                text: item.Name
+            }));
+        });
+    });
+}
+
+function selectHotel_onchange() {
+    $j.ajax({
+        method: "POST",
+        url: "../../handlers/HandlerPropietario.ashx",
+        data: { Action: 5, data: $j("#selectHotel").val() }
+    }).done(function (listSuite) {
+        $j('#selectSuite').empty();
+        $j.each(listSuite, function (i, item) {
+            $j('#selectSuite').append($j('<option>', {
+                value: item.IdSuite,
+                text: `Escritura: ${item.NumSuite} N° Suite: ${item.NumEsc}`
+            }));
+        });
+        selectSuite_onchange();
+    });
+}
+
+function loadVariables(listaVariables) {
+    $j('#tblVariables').empty();
+    $j.each(listaVariables, function (i, item) {
+        $j('#tblVariables').append(`<tr><td class='textoTabla'>${item.Nombre}</td><td><input type="number" class="vars" id="${item.IdVariable}" idVVS="${item.IdValorVariableSuit}" value="${item.Valor}" /></td></tr>`);
+    });
+}
+
+function selectSuite_onchange() {
+    var data = { IdHotel: $j("#selectHotel").val(), IdSuit: $j("#selectSuite").val() };
+    $j.ajax({
+        method: "POST",
+        url: "../../handlers/HandlerPropietario.ashx",
+        data: { Action: 6, data: JSON.stringify(data) }
+    }).done(function (listVars) {
+        $j("#txtDescripcionSuit").val(listVars.NombreSuit);
+        loadVariables(listVars.ListaVariables);
+    });
+}
+
+function loadOwner(IdOwner) {
+    $j.ajax({
+        method: "POST",
+        url: "../../handlers/HandlerPropietario.ashx",
+        data: { Action: 8, data: IdOwner }
+    }).done(function (dataOwner) {
+        $j("#GrillaPropietario").hide();
+        $j("#dataPropietario").show();
+        setDataPropietario(dataOwner);
+    });
+}
+
+function verTodos() {
+    $j("#GrillaPropietario").show();
+    $j("#dataPropietario,#editSuite").hide();
 }
 
 

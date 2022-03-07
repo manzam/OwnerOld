@@ -134,5 +134,6 @@ namespace BO
 
         public List<ObjetoGenerico> ListaVariables { get; set; }
         public List<string> ListaConceptos { get; set; }
+        public List<ObjetoGenerico> ListaSuite { get; set; }
     }
 }

@@ -76,6 +76,19 @@ namespace BO
             }
         }
 
+        public void Actualizar(List<ObjetoGenerico> listaSuitVariables)
+        {
+            using (ContextoOwner Contexto = new ContextoOwner())
+            {
+                foreach (ObjetoGenerico suitVariableTmp in listaSuitVariables)
+                {
+                    Valor_Variable_Suit valorVariableSuitTmp = Contexto.Valor_Variable_Suit.Where(VVS => VVS.IdValorVariableSuit == suitVariableTmp.IdValorVariableSuit).FirstOrDefault();
+                    valorVariableSuitTmp.Valor = suitVariableTmp.Valor;
+                }
+                Contexto.SaveChanges();
+            }
+        }
+
         public void Guardar(List<Valor_Variable_Suit> listaValorVariables)
         {
             using (ContextoOwner Contexto = new ContextoOwner())

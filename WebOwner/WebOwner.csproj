@@ -133,6 +133,9 @@
     <Compile Include="handlers\HandlerLiquidacion.ashx.cs">
       <DependentUpon>HandlerLiquidacion.ashx</DependentUpon>
     </Compile>
+    <Compile Include="handlers\HandlerPropietario.ashx.cs">
+      <DependentUpon>HandlerPropietario.ashx</DependentUpon>
+    </Compile>
     <Compile Include="handlers\HandlerVariable.ashx.cs">
       <DependentUpon>HandlerVariable.ashx</DependentUpon>
     </Compile>
@@ -897,6 +900,7 @@
     <Content Include="handlers\HandlerLiquidacion.ashx" />
     <Content Include="handlers\HandlerVariable.ashx" />
     <Content Include="handlers\HandlerExtracto.ashx" />
+    <Content Include="handlers\HandlerPropietario.ashx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
