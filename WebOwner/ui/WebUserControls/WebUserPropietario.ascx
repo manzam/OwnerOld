@@ -5,14 +5,19 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>    
 <%@ Register src="WebUserBuscadorPropietario.ascx" tagname="WebUserBuscadorPropietario" tagprefix="uc1" %>
 <script src="../../js/variablePropietario.js?v=00010"></script>
+<style type="text/css">
+    .errorRequerid {
+        background-color: #ffe2e2;
+        border-color: #ff6a6a;
+    }
+</style>
     
    
         <div class="botonera">
-            <asp:Button ID="btnNuevo" runat="server" Text="<%$ Resources:Resource, btnNuevo %>" ValidationGroup="Nuevo" />
-            <input type="button" value="Guardar" onclick="GuardarPropietario();" id="btnguardar" class="ui-button ui-widget ui-state-default ui-corner-all" />
-            <asp:Button ID="btnVerTodos" runat="server" Text="Ver Todos" OnClientClick="verTodos();" />
-            <asp:Button ID="btnBuscar" runat="server" Text="<%$ Resources:Resource, btnBuscar %>" OnClientClick="$j('#modalBuscadorPropietario').dialog('open')" />
-            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" Visible="false" />            
+            <input type="button" value="Nuevo" onclick="nuevo();" id="btnNuevo" class="ui-button ui-widget ui-state-default ui-corner-all" />
+            <input type="button" value="Guardar" onclick="GuardarPropietario();" id="btnGuardar" class="ui-button ui-widget ui-state-default ui-corner-all" />
+            <input type="button" value="Ver Todos" onclick="verTodos();" id="btnVerTodos" class="ui-button ui-widget ui-state-default ui-corner-all" />
+            <input type="button" value="Buscar" onclick="$j('#modalBuscadorPropietario').dialog('open')" id="btnBuscar" class="ui-button ui-widget ui-state-default ui-corner-all" />          
         </div>
 
         <input type="hidden" id="idPropietario" value="-1" />
@@ -33,6 +38,11 @@
         </div>
         
         <div id="dataPropietario">
+            
+            <div id="ErrorTipo1Top" style="color: red; padding: 2px 2px 2px 2px; font-size: 18px;">La participación supera el 100%</div>
+            <div id="ErrorTipo2Top" style="color: red; padding: 2px 2px 2px 2px; font-size: 18px;">La sumatoria de los coeficientes propietario supera el coeficiente de la suite</div>
+
+            
             <table width="100%" cellpadding="3" cellspacing="0">
                 <thead>
                     <tr>
@@ -70,7 +80,7 @@
                                 <asp:ListItem Text="JURIDICO" Value="JURIDICO"></asp:ListItem>
                             </asp:DropDownList>
                         </td>
-                        <td>Sujeto a Retención</td>
+                        <td class="textoTabla">Sujeto a Retención</td>
                         <td>
                             <asp:CheckBox ID="cbEsRetenedor" runat="server" />
                         </td>
@@ -80,9 +90,7 @@
                             <asp:Label ID="lblNombre" runat="server" Text="<%$ Resources:Resource, lblNombre %>"></asp:Label> *
                         </td>
                         <td>
-                            <asp:TextBox ID="txtNombre" MaxLength="100" runat="server" Width="90%" ValidationGroup="NuevoActualizar"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" 
-                                ControlToValidate="txtNombre" Display="Dynamic" CssClass="error" ValidationGroup="NuevoActualizar" ></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtNombre" MaxLength="100" runat="server" Width="90%" CssClass="requerid"></asp:TextBox>
                         </td>
                         <td class="textoTabla">
                             <asp:Label ID="Label40" runat="server" Text="<%$ Resources:Resource, lblNombreDos %>"></asp:Label>
@@ -96,9 +104,7 @@
                             <asp:Label ID="Label41" runat="server" Text="<%$ Resources:Resource, lblApellido %>"></asp:Label> *
                         </td>
                         <td>
-                            <asp:TextBox ID="txtApellidoPrimero" MaxLength="100" runat="server" Width="90%" ValidationGroup="NuevoActualizar"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfv_Apellido" runat="server" ErrorMessage="*" 
-                                ControlToValidate="txtApellidoPrimero" Display="Dynamic" CssClass="error" ValidationGroup="NuevoActualizar" ></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtApellidoPrimero" MaxLength="100" runat="server" Width="90%"  CssClass="requerid"></asp:TextBox>
                         </td>
                         <td class="textoTabla">
                             <asp:Label ID="Label42" runat="server" Text="<%$ Resources:Resource, lblApellidoDos %>"></asp:Label>
@@ -115,11 +121,7 @@
                             </asp:FilteredTextBoxExtender>                            
                         </td>
                         <td>                         
-                            <asp:TextBox ID="txtNumIdentificacion" runat="server" MaxLength="15" 
-                                Width="200px" ValidationGroup="NuevoActualizar" ></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" 
-                                ControlToValidate="txtNumIdentificacion" Display="Dynamic" CssClass="error" ValidationGroup="NuevoActualizar" >
-                            </asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtNumIdentificacion" runat="server" MaxLength="15" Width="200px"  CssClass="requerid"></asp:TextBox>
                         </td>
                         <td class="textoTabla">
                             <asp:Label ID="Label6" runat="server" Text="<%$ Resources:Resource, lblTipoDocumento %>"></asp:Label> *
@@ -128,16 +130,12 @@
                             </asp:FilteredTextBoxExtender>                            
                         </td>
                         <td>                         
-                            <asp:DropDownList ID="ddlTipoDocumento" runat="server" Width="90%" ValidationGroup="NuevoActualizar">
-                                <asp:ListItem Text="Seleccione.." Value="0" Selected="True"></asp:ListItem>
+                            <asp:DropDownList ID="ddlTipoDocumento" runat="server" Width="90%"  CssClass="requerid">
                                 <asp:ListItem Text="Nit" Value="NIT"></asp:ListItem>
                                 <asp:ListItem Text="Cedula" Value="CC"></asp:ListItem>
                                 <asp:ListItem Text="Cedula Extranjeria" Value="CE"></asp:ListItem>
                                 <asp:ListItem Text="Tarjeta de Identidad" Value="TI"></asp:ListItem>
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="rfv_TipoDocuemnto" runat="server" ErrorMessage="*" InitialValue="0" 
-                                ControlToValidate="ddlTipoDocumento" Display="Dynamic" CssClass="error" ValidationGroup="NuevoActualizar" >
-                            </asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -167,7 +165,7 @@
                             <asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, lblCorreo %>"></asp:Label> 1 *
                         </td>
                         <td>
-                            <asp:TextBox ID="txtCorreo" MaxLength="100" runat="server" Width="90%" CssClass="minuscula" ValidationGroup="NuevoActualizar"></asp:TextBox>                            
+                            <asp:TextBox ID="txtCorreo" MaxLength="100" runat="server" Width="90%" CssClass="minuscula requerid email"></asp:TextBox>                            
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*"
                                 ControlToValidate="txtCorreo" CssClass="error" ValidationGroup="NuevoActualizar"
                                 ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" >
@@ -179,7 +177,7 @@
                             <asp:Label ID="Label98" runat="server" Text="<%$ Resources:Resource, lblCorreo %>"></asp:Label> 2 *
                         </td>
                         <td>
-                            <asp:TextBox ID="txtCorreo2" MaxLength="100" runat="server" Width="90%" CssClass="minuscula" ValidationGroup="NuevoActualizar"></asp:TextBox>                            
+                            <asp:TextBox ID="txtCorreo2" MaxLength="100" runat="server" Width="90%" CssClass="minuscula email"></asp:TextBox>                            
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="*"
                                 ControlToValidate="txtCorreo2" CssClass="error" ValidationGroup="NuevoActualizar"
                                 ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" >
@@ -330,7 +328,7 @@
                             <asp:Label ID="Label27" runat="server" Text="<%$ Resources:Resource, lblEstadias %>"></asp:Label> *
                         </td>
                         <td>
-                            <input type="text" id="txtEstadias" />
+                            <input type="text" id="txtEstadias" class="requerid dataSuite" />
                         </td>
                     </tr> 
                     <tr>                    
@@ -338,7 +336,7 @@
                             <asp:Label ID="Label30" runat="server" Text="<%$ Resources:Resource, lblTitular %>"></asp:Label> *
                         </td>
                         <td>
-                            <input type="text" id="txtTitularCuenta" style="width: 90%;" />
+                            <input type="text" id="txtTitularCuenta" style="width: 90%;" class="requerid dataSuite" />
                         </td>
                         <td class="textoTabla">
                             <asp:Label ID="Label31" runat="server" Text="<%$ Resources:Resource, lblTipoCuenta %>"></asp:Label>
@@ -362,7 +360,7 @@
                             <asp:Label ID="Label33" runat="server" Text="<%$ Resources:Resource, lblCuenta %>"></asp:Label> *
                         </td>
                         <td>
-                            <input id="txtNumCuenta" type="text" />
+                            <input id="txtNumCuenta" type="text" class="requerid dataSuite" />
                         </td>
                     </tr>
                 </table>
@@ -377,6 +375,43 @@
                         <input type="button" value="Actualizar valores" id="btnUpdateVariables" onclick="UpdateVariables()"  class="ui-button ui-widget ui-state-default ui-corner-all" />
                     </div>
                 </div>
+                <br />
+                <div>
+                    <div id="ErrorTipo1">
+                        <div style="color: red; padding: 2px 2px 2px 2px; font-size: 18px;">La participación supera el 100%</div>
+                        <div>
+                            <table style="width:80%;">
+                                <thead>
+                                    <tr style="color: White; background-color: #7599A9; border-color: #7599A9;">
+                                        <td>Propietario</td>
+                                        <td>Identificacion</td>
+                                        <td>%</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblErrorTipo1">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="ErrorTipo2">
+                        <div style="color: red; padding: 2px 2px 2px 2px; font-size: 18px;">La sumatoria de los coeficientes propietario supera el coeficiente de la suite</div>
+                        <div>
+                            <table style="width:80%;">
+                                <thead>
+                                    <tr style="color: White; background-color: #7599A9; border-color: #7599A9;">
+                                        <td>Propietario</td>
+                                        <td>Identificacion</td>
+                                        <td>% Propietario</td>
+                                        <td>% Suite</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblErrorTipo2">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
             
         </div>
@@ -501,8 +536,5 @@
         <ContentTemplate>
             <uc1:WebUserBuscadorPropietario ID="uc_WebUserBuscadorPropietario" runat="server" />
         </ContentTemplate>
-        <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="btnBuscar" EventName="Click" />
-        </Triggers>
     </asp:UpdatePanel>            
 </div>

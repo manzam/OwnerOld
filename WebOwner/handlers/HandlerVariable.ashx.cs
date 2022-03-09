@@ -15,7 +15,7 @@ namespace WebOwner.handlers
     /// 
     enum ActionEnum
     {
-        Update = 0,
+        IsValid = 0,
         Save = 1,
         SaveNuevaSuite = 2
     }
@@ -26,23 +26,22 @@ namespace WebOwner.handlers
         {
             JavaScriptSerializer js = new JavaScriptSerializer();
             ActionEnum actionType = (ActionEnum)Enum.Parse(typeof(ActionEnum), HttpContext.Current.Request.Params["Action"]);
-            WebOwner.handlers.HandlerLiquidacion.ResultGuardado result = new WebOwner.handlers.HandlerLiquidacion.ResultGuardado();
-            LiquidadorBo oLiquidadorBo = null;
-            SuitBo SuitBoTmp = null;
-            SuitPropietarioBo SuitPropietarioBoTmp = null;
-            List<ResponseValidateParticipacion> listError = null;
-            int[] idhotles = { 365 };
-            int idHotel = -1;
+            Response result = new Response();
+            VariablesValidacionBo variablesValidacionBo = null;
+            context.Response.ContentType = "application/json";
 
             try
             {
                 switch (actionType)
                 {
-                    case ActionEnum.Update:
-                        DataSuite dataSave = js.Deserialize<DataSuite>(HttpContext.Current.Request.Params["data"]);
-                        result.OK = true;
-                        context.Response.ContentType = "application/json";
-                        result.ERROR = "";                        
+                    case ActionEnum.IsValid:
+                        List<ObjetoGenerico> listVariable = js.Deserialize<List<ObjetoGenerico>>(HttpContext.Current.Request.Params["data"]);
+                        
+                        
+                        variablesValidacionBo = new VariablesValidacionBo();
+                        result = variablesValidacionBo.Validar(listVariable);
+
+                        /*
                         SuitBoTmp = new SuitBo();
                         idHotel = SuitBoTmp.ObtenerSuitElHotel(dataSave.IdSuite);
 
@@ -103,11 +102,13 @@ namespace WebOwner.handlers
 
                                 result.ERROR = "Guardado con exito.";
                             }
-                        }                        
+                        }
+                        */
                         context.Response.Write(js.Serialize(result));
                         break;
 
                     case ActionEnum.Save:
+                        /*
                         Propietario dataPropietario = js.Deserialize<Propietario>(HttpContext.Current.Request.Params["data"]);
                         if (dataPropietario != null)
                         {
@@ -149,11 +150,12 @@ namespace WebOwner.handlers
                         result.ERROR = "";
                         context.Response.ContentType = "application/json";
                         context.Response.Write(js.Serialize(result));
+                        */
                         break;
 
                     case ActionEnum.SaveNuevaSuite:
                         Propietario dataNuevaSuite = js.Deserialize<Propietario>(HttpContext.Current.Request.Params["data"]);
-
+                        /*
                         try
                         {
                             if (dataNuevaSuite != null)
@@ -241,7 +243,7 @@ namespace WebOwner.handlers
                             result.OK = false;
                             result.ERROR = "Error inesperado.";
                         }
-
+                        */
                         context.Response.ContentType = "application/json";
                         context.Response.Write(js.Serialize(result));
                         break;
@@ -252,62 +254,12 @@ namespace WebOwner.handlers
             }
             catch (Exception ex)
             {
-                result.OK = false;
-                result.ERROR = ex.ToString();
+                result.Error = ex.ToString();
                 context.Response.ContentType = "application/json";
                 context.Response.Write(js.Serialize(result));
             }            
         }
 
-        public class Propietario
-        {
-            public int IdUsuario { get; set; }
-            public int IdPropietario { get; set; }
-            public string TipoPersona { get; set; }
-            public bool Activo { get; set; }
-            public bool Retencion { get; set; }
-            public string Nombre1 { get; set; }
-            public string Nombre2 { get; set; }
-            public string Apellido1 { get; set; }
-            public string Apellido2 { get; set; }
-            public string NumIdentificacion { get; set; }
-            public string TipoDoc { get; set; }
-            public int IdDepto { get; set; }
-            public int IdCiudad { get; set; }
-            public string Direccion { get; set; }
-            public string Correo1 { get; set; }
-            public string Correo2 { get; set; }
-            public string Correo3 { get; set; }
-            public string Tel1 { get; set; }
-            public string Tel2 { get; set; }
-            public string NomContacto { get; set; }
-            public string TelContacto { get; set; }
-            public string CorreoContacto { get; set; }
-            public List<DataSuite> ListaDataSuite { get; set; }
-
-        }
-
-        public class DataSuite
-        {
-            public int IdSuite { get; set; }
-            public int IdBanco { get; set; }
-            public string TitularBanco { get; set; }
-            public string TipoCuenta { get; set; }
-            public string NumCuenta { get; set; }
-            public int NumEstadias { get; set; }
-            public int IdSuitPropietarioSeleccionado { get; set; }
-            public int IdPropietarioSeleccionado { get; set; }
-            public int IdUsuario { get; set; }
-            public int IdHotel { get; set; }
-            public List<DataVariable> ListDataVariable { get; set; }
-        }
-
-        public class DataVariable {
-            public int IdValorVariableSuit { get; set; }
-            public int IdVariable { get; set; }
-            public double Valor { get; set; }
-            public bool EsValidacion { get; set; }
-        }
         public bool IsReusable
         {
             get

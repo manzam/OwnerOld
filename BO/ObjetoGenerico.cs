@@ -8,7 +8,7 @@ namespace BO
 {
     [Serializable()]
     public class ObjetoGenerico
-    {        
+    {
         public int Id { get; set; }
         public int IdUsuario { get; set; }
         public int IdCuentaContable { get; set; }
@@ -108,6 +108,9 @@ namespace BO
         public string TipoVariableCondicion { get; set; }
         public string UnidadNegocio { get; set; }
         public string Sufijo { get; set; }
+        public string Succes { get; set; }
+        public string Error { get; set; }
+        public string ErrorExeption { get; set; }
 
         public bool EsRetenedor { get; set; }
         public bool Activo { get; set; }
@@ -119,10 +122,13 @@ namespace BO
         public bool EsVarAcumulada { get; set; }
         public bool EsValidacion { get; set; }
         public bool EsConSegundaCuenta { get; set; }
+        public bool Ok { get; set; }
 
         public double PorcentajeParticipacion { get; set; }
         public double Valor { get; set; }
         public double ValorCondicion { get; set; }
+        public double ValorSuite { get; set; }
+
 
         public DateTime Fecha { get; set; }
         public DateTime FechaLlegada { get; set; }
@@ -131,9 +137,35 @@ namespace BO
         public short ValMax { get; set; }
         public short ValorAcumulado { get; set; }
         public short Anio { get; set; }
+        public short TipoValidacion { get; set; }
 
         public List<ObjetoGenerico> ListaVariables { get; set; }
         public List<string> ListaConceptos { get; set; }
         public List<ObjetoGenerico> ListaSuite { get; set; }
+    }
+
+    public class Response
+    {
+        public Response()
+        {
+            this.Ok = true;
+        }
+        public bool Ok { get; set; }
+        public short TipoValidacion { get; set; }
+        public List<ObjetoGenerico> Lista { get; set; }
+
+        private string Error_;
+        public string Error
+        {
+            get
+            {
+                return Error_;
+            }
+            set
+            {
+                Error_ = value;
+                this.Ok = (value != string.Empty) ? false : true;
+            }
+        }
     }
 }

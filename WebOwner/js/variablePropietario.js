@@ -9,7 +9,7 @@ $j(document).ready(function() {
 
     function CargasIniciales(sender, args) {
 
-        $j("#dataPropietario,#editSuite,#nuevaSuite,#updateSuite,#btnUpdateVariables").hide();
+        $j("#btnGuardar,#btnVerTodos,#btnAgregarSuit,#dataPropietario,#editSuite,#nuevaSuite,#updateSuite,#btnUpdateVariables,#ErrorTipo1,#ErrorTipo1Top,#ErrorTipo2,#ErrorTipo2Top").hide();
 
         // Hotel
         $j.ajax({
@@ -78,27 +78,35 @@ $j(document).ready(function() {
 });
 
 function GuardarPropietario() {
-    dataPropietario = {};
-    getDataPropietario();
+    if (isValid()) {
+        var isValidVariables = validarVariables();
+        if (isValidVariables) {
 
-    $j.ajax({
-        method: "POST",
-        url: "../../handlers/HandlerPropietario.ashx",
-        data: { Action: 0, data: JSON.stringify(dataPropietario) }
-    }).done(function (listCity) {
-        $j('#selectCity').empty();
-        $j.each(listCity, function (i, item) {
-            $j('#selectCity').append($j('<option>', {
-                value: item.IdCity,
-                text: item.Name
-            }));
-        });
-    });
+            dataPropietario = {};
+            getDataPropietario();
+
+            $j.ajax({
+                method: "POST",
+                url: "../../handlers/HandlerPropietario.ashx",
+                data: { Action: 0, data: JSON.stringify(dataPropietario) }
+            }).done(function (response) {
+                if (response.Ok) {
+                    alert(response.Succes);
+                    $j("#btnVerTodos").click();
+                }                    
+                else {
+                    alert(response.Error);
+                    console.log(response.ErrorExeption);
+                }
+            });
+        }
+    }
 }
 
 function getDataPropietario() {
     // Propietario
     dataPropietario = {};
+    dataPropietario.IdPropietario = $j("#idPropietario").val();
     dataPropietario.PrimeroNombre = $j("[id$=txtNombre]").val();
     dataPropietario.SegundoNombre = $j("[id$=xtNombreSegundo]").val();
     dataPropietario.PrimerApellido = $j("[id$=txtApellidoPrimero]").val();
@@ -113,28 +121,32 @@ function getDataPropietario() {
     dataPropietario.Correo3 = $j("[id$=txtCorreo3]").val();
     dataPropietario.Direccion = $j("[id$=txtDireccion]").val();
     dataPropietario.Telefono1 = $j("[id$=txtTel1]").val();
-    dataPropietario.Telefono2 = $j("[id$=txtTel2]").val();
+    dataPropietario.Telefono2 = $j("[id$=txtTel2]").val();    
     dataPropietario.NombreContacto = $j("[id$=txtNombreContacto]").val();
     dataPropietario.TelContacto = $j("[id$=txtTelContacto]").val();
     dataPropietario.CorreoContacto = $j("[id$=txtCorreoContacto]").val();
     dataPropietario.EsRetenedor = $j("[id$=cbEsRetenedor]").is(":checked");
-    // Suite
-    dataPropietario.IdSuit = $j("#selectSuite").val();
-    dataPropietario.IdBanco = $j("#selectBank").val();
-    dataPropietario.NumCuenta = $j("#txtNumCuenta").val();
-    dataPropietario.NumEstadias = $j("#txtEstadias").val();
-    dataPropietario.TipoCuenta = $j("#selectTipoCuenta").val();
-    dataPropietario.Titular = $j("#txtTitularCuenta").val();
-    dataPropietario.Activo = true;
-    // Variables
-    dataPropietario.ListaVariables = [];
-    dataPropietario.ListaVariables = getDataVariables();
+
+    if ($j('#editSuite').is(':visible')) {
+        // Suite
+        dataPropietario.IdSuit = $j("#selectSuite").val();
+        dataPropietario.IdBanco = $j("#selectBank").val();
+        dataPropietario.NumCuenta = $j("#txtNumCuenta").val();
+        dataPropietario.NumEstadias = $j("#txtEstadias").val();
+        dataPropietario.TipoCuenta = $j("#selectTipoCuenta").val();
+        dataPropietario.Titular = $j("#txtTitularCuenta").val();
+        dataPropietario.Activo = true;
+        // Variables
+        dataPropietario.ListaVariables = [];
+        dataPropietario.ListaVariables = getDataVariables();
+    }
 }
 
 function getDataVariables() {
     var listaVariables = [];
     $j(".vars").each(function () {
-        listaVariables.push({ IdVariable: $j(this).attr('id'), Valor: $j(this).val(), IdValorVariableSuit: $j(this).attr('idVVS') });
+        var value = ($j(this).val().trim() == '') ? 0 : $j(this).val().trim();
+        listaVariables.push({ IdVariable: $j(this).attr('id'), Valor: value, IdValorVariableSuit: $j(this).attr('idVVS'), IdSuit: $j("#selectSuite").val(), IdPropietario: $j("#IdPropietario").val() });
     });
     return listaVariables;
 }
@@ -300,15 +312,96 @@ function loadOwner(IdOwner) {
         url: "../../handlers/HandlerPropietario.ashx",
         data: { Action: 8, data: IdOwner }
     }).done(function (dataOwner) {
-        $j("#GrillaPropietario").hide();
-        $j("#dataPropietario").show();
+        $j("#GrillaPropietario,#btnNuevo").hide();
+        $j("#dataPropietario,#listaSuite,#btnGuardar,#btnVerTodos,#btnAgregarSuit").show();
+        $j("#idPropietario").val(dataOwner.IdPropietario);
         setDataPropietario(dataOwner);
     });
 }
 
+function isValid() {
+    var isValid = true;
+    $j(".requerid").each(function () {
+        if ($j(this).attr('type') == 'text') {
+            if ($j(this).val().trim() == '') {
+
+                $j(this).addClass("errorRequerid");
+                isValid = false;
+
+                if ($j(this).hasClass("dataSuite")) {
+                    if (!$j('#editSuite').is(':visible')) {
+                        isValid = true;
+                    }
+                }                
+            }
+            else
+                $j(this).removeClass("errorRequerid");
+        }
+    });
+    return isValid;
+}
+
+function validarVariables() {
+    $j("#ErrorTipo1,#ErrorTipo1Top,#ErrorTipo2,#ErrorTipo2Top").hide();
+    $j("#tblErrorTipo1").empty();
+    
+    var listaVariables = getDataVariables();
+    var isValid = true;
+
+    $j.ajax({
+        async: false,
+        method: "POST",
+        url: "../../handlers/HandlerVariable.ashx",
+        data: { Action: 0, data: JSON.stringify(listaVariables) }
+    }).done(function (response) {
+        if (!response.Ok) {
+            isValid = false;
+            if (response.TipoValidacion == 1) {
+                var htmlError = '';
+                $j.each(response.Lista, function (i, item) {
+                    htmlError += `<tr><td>${item.Nombre}</td><td>${item.NumIdentificacion}</td><td>${item.Valor}</td>></tr>`;
+                });
+                $j("#tblErrorTipo1").html(htmlError);
+                $j("#ErrorTipo1,#ErrorTipo1Top").show();
+            }
+            if (response.TipoValidacion == 3) {
+                var htmlError = '';
+                $j.each(response.Lista, function (i, item) {
+                    htmlError += `<tr><td>${item.Nombre}</td><td>${item.NumIdentificacion}</td><td>${item.Valor}</td><td>${item.ValorSuite}</td</tr>`;
+                });
+                $j("#tblErrorTipo2").html(htmlError);
+                $j("#ErrorTipo2,#ErrorTipo2Top").show();
+            }
+        }
+    });
+
+    return isValid;
+}
+
+function AgregarSuite() {
+    $j("#editSuite,#nuevaSuite").show();
+    $j("#updateSuite").hide();
+}
+
 function verTodos() {
-    $j("#GrillaPropietario").show();
-    $j("#dataPropietario,#editSuite").hide();
+    $j("#idPropietario,#idSuitePropietario").val("-1");
+    $j("#GrillaPropietario,#btnNuevo").show();
+    $j("#dataPropietario,#editSuite,#btnGuardar,#btnVerTodos").hide();
+}
+
+function nuevo() {
+    $j("#dataPropietario input").each(function () {
+        if ($j(this).attr('type') == 'text') {
+            $j(this).val('');
+        }
+    });
+    $j(".vars").each(function () {
+        $j(this).val('0');
+    });
+    $j("#idPropietario,#idSuitePropietario").val("-1");
+    $j("[id$=chActivo]").prop("checked", true);
+    $j("#GrillaPropietario,#updateSuite,#listaSuite,#btnNuevo,#btnAgregarSuit").hide();
+    $j("#dataPropietario,#editSuite,#nuevaSuite,#btnGuardar,#btnVerTodos").show();
 }
 
 

@@ -136,6 +136,7 @@
     <Compile Include="UsuarioBo.cs" />
     <Compile Include="VariableBo.cs" />
     <Compile Include="VariablesConceptoBo.cs" />
+    <Compile Include="VariablesValidacionBo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DM\DM.csproj">

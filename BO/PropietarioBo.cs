@@ -416,6 +416,39 @@ namespace BO
             }
         }
 
+        public int Actualizar(Propietario propietario, int idUsuario)
+        {
+            using (ContextoOwner Contexto = new ContextoOwner())
+            {
+                Propietario propietarioTmp = Contexto.Propietario.Where(P => P.IdPropietario == propietario.IdPropietario).FirstOrDefault();
+
+                propietarioTmp.NombrePrimero = propietario.NombrePrimero;
+                propietarioTmp.NombreSegundo = propietario.NombreSegundo;
+                propietarioTmp.ApellidoPrimero = propietario.ApellidoPrimero;
+                propietarioTmp.ApellidoSegundo = propietario.ApellidoSegundo;
+                propietarioTmp.TipoPersona = propietario.TipoPersona;
+                propietarioTmp.TipoDocumento = propietario.TipoDocumento;
+
+                propietarioTmp.NumIdentificacion = propietario.NumIdentificacion;
+                propietarioTmp.Activo = propietario.Activo;
+                propietarioTmp.Correo = propietario.Correo;
+                propietarioTmp.Correo2 = propietario.Correo2;
+                propietarioTmp.Correo3 = propietario.Correo3;
+                propietarioTmp.EsRetenedor = propietario.EsRetenedor;
+                propietarioTmp.Direccion = propietario.Direccion;
+                propietarioTmp.Telefono_1 = propietario.Telefono_1;
+                propietarioTmp.Telefono_2 = propietario.Telefono_2;
+                propietarioTmp.NombreContacto = propietario.NombreContacto;
+                propietarioTmp.TelefonoContacto = propietario.TelefonoContacto;
+                propietarioTmp.CorreoContacto = propietario.CorreoContacto;
+                propietarioTmp.CiudadReference.EntityKey = new System.Data.EntityKey("ContextoOwner.Ciudad", "IdCiudad", propietario.CiudadReference.EntityKey.EntityKeyValues[0].Value);
+
+                Contexto.SaveChanges();
+
+                return propietarioTmp.IdPropietario;
+            }
+        }
+
         public void Actualizar(int idPropietario, string nombrePrimero, string nombreSegundo, string apellidoPrimero, string apellidoSegundo, string tipoPersona,
                                string numIdentificacion, string correo, string correo2, string correo3, bool esActivo, int idCiudad, int idPerfil, string direccion,
                                string tel1, string tel2, string nombreContacto, string telContacto, string correoContacto, string tipoDocumento, bool esRetenedor, int idUsuario)

@@ -47,6 +47,7 @@ namespace WebOwner.handlers
             ObjetoGenerico objetoResponse = null;
             ObjetoGenerico dataPropietario = null;
             Suit_Propietario suitPropietario = null;
+            Propietario propietario = null;
 
             PropietarioBo propietarioBo = null;
             SuitBo suitBo = null;
@@ -56,29 +57,61 @@ namespace WebOwner.handlers
             switch (actionType)
             {
                 case ActionOwnerEnum.SaveOwner:
+                    objetoResponse = new ObjetoGenerico();
                     try
                     {
+                        
                         propietarioBo = new PropietarioBo();
                         suitPropietarioBo = new SuitPropietarioBo();
                         ValorVariableBo = new ValorVariableBo();
 
                         dataPropietario = js.Deserialize<ObjetoGenerico>(HttpContext.Current.Request.Params["data"]);
-                        Propietario propietario = this.GetPropietario(dataPropietario);
-                        idPropietario = propietarioBo.Guardar(propietario, idUsuario);
-                        dataPropietario.IdPropietario = idPropietario;
-                        suitPropietario = GetSuite(dataPropietario);
-                        idSuitPropietario = suitPropietarioBo.Guardar(suitPropietario);
-                        dataPropietario.IdSuitPropietario = idSuitPropietario;
-                        List<Valor_Variable_Suit> listValorVariableSuit = GetVariable(dataPropietario);
-                        ValorVariableBo.Guardar(listValorVariableSuit);
+                        propietario = this.GetPropietarioModel(dataPropietario);
+
+                        Propietario propietarioRef = null;
+                        if (propietario.IdPropietario < 0)
+                            propietarioRef = propietarioBo.ObtenerPropietario(dataPropietario.NumIdentificacion);
+
+                        if (propietario.IdPropietario < 0)
+                            idPropietario = propietarioBo.Guardar(propietario, idUsuario);
+                        else
+                            idPropietario = propietarioBo.Actualizar(propietario, idUsuario);
+
+
+                        if (dataPropietario.ListaVariables != null)
+                        {
+                            dataPropietario.IdPropietario = idPropietario;
+                            suitPropietario = GetSuiteModel(dataPropietario);
+                            idSuitPropietario = suitPropietarioBo.Guardar(suitPropietario);
+                            dataPropietario.IdSuitPropietario = idSuitPropietario;
+                            List<Valor_Variable_Suit> listValorVariableSuit = GetVariableModel(dataPropietario);
+                            ValorVariableBo.Guardar(listValorVariableSuit);
+                        }
+
+                        objetoResponse.Ok = true;
+                        objetoResponse.Succes = "Guardado con exito";
+                        context.Response.ContentType = "application/json";
+                        context.Response.Write(js.Serialize(objetoResponse));
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        objetoResponse.Ok = false;
+                        objetoResponse.Error = "Error al guardar.";
+                        objetoResponse.ErrorExeption = $"Message: {ex.Message} InnerException: {ex.InnerException} StackTrace: {ex.StackTrace}";
+
                         propietarioBo.EliminarPropietario(idPropietario);
+
+                        context.Response.ContentType = "application/json";
+                        context.Response.Write(js.Serialize(objetoResponse));
                     }
 
                     break;
                 case ActionOwnerEnum.UpdateOwner:
+                    dataPropietario = js.Deserialize<ObjetoGenerico>(HttpContext.Current.Request.Params["data"]);
+                    propietario = this.GetPropietarioModel(dataPropietario);
+
+
+
                     break;
                 case ActionOwnerEnum.GetDepto:
                     DeptoBo deptoBo = new DeptoBo();
@@ -177,40 +210,42 @@ namespace WebOwner.handlers
             }
         }
 
-        public Propietario GetPropietario(ObjetoGenerico owner)
+        public Propietario GetPropietarioModel(ObjetoGenerico owner)
         {
             string clave = Utilities.EncodePassword(String.Concat(owner.NumIdentificacion, owner.NumIdentificacion));
 
             Propietario propietarioTmp = new Propietario();
-            propietarioTmp.NombrePrimero = owner.PrimeroNombre;
-            propietarioTmp.NombreSegundo = owner.SegundoNombre;
-            propietarioTmp.ApellidoPrimero = owner.PrimerApellido;
-            propietarioTmp.ApellidoSegundo = owner.SegundoApellido;
+            propietarioTmp.IdPropietario = owner.IdPropietario;
+            propietarioTmp.NombrePrimero = owner.PrimeroNombre.Trim();
+            propietarioTmp.NombreSegundo = owner.SegundoNombre.Trim();
+            propietarioTmp.ApellidoPrimero = owner.PrimerApellido.Trim();
+            propietarioTmp.ApellidoSegundo = owner.SegundoApellido.Trim();
             propietarioTmp.TipoPersona = owner.TipoPersona;
             propietarioTmp.TipoDocumento = owner.TipoDocumento;
-            propietarioTmp.FechaIngreso = new DateTime();
-            propietarioTmp.NumIdentificacion = owner.NumIdentificacion;
-            propietarioTmp.Login = owner.NumIdentificacion;
+            propietarioTmp.FechaIngreso = DateTime.Now;
+            propietarioTmp.NumIdentificacion = owner.NumIdentificacion.Trim();
+            propietarioTmp.Login = owner.NumIdentificacion.Trim();
             propietarioTmp.Pass = clave;
             propietarioTmp.Activo = owner.Activo;
             propietarioTmp.CiudadReference.EntityKey = new System.Data.EntityKey("ContextoOwner.Ciudad", "IdCiudad", owner.IdCiudad);
             propietarioTmp.PerfilReference.EntityKey = new System.Data.EntityKey("ContextoOwner.Perfil", "IdPerfil", 2);
-            propietarioTmp.Correo = owner.Correo;
-            propietarioTmp.Correo2 = owner.Correo2;
-            propietarioTmp.Correo3 = owner.Correo3;
+            propietarioTmp.Correo = owner.Correo.Trim();
+            propietarioTmp.Correo2 = owner.Correo2.Trim();
+            propietarioTmp.Correo3 = owner.Correo3.Trim();
             propietarioTmp.Direccion = owner.Direccion;
             propietarioTmp.Telefono_1 = owner.Telefono1;
             propietarioTmp.Telefono_2 = owner.Telefono2;
+            propietarioTmp.Telefono_3 = owner.Telefono3;
             propietarioTmp.NombreContacto = owner.NombreContacto;
             propietarioTmp.TelefonoContacto = owner.TelContacto;
-            propietarioTmp.CorreoContacto = owner.CorreoContacto;
+            propietarioTmp.CorreoContacto = owner.CorreoContacto.Trim();
             propietarioTmp.EsRetenedor = owner.EsRetenedor;
             propietarioTmp.Cambio = true;
 
             return propietarioTmp;
         }
 
-        public Suit_Propietario GetSuite(ObjetoGenerico owner)
+        public Suit_Propietario GetSuiteModel(ObjetoGenerico owner)
         {
 
             Suit_Propietario SuitPropietarioTmp = new Suit_Propietario();
@@ -226,7 +261,7 @@ namespace WebOwner.handlers
             return SuitPropietarioTmp;
         }
 
-        public List<Valor_Variable_Suit> GetVariable(ObjetoGenerico owner)
+        public List<Valor_Variable_Suit> GetVariableModel(ObjetoGenerico owner)
         {
 
             List<Valor_Variable_Suit> listValorVariableSuit = new List<Valor_Variable_Suit>();
