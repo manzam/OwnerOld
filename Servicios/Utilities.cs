@@ -245,7 +245,11 @@ namespace Servicios
                 multipart.Add(attachment);
             }
 
-            multipart.Add(new TextPart(TextFormat.Plain) { Text = textoCuerpo });
+            if (textoCuerpo != null)
+            {
+                multipart.Add(new TextPart(TextFormat.Plain) { Text = textoCuerpo });
+            }
+            
             miMensaje.Body = multipart;
 
             try
