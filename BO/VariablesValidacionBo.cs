@@ -18,6 +18,7 @@ namespace BO
 
             using (ContextoOwner Contexto = new ContextoOwner())
             {
+                // obtenfo la congifuracion de cada variable
                 foreach (ObjetoGenerico itemVariable in listVariable)
                 {
                     Variable oVariable = Contexto.Variable.Where(V => V.IdVariable == itemVariable.IdVariable).FirstOrDefault();
@@ -44,9 +45,88 @@ namespace BO
                     result.Lista = GetParticipacionPesoSuite(variableToValidate.IdVariable.Value, variableToValidate.IdSuit);
                     return result;
                 }
+                // Validacion divicion sumatoria coeficiente suite
+                variableToValidate = listVariable.Where(V => V.EsValidacion == true && V.TipoValidacion == 5).FirstOrDefault();
+                if (variableToValidate != null)
+                {
+                    ObjetoGenerico variableSuite = listVariable.Where(V => V.EsValidacion == true && V.TipoValidacion == 6).FirstOrDefault();
+
+                    result.TipoValidacion = 5;
+                    result.Error = ValidationDivicionSumatoria(variableToValidate, variableSuite);
+                    result.Lista = GetCoeficientes(variableToValidate, variableSuite);
+                    return result;
+                }
 
             }
             return result;
+        }
+
+        private string ValidationDivicionSumatoria(ObjetoGenerico coeficienteSuite, ObjetoGenerico coeficienteLiquidacion)
+        {
+            using (ContextoOwner Contexto = new ContextoOwner())
+            {
+                // Coeficiente de liquidacion no debe ser mayor que el coeficiente suite
+                if (coeficienteLiquidacion.Valor > coeficienteSuite.Valor)
+                    return "El coeficiente de liquidacion supera el coeficiente de la suite";
+
+                // Calculamos las sumatorias y las dividimos
+                string sqlSumCoeficienteSuite = $@"SELECT sum(isnull(Valor_Variable_Suit.Valor,0)) Valor
+                                                    FROM Suit_Propietario 
+                                                    INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario
+                                                    INNER JOIN Variable ON Valor_Variable_Suit.IdVariable = Variable.IdVariable
+                                                    INNER JOIN Propietario ON Suit_Propietario.IdPropietario = Propietario.IdPropietario
+                                                    WHERE Valor_Variable_Suit.IdVariable = {coeficienteSuite.IdVariable} and Suit_Propietario.IdSuit = {coeficienteLiquidacion.IdSuit} 
+                                                    and Suit_Propietario.IdPropietario <> {coeficienteLiquidacion.IdPropietario} and Suit_Propietario.EsActivo = 1 ";
+                double sumCoeficienteSuite = (double)Utilities.ExecuteScalar(sqlSumCoeficienteSuite);
+
+                string sqlSumCoeLiquidacion = $@"SELECT sum(isnull(Valor_Variable_Suit.Valor,0)) Valor
+                                                    FROM Suit_Propietario 
+                                                    INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario
+                                                    INNER JOIN Variable ON Valor_Variable_Suit.IdVariable = Variable.IdVariable
+                                                    INNER JOIN Propietario ON Suit_Propietario.IdPropietario = Propietario.IdPropietario
+                                                    WHERE Valor_Variable_Suit.IdVariable = {coeficienteLiquidacion.IdVariable} and Suit_Propietario.IdSuit = {coeficienteLiquidacion.IdSuit} 
+                                                    and Suit_Propietario.IdPropietario <> {coeficienteLiquidacion.IdPropietario} and Suit_Propietario.EsActivo = 1 ";
+                double sumCoeLiquidacion = (double)Utilities.ExecuteScalar(sqlSumCoeLiquidacion);
+
+                sumCoeficienteSuite = sumCoeficienteSuite + coeficienteSuite.Valor;
+                sumCoeLiquidacion = sumCoeLiquidacion + coeficienteLiquidacion.Valor;
+                if ((sumCoeLiquidacion / sumCoeficienteSuite) > 1)
+                {
+                    return "El valor supera el 1%";
+                }
+
+                return "";
+            }
+        }
+
+        private List<ObjetoGenerico> GetCoeficientes(ObjetoGenerico coeficienteSuite, ObjetoGenerico coeficienteLiquidacion)
+        {
+            string sql = $@"SELECT 
+                            (Propietario.NombrePrimero + ' ' + Propietario.NombreSegundo + ' ' + Propietario.ApellidoPrimero + ' ' + Propietario.ApellidoSegundo) Nombre, 
+                            Propietario.NumIdentificacion, 
+                            Variable.Nombre NombreVariable,
+                            Valor_Variable_Suit.Valor
+                            FROM Suit_Propietario 
+                            INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario 
+                            INNER JOIN Variable ON Valor_Variable_Suit.IdVariable = Variable.IdVariable 
+                            INNER JOIN Propietario ON Suit_Propietario.IdPropietario = Propietario.IdPropietario 
+                            INNER JOIN Suit ON Suit_Propietario.IdSuit = Suit.IdSuit
+                            WHERE (Valor_Variable_Suit.IdVariable in ({coeficienteLiquidacion.IdVariable.Value},{coeficienteSuite.IdVariable.Value})) 
+                            AND (Suit_Propietario.IdSuit = {coeficienteLiquidacion.IdSuit}) 
+                            and Suit_Propietario.IdPropietario <> {coeficienteLiquidacion.IdPropietario}  and Suit_Propietario.EsActivo = 1 ";
+            DataTable dtProp = Utilities.Select(sql, "listPtop");
+            if (dtProp != null)
+            {
+                return (from row in dtProp.AsEnumerable()
+                        select new ObjetoGenerico()
+                        {
+                            Nombre = row["Nombre"].ToString(),
+                            NumIdentificacion = row["NumIdentificacion"].ToString(),
+                            NombreVariable = row["NombreVariable"].ToString(),
+                            Valor = Convert.ToDouble(row["Valor"])
+                        }).ToList();
+            }
+            return new List<ObjetoGenerico>();
         }
 
         private string ValidationAgrupadaPesoSuite(ObjetoGenerico variableToValidate, int idVariableSuite)
@@ -59,7 +139,7 @@ namespace BO
                                             INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario
                                             INNER JOIN Variable ON Valor_Variable_Suit.IdVariable = Variable.IdVariable
                                             WHERE Valor_Variable_Suit.IdVariable = {variableToValidate.IdVariable} and Suit_Propietario.IdSuit = {variableToValidate.IdSuit} and 
-                                            Suit_Propietario.IdPropietario <> {variableToValidate.IdPropietario} ";
+                                            Suit_Propietario.IdPropietario <> {variableToValidate.IdPropietario} and Suit_Propietario.EsActivo = 1 ";
                 object valueProp = Utilities.ExecuteScalar(sqlProp);
                 // El peso de la suite
                 string sqlSuite = $@"SELECT top 1 Valor_Variable_Suit.Valor
@@ -67,7 +147,7 @@ namespace BO
                                                 INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario
                                                 INNER JOIN Variable ON Valor_Variable_Suit.IdVariable = Variable.IdVariable
                                                 WHERE 
-                                                Valor_Variable_Suit.IdVariable = {idVariableSuite} and Suit_Propietario.IdSuit = {variableToValidate.IdSuit} ";
+                                                Valor_Variable_Suit.IdVariable = {idVariableSuite} and Suit_Propietario.IdSuit = {variableToValidate.IdSuit} and Suit_Propietario.EsActivo = 1 ";
 
                 object valueSuite = Utilities.ExecuteScalar(sqlSuite);
 
@@ -98,7 +178,7 @@ namespace BO
                             INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario 
                             INNER JOIN Propietario ON Suit_Propietario.IdPropietario = Propietario.IdPropietario 
                             INNER JOIN Suit ON Suit_Propietario.IdSuit = Suit.IdSuit
-                            WHERE (Valor_Variable_Suit.IdVariable = {idVariable}) AND (Suit_Propietario.IdSuit = {idSuit})";
+                            WHERE (Valor_Variable_Suit.IdVariable = {idVariable}) AND (Suit_Propietario.IdSuit = {idSuit}) and Suit_Propietario.EsActivo = 1 ";
             DataTable dtProp = Utilities.Select(sql, "listPtop");
             if (dtProp != null)
             {
@@ -124,7 +204,7 @@ namespace BO
                                         INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario
                                         INNER JOIN Variable ON Valor_Variable_Suit.IdVariable = Variable.IdVariable
                                         WHERE Suit_Propietario.EsActivo = 1 and Valor_Variable_Suit.IdVariable = {variableToValidate.IdVariable} and 
-                                        Suit_Propietario.IdSuit = {variableToValidate.IdSuit} and Suit_Propietario.IdPropietario <> {variableToValidate.IdPropietario} ";
+                                        Suit_Propietario.IdSuit = {variableToValidate.IdSuit} and Suit_Propietario.IdPropietario <> {variableToValidate.IdPropietario} and Suit_Propietario.EsActivo = 1 ";
 
                 float valorTmp = 0;
                 object value = Utilities.ExecuteScalar(sql);
@@ -151,7 +231,7 @@ namespace BO
                             INNER JOIN Valor_Variable_Suit ON Suit_Propietario.IdSuitPropietario = Valor_Variable_Suit.IdSuitPropietario 
                             INNER JOIN Propietario ON Suit_Propietario.IdPropietario = Propietario.IdPropietario 
                             INNER JOIN Suit ON Suit_Propietario.IdSuit = Suit.IdSuit
-                            WHERE (Valor_Variable_Suit.IdVariable = {idVariable}) AND (Suit_Propietario.IdSuit = {idSuit}) AND (Suit_Propietario.IdPropietario <> {idPropietario}) ";
+                            WHERE (Valor_Variable_Suit.IdVariable = {idVariable}) AND (Suit_Propietario.IdSuit = {idSuit}) AND (Suit_Propietario.IdPropietario <> {idPropietario}) and Suit_Propietario.EsActivo = 1 ";
             DataTable dtProp = Utilities.Select(sql, "listPtop");
             if (dtProp != null)
             {

@@ -4,7 +4,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>    
 <%@ Register src="WebUserBuscadorPropietario.ascx" tagname="WebUserBuscadorPropietario" tagprefix="uc1" %>
-<script src="../../js/variablePropietario.js?v=00010"></script>
+<script src="../../js/variablePropietario.js?v=00011"></script>
 <style type="text/css">
     .errorRequerid {
         background-color: #ffe2e2;
@@ -41,6 +41,7 @@
             
             <div id="ErrorTipo1Top" style="color: red; padding: 2px 2px 2px 2px; font-size: 18px;">La participación supera el 100%</div>
             <div id="ErrorTipo2Top" style="color: red; padding: 2px 2px 2px 2px; font-size: 18px;">La sumatoria de los coeficientes propietario supera el coeficiente de la suite</div>
+            <div id="ErrorTipo5Top" style="color: red; padding: 2px 2px 2px 2px; font-size: 18px;"></div>
 
             
             <table width="100%" cellpadding="3" cellspacing="0">
@@ -406,6 +407,23 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tblErrorTipo2">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="ErrorTipo5">
+                        <div id="ErrorTipo5tbl" style="color: red; padding: 2px 2px 2px 2px; font-size: 18px;"></div>
+                        <div>
+                            <table style="width:80%;">
+                                <thead>
+                                    <tr style="color: White; background-color: #7599A9; border-color: #7599A9;">
+                                        <td>Propietario</td>
+                                        <td>Identificacion</td>
+                                        <td>Nombre Variable</td>
+                                        <td>Valor</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblErrorTipo5">
                                 </tbody>
                             </table>
                         </div>

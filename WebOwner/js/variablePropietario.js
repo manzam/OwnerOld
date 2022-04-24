@@ -9,7 +9,7 @@ $j(document).ready(function() {
 
     function CargasIniciales(sender, args) {
 
-        $j("#btnGuardar,#btnVerTodos,#btnAgregarSuit,#dataPropietario,#editSuite,#nuevaSuite,#updateSuite,#btnUpdateVariables,#ErrorTipo1,#ErrorTipo1Top,#ErrorTipo2,#ErrorTipo2Top").hide();
+        $j("#btnGuardar,#btnVerTodos,#btnAgregarSuit,#dataPropietario,#editSuite,#nuevaSuite,#updateSuite,#btnUpdateVariables,#ErrorTipo1,#ErrorTipo1Top,#ErrorTipo2,#ErrorTipo2Top,#ErrorTipo5,#ErrorTipo5Top").hide();
 
         // Hotel
         $j.ajax({
@@ -342,8 +342,8 @@ function isValid() {
 }
 
 function validarVariables() {
-    $j("#ErrorTipo1,#ErrorTipo1Top,#ErrorTipo2,#ErrorTipo2Top").hide();
-    $j("#tblErrorTipo1").empty();
+    $j("#ErrorTipo1,#ErrorTipo1Top,#ErrorTipo2,#ErrorTipo2Top,#ErrorTipo5,#ErrorTipo5Top").hide();
+    $j("#tblErrorTipo1,#tblErrorTipo2,#tblErrorTipo5").empty();
     
     var listaVariables = getDataVariables();
     var isValid = true;
@@ -371,6 +371,15 @@ function validarVariables() {
                 });
                 $j("#tblErrorTipo2").html(htmlError);
                 $j("#ErrorTipo2,#ErrorTipo2Top").show();
+            }
+            if (response.TipoValidacion == 5) {
+                var htmlError = '';
+                $j.each(response.Lista, function (i, item) {
+                    htmlError += `<tr><td>${item.Nombre}</td><td>${item.NumIdentificacion}</td><td>${item.NombreVariable}</td><td>${item.Valor}</td</tr>`;
+                });
+                $j("#ErrorTipo5tbl,#ErrorTipo5Top").text(response.Error);
+                $j("#tblErrorTipo5").html(htmlError);
+                $j("#ErrorTipo5,#ErrorTipo5Top").show();
             }
         }
     });
