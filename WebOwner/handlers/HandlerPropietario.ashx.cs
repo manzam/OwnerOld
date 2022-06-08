@@ -69,13 +69,15 @@ namespace WebOwner.handlers
                         propietario = this.GetPropietarioModel(dataPropietario);
 
                         Propietario propietarioRef = null;
-                        if (propietario.IdPropietario < 0)
-                            propietarioRef = propietarioBo.ObtenerPropietario(dataPropietario.NumIdentificacion);
+                        propietarioRef = propietarioBo.ObtenerPropietario(dataPropietario.NumIdentificacion);
 
-                        if (propietario.IdPropietario < 0)
+                        if (propietarioRef == null)
                             idPropietario = propietarioBo.Guardar(propietario, idUsuario);
                         else
+                        {
+                            propietario.IdPropietario = propietarioRef.IdPropietario;
                             idPropietario = propietarioBo.Actualizar(propietario, idUsuario);
+                        }
 
 
                         if (dataPropietario.ListaVariables != null)

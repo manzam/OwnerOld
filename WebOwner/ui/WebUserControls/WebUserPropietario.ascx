@@ -4,7 +4,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>    
 <%@ Register src="WebUserBuscadorPropietario.ascx" tagname="WebUserBuscadorPropietario" tagprefix="uc1" %>
-<script src="../../js/variablePropietario.js?v=00011"></script>
+<script src="../../js/variablePropietario.js?v=00012"></script>
 <style type="text/css">
     .errorRequerid {
         background-color: #ffe2e2;

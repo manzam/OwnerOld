@@ -187,7 +187,7 @@ function setDataPropietario(dataPropietario) {
                         <td>${item.NumSuit}</td>
                         <td>${item.NumEscritura}</td>
                         <td style="text-align: center;">
-                            <input type="checkbox" onclick="ActivarSuite(${item.IdSuitPropietario})" checked="${(item.Activo) ? 'checked' : ''}" />
+                            <input type="checkbox" onclick="ActivarSuite(${item.IdSuitPropietario})" ${(item.Activo) ? 'checked' : ''} />
                         </td>`;
         htmlSuites += '</tr>';
     });
